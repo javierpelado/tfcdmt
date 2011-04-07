@@ -1025,6 +1025,22 @@ body.ie .xtr_select .xtd_ico{
     width:15px;
     height:15px;
 }
+.xtd_opinion {
+    padding-left:.5em;
+    padding-right:.5em;    
+}
+.xtd_polarity {
+    color:#878787;
+    font-size:.95em;
+    text-align:right;
+    padding-right:.6em;
+    white-space:nowrap;
+}
+.xtd_pol_color {
+    width:10px;
+
+}
+
 body.op .col_text{
     width:524.933px;
 }
@@ -1100,7 +1116,7 @@ body.sf2 .col_arr,body.sf3 .col_arr{
     width:15px;
 }
 .col_check{
-    width:15px;
+    width:25px;
 }
 .col_date{
     width:12ex;
@@ -1359,9 +1375,9 @@ body.v2 #statusbox{
 #searchbox{
     float:right;
     clear:right;
-    padding:0px 15px;
+    padding:0px 15px 10px;
 }
-#searchboxwrap table{
+#searchboxwrap_so,#searchboxwrap table{
     border-spacing:0;
     border-collapse:collapse;
     empty-cells:show;
@@ -1390,8 +1406,9 @@ body.v2 #listFilter{
     clear:both;
     left:0;
     right:0;
-    margin:auto;
+    margin:0px 10px 10px;
     text-align:center;
+    background-color: #E0F0FB;
 }
 #searchhideoptions{
     margin-top:4px;
@@ -1445,10 +1462,13 @@ body.v2 #searchoptionsform .textfield{
     color:#575757;
 }
 #searchtogglewrap{
-    margin-top:2px;
+    margin-top:-8px;
     text-align:right;
     font-size:10px;
     width:192px;
+    float: right;
+    clear: right;
+    padding: 0px 15px;
 }
 body.v1 #searchtogglewrap{
     width:127px;
@@ -2557,4 +2577,14 @@ a.disabled:hover{
     background-color: #F9F9F9;
     background-image: url(https://catch.com/webclient/images/collapsed_gradient_white.png);
     cursor: pointer;
+}
+.select {
+  position: absolute;
+  width: 158px;
+  height: 21px;
+  padding: 0 24px 0 8px;
+  color: #fff;
+  font: 12px/21px arial,sans-serif;
+  background: url(/img/skin.png) no-repeat;
+  overflow: hidden;
 }

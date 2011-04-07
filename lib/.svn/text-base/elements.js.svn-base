@@ -6,6 +6,7 @@
 var V_CONTENT = null;
 var V_TRAINER = null;
 var V_STATUSBOX = null;
+var V_Table = null;
 
 var blueTitle = function blueTitle(title) {
     this.html = $('<div id="pageheader"></div> <!-- /pageheader -->');
@@ -43,8 +44,9 @@ var trainer = function trainer() {
 
 
 var searchBox = function searchBox() {
+    var sb = this;
     this.element = $('<div id="searchbox">\
-                            <form onsubmit="control.updateListFilter(); return false;" action="">\
+                            <form onsubmit="" action="">\
                                 <div id="searchboxwrap">\
                                     <table>\
                                         <tbody>\
@@ -60,21 +62,69 @@ var searchBox = function searchBox() {
                                         </tbody>\
                                     </table>\
                                 </div>\
-                                <div id="searchtogglewrap"><a id="searchtoggle" href="#" onclick="tasksView.toggleSearchOptions(); return false;">Mostrar opciones de b&uacute;squeda</a></div>\
                             </form>\
-                        </div>');
-    //$('#appheader').append(this.element);
+                        </div>\
+                        <div id="searchoptions" style="display:none">\
+                            <div id="searchoptionswrap">\
+                                <form id="searchoptionsform" method="post" action="">\
+                                    <table>\
+                                        <tbody>\
+                                            <tr>\
+                                                <td class="formfield"></td>\
+                                        	<td class="formfield"><label for="search_lists">Buscar en</label></td>\
+                                                <td class="formfield"><label for="num_search_results">N\u00FAmero de resultados</label></td>\
+                                            </tr>\
+                                            <tr>\
+                                                <td class="formfield"><div id="searchboxwrap_so" style="width:210px;background-color:white"><table><tbody><tr><td style="width: 1px;"><div id="searchicon"></div></td><td><input onfocus="this.select();" type="text" id="listFilter_so"></td></tr></tbody></table></div></td>\
+                                                <td class="formfield"><select id="search_lists" name="search_lists" class="textfield"><option value="-1">Todas las listas</option><option value="-1" disabled="">---</option><option value="twitter" selected>Twitter</option><option value="fotolog">Fotolog</option></select></td>\
+                                                <td class="formfield"><select id="num_search_results" name="num_search_results" class="textfield"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="100">100</option></select></td>\
+                                          </tr>\
+                                          <tr>\
+                                                <td colspan="4" style="padding-top: 6px; text-align: center;"><input id="search_begin" type="submit" value="Buscar" style="margin-left: -10px; margin-right: 4px;"><input id="search_cancel" type="submit" value="Cancelar"></td>\
+                                          </tr>\
+                                    </tbody>\
+                                </table>\
+                            </form>\
+                        </div> <!-- /searchoptionswrap -->\
+                    </div>\
+                    <div id="searchtogglewrap" style="float:right"><a id="searchtoggle" href="#">Mostrar opciones de b\u00FAsqueda</a></div>');
+    this.searchoptions = $('#searchoptions',this.element);
+    //console.log(this.element[2]);
+    this.searchoptions.toggle('slow');
+    $('#searchtoggle',this.element).click(function() {
+        $('#listFilter_so',sb.element).val($('#listFilter',sb.element).val());
+        $(sb.element[0]).slideToggle('slow');
+        $(sb.element[2]).slideToggle('slow');
+        $(this).text($(this).text() == 'Ocultar opciones de b\u00FAsqueda' ? 'Mostrar opciones de b\u00FAsqueda' : 'Ocultar opciones de b\u00FAsqueda');
+        $("#searchboxwrap_so input").focus();
+//$(this).text('Ocultar opciones de b\u00FAsqueda');
+    });
+    $("form",this.element).submit(function() {
+        var query = $('#listFilter',sb.element).val();
+        var target = $('#search_lists',sb.element).val();
+        var numElems = $('#num_search_results',sb.element).val();
+        var url = target + '_search.php?q=' + query + '&n=' + numElems;
+        //console.log(url);
+        //console.log(V_Table.fnGetSelected('xtr_select'));
+        V_Table.fnReloadAjax(url);
+//        V_Table.fnReloadAjax('twitter_search.php?q=hola&n=10');
+        return false;
+    });
+
+
+//    //console.log(V_Table.fnGetSelected());
 }
 
 
 var generalContext = function generalContext() {
     this.reset = function() {
+        $(".appview").remove();
         V_STATUSBOX = this.statusbox = new statusBox();
         $("#searchbox").remove();
         //$("#title").toggle();
         this.viewselector = new viewSelector();
         this.viewselector.addView("Sesiones",new appViewSes(this.statusbox),true);
-        this.viewselector.addView("Categor&iacute;as",new appViewCat(this.statusbox));
+        this.viewselector.addView("Categor\u00EDas",new appViewCat(this.statusbox));
         this.viewselector.addView("Preferencias",new appViewSettings(this.statusbox));
         this.viewselector.addExit();
         this.viewselector.showDeafault();
@@ -84,6 +134,7 @@ var generalContext = function generalContext() {
 var sessionContext = function sessionContext() {
 
     this.reset = function(id) {
+        $(".appview").remove();
         this.id = id;
         this.statusbox = V_STATUSBOX;
 //        this.searchbox = new searchBox();
@@ -102,7 +153,7 @@ var sessionContext = function sessionContext() {
 
 var viewSelector = function viewSelector() {
     this.element = $("#viewSelector");
-    $("#appview").remove();
+//    $("#appview").remove();
     this.element.empty();
     this.views = {};
     this.selectedView = null;
@@ -114,6 +165,7 @@ var viewSelector = function viewSelector() {
         this.views[name] = appview;
         this.element.append(" | ");
         this.element.append(view);
+        vs.views[name].initialize();
         view.click(function() {
             if(name != vs.selectedView) {
                 $('a',vs.element).css({
@@ -123,7 +175,8 @@ var viewSelector = function viewSelector() {
                 });
 //                if(vs.selectedView != null) vs.views[vs.selectedView].element.hide();
                 vs.selectedView = name;
-                vs.views[name].initialize();
+//                vs.views[name].initialize();
+                $(".appview").hide();
                 vs.views[name].element.show();
                 view.css({
                     'text-decoration':'none',
@@ -148,12 +201,12 @@ var viewSelector = function viewSelector() {
 
     this.addExit = function() {
         this.element.append(' | ');
-        this.element.append('<a href="../?logoff">Cerrar Sesi&oacute;n</a>');
+        this.element.append('<a href="../?logoff">Cerrar Sesi\u00F3n</a>');
     }
 
     this.addBack = function() {
         this.element.append(' | ');
-        var link = $('<a href="">Atr&aacute;s</a>');
+        var link = $('<a href="">Atr\u00E1s</a>');
         this.element.append(link);
         link.click(function() {
             V_TRAINER.goBack();
@@ -173,23 +226,25 @@ var statusBox = function statusBox() {
     this.text = $("#statusboxtext",this.element);
 
     V_CONTENT.append(this.element);
+    V_CONTENT.append('<div id="break"></div>');
 
     this.showMessage = function(text) {
         this.text.empty();
         this.text.append('<span>' + text + '</span>');
         this.element.fadeIn();
-        setTimeout("$('#statusbox').fadeOut(2000)", 5000);
+        setTimeout("$('#statusbox').fadeOut(1000)", 2000);
     }
 }
 
 var appViewSes = function appViewSes(statusbox) {
     var appview = this;
+    this.info = "\u00BFQuieres crear, editar o borrar entrenamientos? Lo puedes hacer todo aqu\u00ED. Tambien puedes acceder a cualquier entrenamiento desde aqu\u00ED."
 
     this.initialize = function() {
-        $('#break').remove();
-        $("#appview").remove();
-        this.element = $('<div id="appview" style="display:none"></div>');
-        V_CONTENT.append('<div id="break"></div>');
+//        $('#break').remove();
+//        $("#appview").remove();
+        this.element = $('<div id="appviewSes" class="appview" style="display:none"></div>');
+//        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.selectedCategory = null;
         this.sessions = [];
@@ -203,12 +258,12 @@ var appViewSes = function appViewSes(statusbox) {
         this.listbox.elementsList();
         this.detailsbox = new detailsBox(appview);
         this.detailsbox.animate();
-        this.emptySessions = new session(null,"0","Ningún resultado encontrado",null,appview);
+        this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
         this.getCategories();
         this.getSessions();
         this.addCategory('-', "Todo");
         this.defaultTab = this.selectedCategory;
-        this.addCategory('0', "Sin Categor&iacute;a");
+        this.addCategory('0', "Sin Categor\u00EDa");
 
         this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
     }
@@ -318,14 +373,14 @@ var appViewSes = function appViewSes(statusbox) {
                 s.show();
                 appview.emptySessions.hide();
                 appview.refreshDetails();
-                statusbox.showMessage('Añadida sesión con título "' + title + '" a la categoría "' + appview.tabNames[cat] + '"');
+                statusbox.showMessage('A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '" a la categor\u00EDa "' + appview.tabNames[cat] + '"');
             }
-            else statusbox.showMessage('No ha sido posible realizar la operación, inténtelo otra vez por favor');
+            else statusbox.showMessage('No ha sido posible realizar la operaci\u\u00F3n, int\u00E9ntelo otra vez por favor');
         });
     };
 
-    this.deleteSessions = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesión para realizar esta operación");
+    this.deleteElements = function() {
+        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         while(this.selectedSessions.length > 0) {
             var aux = this.selectedSessions.pop();
             aux.hide();
@@ -333,7 +388,7 @@ var appViewSes = function appViewSes(statusbox) {
                 mode:"deleteS",
                 id:aux.id
             },function(textStatus) {
-                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operación, inténtelo otra vez por favor');
+                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
 
             for(i in this.sessions)
@@ -358,12 +413,12 @@ var appViewSes = function appViewSes(statusbox) {
                 appview.selectedSessions[i].changeCategory(category);
             }
         }
-        else statusbox.showMessage("Tienes que seleccionar al menos una sesión para realizar esta operación");
+        else statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
     }
 
-    this.openSession = function() {
-        if (this.selectedSessions.length != 1) statusbox.showMessage("Tienes que seleccionar una, y sólo una sesión para realizar esta operación");
+    this.openElement = function() {
+        if (this.selectedSessions.length != 1) statusbox.showMessage("Tienes que seleccionar una, y s\u00F3lo una sesi\u00F3n para realizar esta operaci\u00F3n");
         else {
             V_TRAINER.session(this.selectedSessions[0].id);
         }
@@ -372,12 +427,13 @@ var appViewSes = function appViewSes(statusbox) {
 
 var appViewCat = function appViewCat(statusbox) {
     var appview = this;
+    this.info = "\u00BFQuieres crear, editar o borrar Categorías para clasificar entrenamientos? Lo puedes hacer todo aqu\u00ED."
 
     this.initialize = function() {
-        $('#break').remove();
-        $("#appview").remove();
-        this.element = $('<div id="appview" style="display:none"></div>');
-        V_CONTENT.append('<div id="break"></div>');
+//        $('#break').remove();
+//        $("#appview").remove();
+        this.element = $('<div id="appviewCat" class="appview" style="display:none"></div>');
+//        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.sessions = [];
         this.selectedSessions = [];
@@ -388,9 +444,9 @@ var appViewCat = function appViewCat(statusbox) {
         this.listbox.elementsList();
         this.detailsbox = new detailsBox(this);
         this.detailsbox.animate();
-        this.emptySessions = new session(null,"0","Ningún resultado encontrado",null,appview);
+        this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
         this.getSessions();
-        this.addCategory('-', "Categorías");
+        this.addCategory('-', "Categor\u00EDas");
 
         this.detailsbox.category(this.defaultTab.name,this.sessions.length);
     }
@@ -481,14 +537,14 @@ var appViewCat = function appViewCat(statusbox) {
                 s.show();
                 appview.emptySessions.hide();
                 appview.refreshDetails();
-                statusbox.showMessage('Añadida sesión con título "' + title + '"');
+                statusbox.showMessage('A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '"');
             }
-            else statusbox.showMessage('No ha sido posible realizar la operación, inténtelo otra vez por favor');
+            else statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
         });
     };
 
-    this.deleteSessions = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesión para realizar esta operación");
+    this.deleteElements = function() {
+        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         while(this.selectedSessions.length > 0) {
             var aux = this.selectedSessions.pop();
             aux.hide();
@@ -496,7 +552,7 @@ var appViewCat = function appViewCat(statusbox) {
                 mode:"deleteC",
                 id:aux.id
             },function(textStatus) {
-                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operación, inténtelo otra vez por favor');
+                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
 
             for(i in this.sessions)
@@ -521,7 +577,7 @@ var appViewCat = function appViewCat(statusbox) {
                 appview.selectedSessions[i].changeCategory(category);
             }
         }
-        else statusbox.showMessage("Tienes que seleccionar al menos una sesión para realizar esta operación");
+        else statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
     }
 }
@@ -530,12 +586,13 @@ var appViewSettings = function appViewSettings(statusbox) {
 
     this.statusbox = statusbox;
     var appview = this;
+    this.info = "\u00BFQuieres cambiar tu nombre o apellido? \u00BFDirecci\u00F3n de correo electr\u00F3nico? \u00BFContrase\u00F1a? \u00BFZona de hora? Lo puedes hacer todo aqu\u00ED."
 
     this.initialize = function() {
-        $('#break').remove();
-        $("#appview").remove();
-        this.element = $('<div id="appview" style="display:none"></div>');
-        V_CONTENT.append('<div id="break"></div>');
+//        $('#break').remove();
+//        $("#appview").remove();
+        this.element = $('<div id="appviewSettings" class="appview" style="display:none"></div>');
+//        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this);
@@ -557,34 +614,80 @@ var appViewTrain = function appViewTrain(statusbox) {
 
     this.statusbox = statusbox;
     this.tabNames = {};
+    this.workContainer = {};
+    this.workElements = [];
     var appview = this;
 
     this.initialize = function() {
-        $('#break').remove();
-        $("#appview").remove();
-        this.element = $('<div id="appview" style="display:none"></div>');
-        V_CONTENT.append('<div id="break"></div>');
+//        $('#break').remove();
+//        $("#appview").remove();
+        this.element = $('<div id="appviewTrain" class="appview" style="display:none"></div>');
+//        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
         this.listbox.addTools('1');
         this.listbox.searchList();
-//        this.addCategory('-', "Sesión \"" + id + "\"");
-//        var test = new session("item['id']","0","item['name']","",this);
-//        test.show();
-        var test = $('<div class="resul2"></div>');
+//        this.workElements.push(["","hola",""]);
+        this.workContainer['aaData'] = this.workElements;
+/*        var test = $('<div class="resul2"></div>');
         var test2 = '<div class="result"></div>';
         $('#results').append(test);
         $('#results').append(test2);
         $('#results').append(test2);
         $('#results').append(test2);
         $('#results').append(test2);
-        $('#results').append(test2);
+        $('#results').append(test2);*/
     }
 
     this.addCategory = function(id,name) {
         this.defaultTab = new category(id,name,this);
     }
+
+    this.deleteElements = function() {
+        var selectedElements = V_Table.fnGetSelected('xtr_select');
+        for ( var i=0 ; i<selectedElements.length ; i++ )
+        {
+            //console.log(V_Table.fnGetData());
+            V_Table.fnDeleteRow(selectedElements[i],false,false);
+            //console.log(selectedElements[i]);
+            //console.log(V_Table.fnGetData());
+            $(selectedElements[i]).remove();
+        }
+    }
+
+    this.selectAll = function() {
+        $(".xtr",V_Table).addClass("xtr_select");
+    }
+
+    this.unselectAll = function() {
+        $(".xtr",V_Table).removeClass("xtr_select");
+    }
+
+    this.add2work = function() {
+        var selectedData = V_Table.fnGetData();
+//        var selectedElements = V_Table.fnGetSelected('xtr_select');
+        for ( var i=0 ; i<selectedData.length ; i++ )
+        {
+                $.getJSON('opinions.php',{
+                    mode:"insert",
+                    text:selectedData[i][1]
+                },function(textStatus) {
+                    if(textStatus == "success") console.log(selectedData[i][1]);
+                });
+            this.workElements.push(["","",selectedData[i][2]]);
+
+            console.log(this.workContainer);
+        }
+        //console.log(JSON.stringify(this.workContainer));
+        
+    }
+    
+    this.changePolarity = function() {
+        
+    }
+
+
 }
 
 
@@ -629,9 +732,9 @@ var list = function list(appview,type) {
 
     this.element.append(this.listtabs.element);
     if(type == 'trainer') {
-        this.searchbox = new searchBox();
+//        this.searchbox = new searchBox();
         this.element.css('width', '980px');
-        this.listtabs.addDummyTab("Búsqueda");
+        this.listtabs.addDummyTab("B\u00FAsqueda");
     }
     this.element.append(this.listwrap.element);
 
@@ -695,8 +798,16 @@ var listWrap = function listWrap(appview,type) {
 
     this.showTools = function(type) {
         this.tools.show();
-        if(type == '0') this.tools.addCC();
-        if(type == '1') this.tools.addSearch();
+        if(type == '0') {
+            this.tools.addOpen();
+            this.tools.addDelete();
+            this.tools.addCC();
+        }
+        if(type == '1') {
+            this.tools.addDelete();
+            this.tools.addA2W();
+            this.tools.addSearch();
+        }
     }
 
     this.elementsList = function() {
@@ -724,6 +835,18 @@ var tools = function tools(appview) {
         this.element.show();
     };
 
+    this.addOpen = function() {
+        this.toolbox.addOpen();
+    }
+
+    this.addDelete = function() {
+        this.toolbox.addDelete();
+    }
+
+    this.addA2W = function() {
+        this.toolbox.addA2W();
+    }
+
     this.addCC = function() {
         this.toolbox.addChangeCategory();
     }
@@ -740,9 +863,19 @@ var toolbox = function toolbox(appview){
 
 
     this.element.append(this.actions.element);
-    this.actions.addOpen();
-    this.actions.addDelete();
-    this.element.append(this.selectors.element);
+
+    this.addOpen = function() {
+        this.actions.addOpen();
+    }
+
+    this.addDelete = function() {
+        this.actions.addDelete();
+        this.element.append(this.selectors.element);
+    }
+
+    this.addA2W = function() {
+        this.actions.addA2W();
+    }
 
     this.addChangeCategory = function(){
         this.actions.addChangeCategory();
@@ -753,9 +886,12 @@ var toolbox = function toolbox(appview){
     }
 
     this.addSearch = function() {
-        this.actions.addSearch();
+        this.search = new search(this.element,appview);
+//        this.actions.addSearch();
     }
 }
+
+
 
 var actions = function actions(father,appview) {
     this.element = $('<div class="xtoolbox_actions"></div>');
@@ -765,27 +901,36 @@ var actions = function actions(father,appview) {
     var a = this;
 
     this.addOpen = function (){
-        var openButton = $('<input type="submit" class="xtoolbox_button" value="Abrir sesi&oacute;n">');
+        var openButton = $('<input type="submit" class="xtoolbox_button" value="Abrir sesi\u00F3n">');
         a.form.append(openButton);
         openButton.click(function() {
 //            alert(appview.selectedCategory.name);
-            appview.openSession();
+            appview.openElement();
             return false;
         });
     }
 
     this.addDelete = function (){
-        var deleteButton = $('<input type="submit" class="xtoolbox_button" value="Eliminar sesi&oacute;n/es">');
+        var deleteButton = $('<input type="submit" class="xtoolbox_button" value="Eliminar elemento/os">');
         a.form.append(deleteButton);
         deleteButton.click(function() {
-            appview.deleteSessions();
+            appview.deleteElements();
+            return false;
+        });
+    }
+
+    this.addA2W = function() {
+        var addButton = $('<input type="submit" class="xtoolbox_button" value="A\u00F1adir elemento/os a conjunto de trabajo">');
+        a.form.append(addButton);
+        addButton.click(function() {
+            appview.add2work();
             return false;
         });
     }
 
     this.addChangeCategory = function() {
         a.select = $('<select id="mas"></select>');
-        a.select.append('<option>Cambiar de Categoría</option>');
+        a.select.append('<option>Cambiar de Categor\u00EDa</option>');
         a.select.append('<option disabled="">---</option>');
         a.form.append(a.select);
         a.select.change(function() {
@@ -822,6 +967,26 @@ var selectors = function selectors(father,appview) {
     });
 }
 
+var search = function search(father,appview) {
+    this.element = $('<div class="xtoolbox_search"></div>');
+    this.searchbox = new searchBox();
+    father.prepend(this.element);
+    this.element.append(this.searchbox.element);
+
+/*    this.element.append('Seleccionar: <a id="selectAll" href=" ">Todas</a>, <a id="selectNone" href=" ">Ninguna</a>');
+    $("#selectAll",this.element).click(function() {
+        //check all the elements
+        appview.selectAll();
+        return false;
+    });
+
+    $("#selectNone",this.element).click(function() {
+        appview.unselectAll();
+        //uncheck all the elements
+        return false;
+    });*/
+}
+
 var midcontent = function midcontent(appview) {
     this.element = $('<div id="midcontent"></div>');
     var div = $('<div style="border-left: 1px solid #CACACA; border-right: 1px solid #CACACA; margin: 0px; clear: both;"></div>');
@@ -829,14 +994,19 @@ var midcontent = function midcontent(appview) {
 
     this.elementsList = function(){
         this.addBox = new addBox(div,appview);
+        this.addBox.sessions();
         this.loading = new loading(div);
         this.elements = new elements(div);
     }
 
     this.searchList = function() {
+        this.addBox = new addBox(div,appview);
         this.loading = new loading(div);
-//        this.elements = new elements(div);
-        this.elements = new searchElements(div);
+        //this.loading.loading('show');
+        this.elements = new elements(div);
+        this.elements.searchTable(['POSITIVE','NEGATIVE','NEUTRAL']);
+        this.addBox.search(this.elements);
+//        this.elements = new searchElements(div);
     }
 
     this.settings = function() {
@@ -855,46 +1025,196 @@ var addBox = function addBox(father,appview) {
     this.label = $("#add-label",this.element);
     var a = this;
 
-    this.addText.focus(function (){
-        a.element.addClass("highlight");
-        a.label.addClass("hidden");
+    this.sessions = function() {
+        this.addText.focus(function (){
+            a.element.addClass("highlight");
+            a.label.addClass("hidden");
 
-    });
-    this.addText.blur(function (){
-        a.element.removeClass("highlight");
-        a.label.removeClass("hidden");
+        });
+        this.addText.blur(function (){
+            a.element.removeClass("highlight");
+            a.label.removeClass("hidden");
 
-    });
+        });
 
-    this.addText.keypress(function(event) {
-        if (event.keyCode == '13') {
-            appview.addSession(a.addText.val());
-            a.addText.val("");
-            a.addText.blur();
-        }
-    });
+        this.addText.keypress(function(event) {
+            if (event.keyCode == '13') {
+                appview.addSession(a.addText.val());
+                a.addText.val("");
+                a.addText.blur();
+            }
+        });
+    }
+
+    this.search = function(elements) {
+        this.addText.focus(function (){
+            a.element.addClass("highlight");
+            a.label.addClass("hidden");
+
+        });
+        this.addText.blur(function (){
+            a.element.removeClass("highlight");
+            a.label.removeClass("hidden");
+
+        });
+
+        this.addText.keypress(function(event) {
+            if (event.keyCode == '13') {
+                elements.table.dataTable().fnAddData( [
+                    "",
+                    "",
+                    a.addText.val()],false);
+                a.addText.val("");
+                a.addText.blur();
+            }
+        });
+    }
 
 }
 
 var loading = function loading(div) {
-    this.element = $('<div id="loading" style="display: none; "><table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table></div>');
+    this.element = $('<div id="in_processing" style="display: none; "><table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table></div>');
     div.append(this.element);
 
     this.loading = function(mode) {
         if(mode == 'show') this.element.show();
-        else this.element.show();
+        else this.element.hide();
     }
 }
 
 var elements = function elements(father) {
     this.element = $('<div id="tasks"></div>');
-    this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_arr"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
+    this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
     this.element.append(this.table);
     father.append(this.element);
+    var e = this;
+
+    this.searchTable = function(options) {
+        $('colgroup',this.table).empty();
+        $('colgroup',this.table).append('<col class="col_prio">');
+        $('colgroup',this.table).append('<col class="col_check">');
+        $('colgroup',this.table).append('<col class="col_text">');
+//        $('colgroup',this.table).append('<col class="col_date">');
+
+        V_Table = this.table.dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": false,
+            "bInfo": false,
+            "bAutoWidth": false,
+            'bProcessing':true,
+            'bServerSide':true,
+            'bDestroy':true,
+            'bStateSave':true,
+            "oLanguage": {
+                "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>'
+            },
+            "aoColumnDefs": [
+            {
+                "sClass":"xtd_prio prio2",
+                "aTargets":[0]
+            },
+            {
+                "sClass":"xtd_check",
+                "aTargets":[1],
+                "fnRender" : function ( oObj ) {
+                    return '<img src="/img/ico/ico_check_blu.gif" style="display:none">';
+                }
+            },
+            {
+                "sClass":"xtd_opinion",
+                "aTargets":[2]
+            },
+
+/*            {
+                "fnRender": function ( oObj ) {
+                    ////console.log(oObj);
+                    var select = '<span style="white-space: nowrap;"> <select class="polarity">';
+                    for (i in options) select += '<option value="' + i  + '">' + options[i] + '</option>';
+                    select += '</select></span>';
+                    return select;
+                },
+                "sClass":"xtd_polarity",
+                "aTargets":[2]
+            },*/
+            ],
+            'sAjaxSource':'twitter_search.php?q=hola&n=10',
+            "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                $(nRow).addClass('xtr');
+                //$('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
+                $('td',nRow).addClass('xtd');
+                $(nRow).hover(
+                    function () {
+                        $(this).addClass("xtr_hover");
+                    },
+                    function () {
+                        $(this).removeClass("xtr_hover");
+                    }
+                    );
+/*                $('select',nRow).change(function() {
+                    $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $(this).val());
+                });*/
+
+                return nRow;
+            },
+            "fnDrawCallback": function() {
+                $('#tasks table tr').click( function() {
+                    $(this).toggleClass('xtr_select');
+                    $('img',this).toggle();
+//                    e.searchTable(['POSITIVE','NEGATIVE','NEUTRAL']);
+                })
+            }
+        });
+
+    }
+//    V_Table = this.table;
 }
 
 var searchElements = function searchElements(father) {
     this.element = $('<div id="results"></div>');
+    this.form = $('<form id="searchResults"></form>');
+    this.table = $('<table id="table" class="xtable">\
+                        <thead>\
+                            <tr></tr>\
+                        </thead>\
+                        <tbody></tbody>\
+                    </table>');
+    this.form.append(this.table);
+    this.element.append(this.form);
+    this.table.dataTable({
+        'bProcessing':true,
+        "bFilter": false,
+        "bAutoWidth": true,
+        "bPaginate":false,
+        "aoColumns": [
+        {
+            "sTitle":"Opini\u00F3n"
+        },
+
+        {
+            "fnRender": function ( oObj ) {
+                return '<span style="white-space: nowrap;"> <select class="polarity"><option value="POSITIVE">Positive</option><option value="NEGATIVE">Negative</option><option value="NEUTRAL" selected>Neutral</option></select>';
+            },
+            "sTitle":"Polaridad"
+        },
+        ],
+        'sAjaxSource':'twitter_search.php?q=hola&n=100',
+        "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+            $(nRow).addClass('xtr');
+
+            return nRow;
+        },
+        "fnDrawCallback": function() {
+            $('#table tr').click( function() {
+                $(this).toggleClass('row_selected');
+            })
+        },
+        "bSortClasses": false,
+        "bJQueryUI":true,
+        "sPaginationType":"full_numbers"
+    });
+
 //    this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_arr"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
 //    this.element.append(this.table);
     father.append(this.element);
@@ -913,7 +1233,7 @@ var settingsForm = function settingsForm(div,appview) {
     this.form = $('<form id="settingsform" autocomplete="off"></form>');
     div.append(this.form);
     this.userid = $("#userid").val();
-    console.log(this.userid);
+    //console.log(this.userid);
     this.username = null;
     this.name = null;
     this.surname = null;
@@ -942,12 +1262,12 @@ var settingsForm = function settingsForm(div,appview) {
 				<td class="status"><span id="lastnameStatus"></span></td>\
 			</tr>\
 			<tr>\
-				<td class="label"><label for="password">Contraseña</label></td>\
-				<td class="field"><a id="settings-change-password" href="https://www.rememberthemilk.com/login/password.rtm" target="_blank">Cambiar tu contraseña</a></td>\
+				<td class="label"><label for="password">Contrase\u00F1a</label></td>\
+				<td class="field"><a id="settings-change-password" href="https://www.rememberthemilk.com/login/password.rtm" target="_blank">Cambiar tu contrase\u00F1a</a></td>\
 				<td class="status"><span id="firstPasswordStatus"></span></td>\
 			</tr>\
 			<tr>\
-				<td class="label"><label for="email">Dirección de correo electrónico</label></td>\
+				<td class="label"><label for="email">Direcci\u00F3n de correo electr\u00F3nico</label></td>\
 				<td class="field"><input class="textfield" id="email" name="email" type="text"></td>\
 				<td class="status"><span id="emailStatus"></span></td>\
 			</tr>\
@@ -961,7 +1281,7 @@ var settingsForm = function settingsForm(div,appview) {
 			</tr>\
 			<tr>\
 				<td class="label" style="padding-top: 10px;"><label for="closeaccount">Cerrar cuenta</label></td>\
-				<td class="field" style="padding-top: 10px;"><a id="settings-close-account" href="https://www.rememberthemilk.com/login/delete.rtm" target="_blank">Haz clic aquí si deseas cerrar tu cuenta</a></td>\
+				<td class="field" style="padding-top: 10px;"><a id="settings-close-account" href="https://www.rememberthemilk.com/login/delete.rtm" target="_blank">Haz clic aqu\u00ED si deseas cerrar tu cuenta</a></td>\
 				<td class="status" style="padding-top: 10px;"></td>\
 			</tr>\
 			</tbody></table>');
@@ -969,9 +1289,9 @@ var settingsForm = function settingsForm(div,appview) {
 
     this.spyChange = function(element,value){
         element.keyup(function() {
-            if(element.val() != value)
-                console.log(element.val() + "!=" + value);
-            else console.log(element.val() + "==" + value);
+/*            if(element.val() != value)
+                //console.log(element.val() + "!=" + value);
+            else //console.log(element.val() + "==" + value);*/
             if(f.changes()) {
                 $("#settingssubmit").removeAttr("disabled");
                 $("#settingscancel").removeAttr("disabled");
@@ -992,7 +1312,7 @@ var settingsForm = function settingsForm(div,appview) {
             mode:"get",
             id:this.userid
         },function(json) {
-            console.log("sdkjfhasfd");
+            //console.log("sdkjfhasfd");
             f.username = json['usr'];
             $("#username",f.form).val(f.username);
             f.spyChange($("#username",f.form),f.username);
@@ -1009,25 +1329,6 @@ var settingsForm = function settingsForm(div,appview) {
 
     }
 
-/*    this.form.submit(function() {
-        var data = {};
-        data["usr"] = $("#username",f.form).val();
-        data["nb"] = $("#firstname",f.form).val();
-        data["ap"] = $("#lastname",f.form).val();
-        data["email"] = $("#email",f.form).val();
-        $.getJSON('member.php',{
-            mode:"update",
-            id:f.userid,
-            data:JSON.stringify(data)
-        },function(json) {
-            console.log("ahsjdgsadfkjsdf" + json);
-            if(json == "success")
-                appview.statusbox.showMessage("Configuración guardada");
-            else appview.statusbox.showMessage("Ha ocurrido un error mientras se guardaba la configuración");
-        });
-//                appview.statusbox.showMessage("Configuración guardada");
-        return false;
-    })*/
 
     this.form.submit(function() {
         var data = {};
@@ -1043,13 +1344,17 @@ var settingsForm = function settingsForm(div,appview) {
                 appview.statusbox.showMessage("Guardando...");
             },
             success: function(data) {
-                console.log(data);
-                if(data == "success")
-                    appview.statusbox.showMessage("Configuración guardada");
-                else appview.statusbox.showMessage("Ha ocurrido un error mientras se guardaba la configuración");
+                //console.log(data);
+                if(data == "success") {
+                    appview.statusbox.showMessage("Configuraci\u00F3n guardada");
+                    f.loadData();
+                    $("#settingssubmit").attr("disabled","disabled");
+                    $("#settingscancel").attr("disabled","disabled");
+                }
+                else appview.statusbox.showMessage("Ha ocurrido un error mientras se guardaba la configuraci\u00F3n");
             },
             error: function() {
-                appview.statusbox.showMessage("Error de petición");
+                appview.statusbox.showMessage("Error de petici\u00F3n");
             }
         });
         return false;
@@ -1068,7 +1373,7 @@ var detailsBox = function detailsBox(appview) {
     appview.element.append(this.element);
     this.details = $('<div id="details"></div>');
     this.element.append(this.details);
-    this.detailstab = new detailstab(this.details,"Categor&iacute;a");
+    this.detailstab = new detailstab(this.details,"Categor\u00EDa");
     this.detailswrap = new detailswrap(this.details);
     this.detailshelp = new detailshelp(appview);
     this.detailsKey = new detailskey(appview);
@@ -1104,17 +1409,17 @@ var detailsBox = function detailsBox(appview) {
     }
 
     this.general = function(name) {
-        this.detailstab.changeName("Categoría");
+        this.detailstab.changeName("Categor\u00EDa");
         this.detailswrap.showGeneral(name);
     }
 
     this.category = function (category,numSessions) {
-        this.detailstab.changeName("Categoría");
+        this.detailstab.changeName("Categor\u00EDa");
         this.detailswrap.showCategory(category,numSessions);
     }
 
     this.session = function(session) {
-        this.detailstab.changeName("Sesión");
+        this.detailstab.changeName("Sesi\u00F3n");
         this.detailswrap.showSession(session);
     }
 
@@ -1149,7 +1454,7 @@ var detailstab = function detailstab(father,name) {
         tab.click();
     }
 
-    this.add("Categoría");
+    this.add("Categor\u00EDa");
 
     this.reset = function (name) {
         var tab = $('<li><a href=" ">' + name +'</a></li>');
@@ -1185,7 +1490,7 @@ var detailswrap = function detailswrap(father) {
 
     this.showSessions = function(count) {
 
-        this.detailscontent.title.changeTitle("Selección múltiple");
+        this.detailscontent.title.changeTitle("Selecci\u00F3n m\u00FAltiple");
         this.detailscontent.title.addCount(count,"Sesiones");
     };
 
@@ -1272,7 +1577,7 @@ var detailshelp = function detailshelp(appview) {
     var h = this;
 
     this.element.append(this.helpcontent);
-    $('#detailsbox').append(this.element);
+    $('#detailsbox',appview.element).append(this.element);
 
     this.helpcontent.append('<div><img alt="Cierra la llave" title="Ocultar ayuda" id="keyclose" src="/img/ico/ico_cross_gry.gif" style="float: right;"/><img alt="Clave" src="/img/ico/ico_help_blu.gif" style="vertical-align: bottom;"/></div>');
     this.helpcontent.append(this.helpinfo);
@@ -1292,7 +1597,8 @@ var detailshelp = function detailshelp(appview) {
         this.helpinfo.text(text);
     }
 
-    this.addinfo("¿Quieres cambiar tu nombre o apellido? ¿Dirección de correo electrónico? ¿Contraseña? ¿Zona de hora? Lo puedes hacer todo aquí.");
+//    this.addinfo("\u00BFQuieres cambiar tu nombre o apellido? \u00BFDirecci\u00F3n de correo electr\u00F3nico? \u00BFContrase\u00F1a? \u00BFZona de hora? Lo puedes hacer todo aqu\u00ED.");
+    this.addinfo(appview.info);
 }
 
 var detailskey = function detailskey(appview) {
@@ -1303,7 +1609,7 @@ var detailskey = function detailskey(appview) {
     var k = this;
 
     this.element.append(this.keycontent);
-    $('#detailsbox').append(this.element);
+    $('#detailsbox',appview.element).append(this.element);
 
     this.keycontent.append('<div><img alt="Cierra la llave" title="Ocultar ayuda" id="keyclose" src="/img/ico/ico_cross_gry.gif" style="float: right;"/><img alt="Clave" src="/img/ico/ico_key.gif" style="vertical-align: bottom;"/><span id="keytitle" style="padding-left: 7px; padding-top: 4px; vertical-align: bottom;">Clave</span></div>');
     this.keycontent.append(this.keyinfo);
@@ -1327,7 +1633,7 @@ var detailskey = function detailskey(appview) {
                 categories.append('<span class="keyprio prio' + ((parseFloat(appview.categories[i].id) % (appview.categories.length - 2))) + '">' + appview.tabNames[aux.id] + '</span>');
         }
         var catCont = $('<div style="padding-top: 1em;"></div>');
-        catCont.append('Categorías:');
+        catCont.append('Categor\u00EDas:');
         catCont.append(categories);
         k.keyinfo.append(catCont);
     }
@@ -1366,12 +1672,12 @@ var session = function session(id,category,title,date,appview) {
         if(this.category != "0")
             color = ((parseFloat(this.category) % appview.colors));
         this.element.append('<td class="xtd xtd_prio prio' + color + '">&nbsp;</td>');
-        this.element.append('<td class="xtd xtd_arr"></td>');
+        //this.element.append('<td class="xtd xtd_arr"></td>');
         this.element.append('<td class="xtd xtd_check"><img id="' + id + '" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="' + id + '" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td>');
         this.element.append('<td class="xtd xtd_text"><span class="xtd_tag">' + appview.tabNames[this.category] + '</span><span class="xtd_task_name">' + title +'</span></td>');
         this.element.append('<td class="xtd xtd_date">' + date + '</td>');
         this.element.append('<td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td>');
-        $('#tasks > table > tbody:last').append(this.element);
+        $('#tasks > table > tbody:last',appview.element).append(this.element);
         this.element.hover(
             function () {
                 $(this).addClass("xtr_hover");
@@ -1386,16 +1692,15 @@ var session = function session(id,category,title,date,appview) {
             );
         this.element.click(function() {
             $(this).toggleClass("xtr_select");
+            $(".xtd_check img",this).toggle();
             if (s.selected)
             {
                 s.selected = false;
-                $(".xtd_check img",this).hide();
                 appview.unselectSession(s);
             }
             else
             {
                 s.selected = true;
-                $(".xtd_check img",this).show();
                 appview.selectSession(s);
             }
         });
@@ -1405,7 +1710,7 @@ var session = function session(id,category,title,date,appview) {
     this.createEmpty = function() {
         this.element.addClass("xtr");
         this.element.append('<td class="xtd xtd_prio prio' + this.category + '">&nbsp;</td>');
-        this.element.append('<td class="xtd xtd_arr"></td>');
+        //this.element.append('<td class="xtd xtd_arr"></td>');
         this.element.append('<td class="xtd xtd_check" style="display: none"><form id="' + id + '" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td>');
         this.element.append('<td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">' + title +'</span></td>');
         this.element.append('<td class="xtd xtd_date"></td>');

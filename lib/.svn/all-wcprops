@@ -5,7 +5,13 @@ V 14
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/svn/!svn/ver/27/trunk/myTFC/lib
+/svn/!svn/ver/28/trunk/myTFC/lib
+END
+jquery.skinned-select.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/28/trunk/myTFC/lib/jquery.skinned-select.js
 END
 jquery.validate.js
 K 25
@@ -23,7 +29,7 @@ elements.js
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/26/trunk/myTFC/lib/elements.js
+/svn/!svn/ver/29/trunk/myTFC/lib/elements.js
 END
 jquery.metadata.js
 K 25
@@ -48,4 +54,16 @@ K 25
 svn:wc:ra_dav:version-url
 V 46
 /svn/!svn/ver/2/trunk/myTFC/lib/jquery.form.js
+END
+dataTables.plug-ins.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/28/trunk/myTFC/lib/dataTables.plug-ins.js
+END
+jquery.dataTables.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/28/trunk/myTFC/lib/jquery.dataTables.js
 END

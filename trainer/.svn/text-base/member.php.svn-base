@@ -11,7 +11,7 @@ if (!isset($_GET['mode'])) {
     if($_GET['mode'] == "update") {
         $id = $_GET['id'];
         $data = $_GET;//json_decode($_GET['data'],true);
-        print_r($data);
+        //print_r($data);
         //print_r($_GET);
         $memberObj = new Member();
         $mysql_member = $memberObj->refresh($data,$id);

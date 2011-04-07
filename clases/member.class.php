@@ -20,7 +20,7 @@ class Member{
 		if($this->con->conectar()==true){
 			//print_r($campos);
                         //print_r($campos);
-                        echo "UPDATE dmt_members SET usr = '".$campos['username']."', nb = '".$campos['firstname']."', ap = '".$campos['lastname']."', email = '".$campos['email']."' WHERE id = ".$id;
+                        //echo "UPDATE dmt_members SET usr = '".$campos['username']."', nb = '".$campos['firstname']."', ap = '".$campos['lastname']."', email = '".$campos['email']."' WHERE id = ".$id;
                         //echo "UPDATE dmt_members SET usr = '".$campos['usr']."', nb = '".$campos['nb']."', ap = '".$campos['ap']."', email = '".$campos['email']."' WHERE id = ".$id;
 			return mysql_query("UPDATE dmt_members SET usr = '".$campos['username']."', nb = '".$campos['firstname']."', ap = '".$campos['lastname']."', email = '".$campos['email']."' WHERE id = ".$campos['id']);
 		}
