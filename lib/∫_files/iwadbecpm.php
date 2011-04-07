@@ -1,0 +1,1 @@
+var idc=1; document.write('<iframe src="http://www.comunio.es/domains/www.comunio.es/468banner.inc?default=1" width="728"  height="90" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" vspace="0" hspace="0"></iframe>');

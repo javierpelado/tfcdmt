@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <title>Data Mining Trainer - Ayuda</title>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="../css/milk.css" />
+        <link rel="shortcut icon" href="../img/mineria2.png"/>
+
+
+        <style type="text/css">
+            pre { text-align: left; }
+        </style>
+
+    </head>
+    <body>
+
+        <div id="main">
+            <div id="topbar">
+                <div class="content">
+                    <span class="login">
+                        ¿Ya eres miembro? <a class="login-link" href="../login/">Entra</a>.      </span>
+                    <table class="tbl-container">
+                        <tbody><tr>
+                                <td><span class="welcome"><b>¡Bienvenido!</b></span>&nbsp;</td>
+                        </tbody></table>
+                </div>
+            </div> <!-- /topbar -->
+
+
+            <div id="topnav">
+                <div class="logo">
+                    <a href="/"><img src="../img/logo.png" alt="Remember The Milk" id="topnav-logo"></a>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li class="top-nav-home"><a href="../">Inicio</a></li>
+                        <li class="top-nav-signup"><a href="../signup/">Registrarse</a></li>
+                        <li class="top-nav-help"><a href="../help/">Ayuda</a></li>
+                    </ul>
+                </div>
+            </div> <!-- /topnav -->
+
+
+            <div id="pageheader">
+                <div class="content">
+                    <h1>AYUDA</h1>
+                </div>
+            </div> <!-- /pageheader -->
+
+
+
+            <div id="content">
+
+                <div style="clear: both;"><div></div></div>
+
+
+                <div class="content">
+
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

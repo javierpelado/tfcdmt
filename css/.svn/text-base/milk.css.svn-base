@@ -1,0 +1,335 @@
+/* GENERAL ELEMENTS */
+
+* { margin: 0; padding: 0; }
+
+body, input, select, textarea { font-family: arial, helvetica, sans-serif; font-size: 12px; }
+body { color: #333;  background-color: #fff}
+
+a:link { color:#0060BF; text-decoration: underline; }
+a:visited { color:#0060BF; text-decoration: underline; }
+a:active { color:#0060BF; text-decoration: underline; }
+a:hover { color:#000000; text-decoration: underline; }
+	
+h1 { font-size: 1.8em; margin: 0em 0em 0.6em 0em; color: #EC5800; }
+h2 { font-size: 1.5em; margin: 1.2em 0em 0.4em 0em; }
+h3 { font-size: 1.4em; margin: 1.2em 0em 0.4em 0em; color: #EC5800; }
+h4 { font-size: 1.2em; margin: 1.2em 0em 0.4em 0em; }
+h5 { font-size: 1.0em; margin: 1.2em 0em 0.4em 0em; }
+h6 { font-size: 0.8em; margin: 1.2em 0em 0.4em 0em; }
+
+img { border: 0px; }
+
+p { font-size: 1.0em; line-height: 1.3em; margin: 1.2em 0em 1.2em 0em; }
+li > p { margin-top: 0.2em; }
+pre { font-family: monospace; font-size: 1.0em; }
+strong, b { font-weight: bold; }
+
+/* PAGE ELEMENTS */
+
+/* Content */
+
+#content { margin: 0em auto; width: 765px; padding: 10px 0 10px 0; text-align: left; /* Win IE5 */ }
+.content ol, .content ul, .content li { font-size: 1.0em; line-height: 1.3em; margin: 0.2em 0 0.1em 1.5em; }
+.content ol.terms li { margin-bottom: 1em; }
+
+/* Header */
+
+#header { padding-bottom: 10em; }
+#headerlogo { float: left; }
+#headerlogo img { width: 188px; height: 83px;  }
+#headernav { float: right; }
+
+label { font-weight: bold; }
+#reminders label { font-weight: normal; }
+
+table.tabbedtable { padding-left: 3em; }
+table.tabbedtable td { padding-bottom: 5px; }
+table.tabbedtable label { text-align: right; padding-right: 9px; }
+.hiddenlabel { visibility: hidden; }
+.largelink { border: 1px solid #cacaca; padding: 10px; background-color: #E8EEF7; font-size: 1.2em; font-weight: bold; }
+.largelinkwrap { padding-top: 10px; padding-bottom: 10px; }
+
+
+
+/*#signuptab {
+  float:left;
+  width:100%;
+  background:#fff url("img/bg_dot.gif") repeat-x bottom;
+  font-size: 1.0em;
+  line-height: normal;
+}
+#signuptab ul {
+  margin:0;
+  padding: 0px 10px 0px 10px;
+  list-style:none;
+}
+#signuptab li {
+  float:left;
+  background:url("img/left_white.png") no-repeat left top;
+  margin:0;
+  padding:0 3px 0 9px;
+  border-bottom:1px solid #CACACA;
+}
+#signuptab a {
+  float:left;
+  display:block;
+  width:.1em;
+  background:url("img/right_white.png") no-repeat right top;
+  padding:2px 15px 0px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#fff;
+  white-space: nowrap;
+}
+#signuptab > ul a {width:auto;}
+/* Commented Backslash Hack hides rule from IE5-Mac \
+#signuptab a {float:none;}
+/* End IE5-Mac hack 
+#signuptab a:hover {
+  color:#333;
+}
+#signuptab #signupcurrent {
+  background-position:0 -150px;
+  border-width:0;
+}
+#signuptab #signupcurrent a {
+  background-position:100% -150px;
+  padding-bottom:1px;
+  color:#000;
+}
+#signuptab li:hover, #signuptab li:hover a {
+  background-position:0% -150px;
+  color:#000;
+}
+#signuptab li:hover a {
+  background-position:100% -150px;
+}*/
+
+/* Signup box */
+
+
+#signupwrap {
+    margin-top: 10px;
+border: 2px solid #CBDCED;
+clear: both;
+padding: 30px 10px 20px 30px;
+text-align: left;
+}
+
+.contentboxwrap {
+border: 2px solid #CBDCED;
+clear: both;
+padding: 30px 30px 20px;
+text-align: left;
+}
+
+#container {
+margin: 0em auto;
+padding: 20px 0px;
+width: 765px;
+}
+
+div.contentbox {
+margin: 0em auto;
+text-align: center;
+width: 80%;
+}
+
+
+
+/* Content Box Form */
+
+div.contentboxwrap table { border-spacing: 0px; border-collapse: collapse; empty-cells: show; }
+div.contentboxwrap td.label { padding-right: 10px; padding-bottom: 11px; white-space: nowrap; text-align: right; width: 125px; }
+div.contentboxwrap .hiddenlabel { visibility: hidden; }
+div.contentboxwrap td.field { padding-bottom: 11px; white-space: nowrap; }
+div.contentboxwrap td.status { padding-left: 8px; padding-bottom: 11px; white-space: nowrap; }
+div.contentboxwrap input.textfield { width: 150px; }
+
+
+/* Unsupported browsers */
+
+.orange_rbcontent { padding: 0.4em; }
+.orange_rbroundbox { width: 100%; }
+
+#unsupported {
+  font-weight: bold;
+  text-align: left;
+}
+
+/*#content {
+  padding-top: 15px;
+}*/
+
+/* Signup form */
+
+#signupform table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+#signupform .label {
+  padding-top: 2px;
+  padding-right: 8px;
+  vertical-align: top;
+  text-align: right;
+  width: 125px;
+  white-space: nowrap;
+}
+
+#signupform .field {
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+
+#signupform .status {
+  padding-top: 2px;
+  padding-left: 8px;
+  vertical-align: top;
+  width: 246px;
+  white-space: nowrap;
+}
+
+#signupform .textfield {
+  width: 150px;
+}
+
+#signupform label.error {
+  background:url("../img/unchecked.gif") no-repeat 0px 0px;
+  padding-left: 16px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: #EA5200;
+}
+
+#signupform label.checked {
+  background:url("../img/checked.gif") no-repeat 0px 0px;
+}
+
+#signupform .success_msg {
+  font-weight: bold;
+  color: #0060BF;
+  margin-left: 19px;
+}
+
+#signupform #dateformatStatus, #signupform #termsStatus {
+  margin-left: 6px;
+}
+
+#signupform #dateformat_eu {
+ vertical-align: middle;
+}
+
+#signupform #ldateformat_eu {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+#signupform #dateformat_am {
+  vertical-align: middle;
+}
+
+#signupform #ldateformat_am {
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+#signupform #termswrap {
+  float: left;
+}
+
+#signupform #terms {
+  vertical-align: middle;
+  float: left;
+  display: block;
+  margin-right: 5px;
+}
+
+#signupform #lterms {
+  font-weight: normal;
+  vertical-align: middle;
+  float: left;
+  display: block;
+  width: 350px;
+  white-space: normal;
+}
+
+#signupform #lsignupsubmit {
+  visibility: hidden;
+}
+
+
+
+/* Modificacion */
+
+#topbar { background-image: url('../img/bg_dot.gif'); background-repeat: repeat-x; background-position: left bottom; }
+#topbar .content { margin: 0em auto; width: 765px; padding: 5px 0px; }
+#topbar .welcome { }
+#topbar .login { float: right; }
+#topbar .login-link { font-weight: bold; }
+#topbar .langswitch { background-color: #fff; border: 1px solid #CBDCED; border-top: 0; display:none; font-size:12px; position: absolute; top: 24px; z-index: 1000; }
+#topbar .langswitch a { display: block; padding: 0.2em 0.5em; text-decoration: none; white-space: nowrap; color: #0060BF; }
+#topbar .langswitch a:hover { background-color: #0060BF; color: #fff; }
+#topbar .tbl-container { border-spacing: 0px; border-collapse: collapse; }
+#topbar .prouser { padding: 0 1px; }
+#topbar .prouser img { width: 20px; height: 11px; vertical-align: middle; }
+
+#topnav { margin: 0em auto; width: 765px; padding: 10px 0 17px 0; }
+#topnav .logo { float: left; }
+#topnav .content { padding-top: 50px; padding-bottom: 17px; }
+#topbar .switcher { width: 7px; height: 7px; }
+#topnav ul { display: inline; list-style: none; padding-left: 30px; }
+#topnav li { display: inline; font-size: 1.5em; font-weight: bold; font-family: arial, helvetica, sans-serif; color: #A7A7A7; padding-left: 20px; }
+#topnav a:link { text-decoration: none; }
+#topnav a:visited { text-decoration: none; }
+#topnav a:active { text-decoration: none; }
+#topnav a:hover { color: #0060BF; text-decoration: underline; }
+#topnav li.selected { background-color: #0060BF; }
+#topnav li.selected a:link { color: #fff; text-decoration: none; }
+#topnav li.selected a:visited { color: #fff; text-decoration: none; }
+#topnav li.selected a:active { color: #fff; text-decoration: none; }
+#topnav li.selected a:hover { color: #fff; text-decoration: none; }
+#topnav-logo { height: 100px; }
+
+#pageheader { background-color: #005CB8; padding: 10px 0; clear: both; }
+#pageheader .content { margin: 0em auto; width: 765px; }
+#pageheader h1 { font-size: 1.7em; color: #fff; margin: 0; }
+#pageheader a:link { color: #B3CFEB; text-decoration: underline; }
+#pageheader a:visited { color: #B3CFEB; text-decoration: underline; }
+#pageheader a:active { color: #B3CFEB; text-decoration: underline; }
+#pageheader a:hover { color: #fff; text-decoration: underline; }
+
+#navheader { padding: 12px 0; clear: both; background-image: url('../img/bg_dot.gif'); background-repeat: repeat-x; background-position: left bottom; }
+#navheader .content { margin: 0em auto; width: 765px; }
+#navheader ul { display: inline; list-style: none;}
+#navheader li { display: inline; font-size: 1.1em; font-weight: bold; font-family: arial, helvetica, sans-serif; color: #A7A7A7; padding-right: 22px; }
+#navheader a:link { text-decoration: none; }
+#navheader a:visited { text-decoration: none; }
+#navheader a:active { text-decoration: none; }
+#navheader a:hover { color: #0060BF; text-decoration: underline; }
+#navheader li.selected a:link { color: #000; text-decoration: none; }
+#navheader li.selected a:visited { color: #000; text-decoration: none; }
+#navheader li.selected a:active { color: #000; text-decoration: none; }
+#navheader li.selected a:hover { color: #000; text-decoration: none; }
+
+
+
+/* Status Message Box */
+
+.smb { padding-bottom: 12px; }
+.smb_rb { display: block; }
+.smb_rb * { display: block; height: 1px; overflow: hidden; background: #FFCC66; }
+.smb_rb1 { border-right: 1px solid #ffe9bd; padding-right: 1px; margin-right: 3px; border-left: 1px solid #ffe9bd; padding-left: 1px; margin-left: 3px; background: #ffd88c; }
+.smb_rb2 { border-right: 1px solid #fff9ef; border-left: 1px solid #fff9ef; padding: 0px 1px; background: #ffd583; margin: 0px 1px; }
+.smb_rb3 { border-right: 1px solid #ffd583; border-left: 1px solid #ffd583; margin: 0px 1px; }
+.smb_rb4 { border-right: 1px solid #ffe9bd; border-left: 1px solid #ffe9bd; }
+.smb_rb5 { border-right: 1px solid #ffd88c; border-left: 1px solid #ffd88c; }
+.smb_rbcontent { padding: 5px 15px; background: #FFCC66; text-align: left; }
+.smb_rbcontent table { border-spacing: 0px; border-collapse: collapse; empty-cells: show; }
+.smb_rbcontent table td.smb_ico img { vertical-align: bottom; width: 14px; height: 14px; }
+.smb_rbcontent table td.smb_msg { padding-left: 7px; font-weight: bold; }
+
+#topnav a {
+font-weight: bold;
+}

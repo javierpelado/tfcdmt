@@ -1,0 +1,100 @@
+a:link,a:active,a:visited{color:#ffffff;font-weight:bold;}
+a.language{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.6em;}
+a.signupLink:link,a.signupLink:visited{color:#994800;font-size:1em;text-decoration:none;}
+a.signupLink:hover{text-decoration:underline;}
+a.tooltip:hover{color:#000000;font-size:0.8em;font-weight:bold;text-decoration:underline;}
+a.heading:link,a.heading:visited,a.heading:active,a.down:link,a.down:visited,a.down:active,a.links:link,a.links:visited,a.links:active{color:#ffffff;font-size:1em;font-weight:bold;}
+a.button01,a.button02,a.button03{padding-left:5px;padding-right:5px;text-decoration:underline;}
+a.button01:link,a.button01:visited,a.button01:active,a.button02:link,a.button02:visited,a.button02:active{color:#ffffff;font-size:0.8em;font-weight:bold;}
+a.login:link,a.login:visited,a.login:active{color:#000000;font-size:0.72em;font-weight:bold;text-decoration:none;}
+a.mainnav:link,a.mainnav:visited,a.mainnav:active,.subnavactiv{color:#ffffff;font-size:0.8em;font-weight:bold;text-decoration:none;white-space:nowrap;}
+a.mainnav:hover,.mainnavactiv,.mainnavactiv:link,.mainnavactiv:visited,.mainnavactiv:hover,a.subnav:link,a.subnav:visited,a.subnav:active,span.button01{color:#638363;font-size:0.8em;font-weight:bold;text-decoration:none;white-space:nowrap;}
+span.button02,a.navButton02,a.navButton02:link,a.navButton02:active{color:#ffac40;font-size:0.8em;font-weight:bold;text-decoration:none;}
+span.button03,a.navButton03,a.navButton03:link,a.navButton03:active{color:#216aff;font-size:0.72em;font-weight:bold;text-decoration:none;}
+a.button01:hover{color:#638363;font-size:0.8em;font-weight:bold;}
+a.button02:hover{color:#ffac40;font-size:0.8em;font-weight:bold;}
+a.navButton02:hover{color:#FFFFFF;font-size:0.8em;font-weight:bold;text-decoration:none;}
+a.button03:hover{color:#216aff;font-size:0.72em;font-weight:bold;}
+a.navButton03:hover{color:#FFFFFF;font-size:0.72em;font-weight:bold;text-decoration:none;}
+a.login:hover{color:#ffffff;font-size:0.72em;font-weight:bold;text-decoration:none;}
+a.teammates:hover{color:#ffffff;font-size:0.72em;}
+a.subnav:hover,a.logout:hover{color:#ffffff;font-size:0.8em;font-weight:bold;text-decoration:none;}
+a span.closed{color:#ff0000;text-decoration:none;}
+a.calendar{font-size:0.6em;font-weight:normal;text-decoration:underline;}
+.user{text-align:right;font-weight:bold;padding-right:5px;padding-top:5px;text-decoration:none;white-space:nowrap;}
+body{background-color:#003300;margin:0;padding:0;}
+.contentbackground01{background-color:#6d8666;}
+h1{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1.4em;font-weight:bold;}
+.heading{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1.6em;font-weight:bold;}
+.select{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:bold;}
+.inputText, .inputPrediction{font-size:1em;font-weight:normal;}
+.inputPrediction{width:15px;}
+.infoBox{border-spacing:0;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;width:100%;}
+.infoBox td{background-color:#2c501f;border-color:#000000;border-style:solid;border-width:0 0 1px;padding:3px 5px;}
+.tablecontent03 a,.tablecontent03c a,.tablecontent03 a,.tablecontent03c a{font-weight:normal;}
+.tablecontent01,.tablecontent01c,.tablecontent01 a,.tablecontent01c a{background-color:#2c501f;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-weight:normal;}
+.tablecontent02,.tablecontent02c,.tablecontent02 a,.tablecontent02c a{background-color:#375b2a;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-weight:normal;}
+.highlightedtablecontent{background-color:#333333;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-weight:normal;}
+.tablecontent03{background-color:#012201;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:normal;width:100%;}
+.tablecontent03b{background-color:#012201;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;width:100%;}
+.tablecontent04{background-color:#2c501f;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-weight:bold;}
+.tablecontent05{background-color:#012201;border-spacing:1px;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;width:100%;}
+.tablecontent06{background-color:#012201;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.tableline02{background-color:#012201;font-size:1em;}
+.tableline02b i, a.bPrediction{font-weight:bold;}
+.normalplayer{color:#638363;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.plusplayer{color:#ffac40;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.proplayer{color:#5761e5;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.contentblack{color:#000000;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:bold;}
+.contentwhite{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:bold;}
+.contentblacksmall{color:#000000;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.warning{background-color:#fda4a4;background-image:url(warning.gif);background-position:3px 2px;background-repeat:no-repeat;border:1px solid red;color:red;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:bold;margin:8px 5px 5px 8px;padding:0.5em 0.5em 0.5em 40px;}
+.success{background-color:#cdfdcd;background-image:url(checkmark.gif);background-position:3px 2px;background-repeat:no-repeat;border:1px solid green;color:green;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:bold;margin:8px 5px 5px 8px;padding:0.5em 0.5em 0.5em 40px;}
+.tablecontent03 input,.tablecontent03 textarea{color:#000000;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;font-weight:normal;}
+.tactic{letter-spacing:0.12em;}
+.balanceminus{color:#ff4444;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;}
+.email{color:#de1717;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-weight:bold;}
+#tiplineup_table input{width:2em;}
+.subnavisuchen{color:#ffac40;font-weight:bold;text-decoration:none;}
+.forumline th{font-size:0.72em;}
+.post,.button{font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;}
+span.topictitle b{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.9em;}
+span.mod a{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:normal;}
+input.liteoption,input.mainoption{color:#000000;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;}
+.day{color:#000000;font-size:0.72em;}
+.navspace{padding-left:19px;white-space:nowrap;}
+.bg,.topbackground01,.bgcolorsubnav{background-color:#003300;}
+body,ol,td,th,tt,p,td.quote td,td.quote span.genmed,td.quote span.postbody,span.gensmall a,td.nav span.nav a.nav{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1em;}
+h2,.heading_thread{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:1.2em;font-weight:bold;}
+.heading2,.headingtablesmall,.playerstatus{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;font-weight:bold;}
+.text,.navText,td.quote,.copy,.login,.copyindex,a.gensmall,span.gensmall,span.cattitle,a.forumlink,span.nav,td.nav a.nav{color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;}
+.topbackground02,.tableline01,.bgcolortop,.buttondistance{background-color:#ffffff;}
+.topbackground03,td.row2,td.row2 td,td.rowpic{background-color:#2c501f;}
+.tableline02c,.forumline,td.rowpic{background-color:#012201;}
+td.catLeft{background-color:#012201;padding-top:5px;}
+.tableline02b,.tableline02b2{border-color:#000000;border-style:solid;border-width:0 0 1px;color:#ffffff;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;}
+input,textarea,td.catBottom input.mainoption,td.row2 input.liteoption{color:#000000;font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;}
+.shortFont,span.forumlink a.forumlink{font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.8em;}
+.copyright,.genmed,.gen,.maintitle,td.gensmall,a.topictitle,span.name,span.postdetails,span.postbody{font-family:Arial,Verdana,Helvetica,Sans-Serif;font-size:0.72em;}
+a.tab_item_active,a.tab_item{font-size:0.75em;font-weight:normal;padding:2px 8px;text-decoration:none;}
+span.special{color:#ffac40;font-size:1.2em;font-weight:bold;}
+div.special{color:#ffac40;font-size:0.8em;font-weight:bold;}
+div.SelectClass{background-color:#333333;border-bottom:1px solid black;color:#aaaaaa;font-family:Verdana;height:25px;text-align:center;width:100%;}
+div.finances_left{float:left;width:19%;}
+div.finances_right{float:left;text-align:right;width:65%;}
+table.SelectMain {width:100%;}
+table.SelectPop {width:500px;}
+tr.Selection {font-family:Verdana;font-size:0.6em;}
+tr.Selection a {color:#ffffff !important;}
+td.SelectLeague {vertical-align:bottom;color:#AAAAAA;height:25px;text-align:center;white-space:nowrap;}
+td.SelectLanguage {vertical-align:bottom;color:#AAAAAA;height:25px;text-align:left;white-space:nowrap;}
+div.news{margin-left:25px;padding:12px;}
+li.list1{margin-bottom:25px;}
+a.fb_button,.fb_button{background-color:#3b5998;border-color:#d8dfea;border-style:solid;border-width:1px;color:#ffffff;cursor:pointer;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;margin:0 2px;padding:4px 18px;text-decoration:none;}
+a.logout:link,a.logout:visited,a.logout:active,a.tooltip:link,a.tooltip:visited,a.tooltip:active{color:#000000;font-size:0.8em;font-weight:bold;text-decoration:none;}
+a.button03:link,a.button03:visited,a.button03:active,a.teammates:link,a.teammates:visited,a.teammates:active{color:#ffffff;font-size:0.72em;font-weight:bold;}
+.table100,table.SelectMain{width:100%;}
+td span.gen a.gen,td.calday{font-size:1em;}
+.forumlink,td.row1,td.row3,td.row3Right,a.tab_item_active,a.tab_item:hover{background-color:#375b2a;}
+a.tab_item_active,span.sticky b{color:#ffac40;}
+#selectOpenID a { font-size: 1.5em; text-decoration: none; }

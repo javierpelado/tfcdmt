@@ -1,0 +1,1 @@
+iw_ad_alternativo="http://www.comunio.es/domains/www.comunio.es/468banner.inc?default=1"; iwsrcplus="http://code.impresionesweb.com/r/banner_iw.php?idrotador=39032&tamano=728x90&lgid="+((new Date()).getTime() % 2147483648) + Math.random(); document.write("<scr"+"ipt language=javascript  type=text/javascript src="+iwsrcplus+"></scr"+"ipt>");

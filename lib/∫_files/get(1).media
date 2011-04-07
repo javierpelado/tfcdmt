@@ -1,0 +1,9 @@
+<script  language="javascript"  type="text/javascript">
+iw_ad_ancho=120;
+iw_ad_alto=600;
+iw_ad_formato="ad_120x600";
+iw_ad_cad="924fa7f2979ad4ef3287507b042cc30d";
+iwsrcplus="http://code.impresionesweb.com/r/banner_iw.php?idrotador=39032&tamano=120x600&lgid="+((new Date()).getTime() % 2147483648) + Math.random();
+document.write("<scr"+"ipt language=javascript  type=text/javascript src=\""+iwsrcplus+"\"></scr"+"ipt>");
+</script>
+<noscript><iframe src="http://alt.impresionesweb.com/noscript.php?tam=120x600&idp=39032&ref=39032&cod=48377" width="120" height="600" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></noscript>

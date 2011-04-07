@@ -1,0 +1,48 @@
+
+
+<div style="position: absolute; top: 100px; left: 100px; width: 277px; height: 217px; background-color: rgb(196, 45, 16); " id="box" class="myBox">
+
+<p>This box will have curved, corners when previewed. Remember to import the javascript file 'curvyCorners.js' in the 'Page' Sheet. </p>
+
+<script type="text/JavaScript">
+
+  function example1()
+  {
+      /*
+      The new 'validTags' setting is optional and allows
+      you to specify other HTML elements that curvyCorners
+      can attempt to round.
+
+      The value is comma separated list of html elements
+      in lowercase.
+
+      validTags: ["div", "form"]
+
+      The above example would enable curvyCorners on FORM elements.
+      */
+      settings = {
+          tl: { radius: 20 },
+          tr: { radius: 20 },
+          bl: { radius: 20 },
+          br: { radius: 20 },
+          antiAlias: true,
+          autoPad: true,
+          validTags: ["div"]
+      }
+
+      /*
+      Usage:
+
+      newCornersObj = new curvyCorners(settingsObj, classNameStr);
+      newCornersObj = new curvyCorners(settingsObj, divObj1[, divObj2[, divObj3[, . . . [, divObjN]]]]);
+      */
+      var myBoxObject = new curvyCorners(settings, "myBox");
+      myBoxObject.applyCornersToAll();
+  }
+  
+  example1();
+
+</script>
+
+
+</div>
