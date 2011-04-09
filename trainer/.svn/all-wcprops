@@ -5,7 +5,7 @@ V 14
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/svn/!svn/ver/28/trunk/myTFC/trainer
+/svn/!svn/ver/30/trunk/myTFC/trainer
 END
 trainer.js
 K 25
@@ -29,7 +29,7 @@ fotolog_search.php
 K 25
 svn:wc:ra_dav:version-url
 V 55
-/svn/!svn/ver/28/trunk/myTFC/trainer/fotolog_search.php
+/svn/!svn/ver/30/trunk/myTFC/trainer/fotolog_search.php
 END
 member_prueba.php
 K 25

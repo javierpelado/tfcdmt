@@ -7,6 +7,7 @@ var V_CONTENT = null;
 var V_TRAINER = null;
 var V_STATUSBOX = null;
 var V_Table = null;
+var V_elements = null; 
 
 var blueTitle = function blueTitle(title) {
     this.html = $('<div id="pageheader"></div> <!-- /pageheader -->');
@@ -70,12 +71,12 @@ var searchBox = function searchBox() {
                                     <table>\
                                         <tbody>\
                                             <tr>\
-                                                <td class="formfield"></td>\
+                                                <td class="formfield"><label for="search_mode">Modo de b\u00FAsqueda</label></td>\
                                         	<td class="formfield"><label for="search_lists">Buscar en</label></td>\
                                                 <td class="formfield"><label for="num_search_results">N\u00FAmero de resultados</label></td>\
                                             </tr>\
                                             <tr>\
-                                                <td class="formfield"><div id="searchboxwrap_so" style="width:210px;background-color:white"><table><tbody><tr><td style="width: 1px;"><div id="searchicon"></div></td><td><input onfocus="this.select();" type="text" id="listFilter_so"></td></tr></tbody></table></div></td>\
+                                                <td class="formfield"><select id="search_mode" name="search_mode" class="textfield"><option value="0">Añadir</option><option value="1" selected>Nueva</option></select></td>\
                                                 <td class="formfield"><select id="search_lists" name="search_lists" class="textfield"><option value="-1">Todas las listas</option><option value="-1" disabled="">---</option><option value="twitter" selected>Twitter</option><option value="fotolog">Fotolog</option></select></td>\
                                                 <td class="formfield"><select id="num_search_results" name="num_search_results" class="textfield"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="100">100</option></select></td>\
                                           </tr>\
@@ -89,30 +90,26 @@ var searchBox = function searchBox() {
                     </div>\
                     <div id="searchtogglewrap" style="float:right"><a id="searchtoggle" href="#">Mostrar opciones de b\u00FAsqueda</a></div>');
     this.searchoptions = $('#searchoptions',this.element);
-    //console.log(this.element[2]);
+    $('#listFilter',sb.element).focus(function() {
+        $('#searchtoggle',this.element).text('Ocultar opciones de b\u00FAsqueda');
+        $(sb.element[2]).slideDown('slow');
+    });
     this.searchoptions.toggle('slow');
     $('#searchtoggle',this.element).click(function() {
-        $('#listFilter_so',sb.element).val($('#listFilter',sb.element).val());
-        $(sb.element[0]).slideToggle('slow');
         $(sb.element[2]).slideToggle('slow');
         $(this).text($(this).text() == 'Ocultar opciones de b\u00FAsqueda' ? 'Mostrar opciones de b\u00FAsqueda' : 'Ocultar opciones de b\u00FAsqueda');
-        $("#searchboxwrap_so input").focus();
-//$(this).text('Ocultar opciones de b\u00FAsqueda');
     });
     $("form",this.element).submit(function() {
         var query = $('#listFilter',sb.element).val();
         var target = $('#search_lists',sb.element).val();
         var numElems = $('#num_search_results',sb.element).val();
+        var mode = $('#search_mode',sb.element).val();
         var url = target + '_search.php?q=' + query + '&n=' + numElems;
-        //console.log(url);
-        //console.log(V_Table.fnGetSelected('xtr_select'));
-        V_Table.fnReloadAjax(url);
-//        V_Table.fnReloadAjax('twitter_search.php?q=hola&n=10');
+        V_elements.getData(url,mode);
+        $('#searchtoggle',sb.element).click();
+        $('#listFilter',sb.element).blur();
         return false;
     });
-
-
-//    //console.log(V_Table.fnGetSelected());
 }
 
 
@@ -619,25 +616,13 @@ var appViewTrain = function appViewTrain(statusbox) {
     var appview = this;
 
     this.initialize = function() {
-//        $('#break').remove();
-//        $("#appview").remove();
         this.element = $('<div id="appviewTrain" class="appview" style="display:none"></div>');
-//        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
         this.listbox.addTools('1');
         this.listbox.searchList();
-//        this.workElements.push(["","hola",""]);
         this.workContainer['aaData'] = this.workElements;
-/*        var test = $('<div class="resul2"></div>');
-        var test2 = '<div class="result"></div>';
-        $('#results').append(test);
-        $('#results').append(test2);
-        $('#results').append(test2);
-        $('#results').append(test2);
-        $('#results').append(test2);
-        $('#results').append(test2);*/
     }
 
     this.addCategory = function(id,name) {
@@ -648,20 +633,19 @@ var appViewTrain = function appViewTrain(statusbox) {
         var selectedElements = V_Table.fnGetSelected('xtr_select');
         for ( var i=0 ; i<selectedElements.length ; i++ )
         {
-            //console.log(V_Table.fnGetData());
             V_Table.fnDeleteRow(selectedElements[i],false,false);
-            //console.log(selectedElements[i]);
-            //console.log(V_Table.fnGetData());
             $(selectedElements[i]).remove();
         }
     }
 
     this.selectAll = function() {
         $(".xtr",V_Table).addClass("xtr_select");
+        $(".xtd_check img",V_Table).show();
     }
 
     this.unselectAll = function() {
         $(".xtr",V_Table).removeClass("xtr_select");
+        $(".xtd_check img",V_Table).hide();
     }
 
     this.add2work = function() {
@@ -1063,7 +1047,7 @@ var addBox = function addBox(father,appview) {
                 elements.table.dataTable().fnAddData( [
                     "",
                     "",
-                    a.addText.val()],false);
+                    a.addText.val()]);
                 a.addText.val("");
                 a.addText.blur();
             }
@@ -1088,15 +1072,34 @@ var elements = function elements(father) {
     this.element.append(this.table);
     father.append(this.element);
     var e = this;
+    
+    V_elements = this;
+    
+    this.getData = function(url,mode) {
+        $("#in_processing",father).show();
+        console.log(url);
+        $.getJSON(url,//'twitter_search.php?q=hola&n=10', 
+        function(json){
+            e.searchData = json['aaData'];
+            console.log(json);
+            console.log(e.searchData)
+            $("#in_processing",father).hide();
+            if(mode == '1') e.table.fnClearTable();
+            e.table.fnAddData(e.searchData);
+        });
+    }
 
     this.searchTable = function(options) {
         $('colgroup',this.table).empty();
         $('colgroup',this.table).append('<col class="col_prio">');
         $('colgroup',this.table).append('<col class="col_check">');
         $('colgroup',this.table).append('<col class="col_text">');
-//        $('colgroup',this.table).append('<col class="col_date">');
+        //        $('colgroup',this.table).append('<col class="col_date">');
 
-        V_Table = this.table.dataTable({
+        this.searchData = [["","","NO HAY REGISTROS"]];
+        var sd = "";
+        
+        V_Table = e.table.dataTable({
             "bPaginate": false,
             "bLengthChange": true,
             "bFilter": false,
@@ -1104,11 +1107,12 @@ var elements = function elements(father) {
             "bInfo": false,
             "bAutoWidth": false,
             'bProcessing':true,
-            'bServerSide':true,
+            //                'bServerSide':true,
             'bDestroy':true,
-            'bStateSave':true,
+            //                'bStateSave':true,
             "oLanguage": {
-                "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>'
+                "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>',
+                "sZeroRecords": '<table class="xtable xtable_tags_left xtable_empty"><colgroup><col class="col_prio"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody><tr class="xtr" style="display: table-row; "><td class="xtd xtd_prio prio2">&nbsp;</td><td class="xtd xtd_check" style="display: none"><form id="null" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">Ningún resultado encontrado</span></td><td class="xtd xtd_date"></td><td class="xtd xtd_ico"></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio0">&nbsp;</td><td class="xtd xtd_check"><img id="70" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="70" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">opinion</span><span class="xtd_task_name">opinion1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio1">&nbsp;</td><td class="xtd xtd_check"><img id="69" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="69" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">bulling</span><span class="xtd_task_name">bulling1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr xtr_select" style="display: none; "><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_check"><img id="68" src="/img/ico/ico_check_blu.gif" style=""><form id="68" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">prueba1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr></tbody></table>'
             },
             "aoColumnDefs": [
             {
@@ -1127,7 +1131,7 @@ var elements = function elements(father) {
                 "aTargets":[2]
             },
 
-/*            {
+            /*            {
                 "fnRender": function ( oObj ) {
                     ////console.log(oObj);
                     var select = '<span style="white-space: nowrap;"> <select class="polarity">';
@@ -1139,10 +1143,10 @@ var elements = function elements(father) {
                 "aTargets":[2]
             },*/
             ],
-            'sAjaxSource':'twitter_search.php?q=hola&n=10',
+            //            'sAjaxSource':'twitter_search.php?q=hola&n=10',
+            'aaData' : e.searchData,
             "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
                 $(nRow).addClass('xtr');
-                //$('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
                 $('td',nRow).addClass('xtd');
                 $(nRow).hover(
                     function () {
@@ -1152,20 +1156,16 @@ var elements = function elements(father) {
                         $(this).removeClass("xtr_hover");
                     }
                     );
-/*                $('select',nRow).change(function() {
-                    $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $(this).val());
-                });*/
-
-                return nRow;
-            },
-            "fnDrawCallback": function() {
-                $('#tasks table tr').click( function() {
+                console.log(nRow);
+                $(nRow).unbind('click');
+                $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
                     $('img',this).toggle();
-//                    e.searchTable(['POSITIVE','NEGATIVE','NEUTRAL']);
                 })
+                return nRow;
             }
         });
+
 
     }
 //    V_Table = this.table;

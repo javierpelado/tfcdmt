@@ -24,7 +24,7 @@ function extractComents($url) {
     foreach($html->find('div.module div.comment div.cfx p') as $e)
     {
         $text = format($e->plaintext);
-        $posts[] = array("",$text,"");
+        $posts[] = array("","",$text);
 //        echo '<br><b>TEXTO: </b>'.$text.'<br>';
     }
         //if(strlen($e->plaintext) < 200 )
