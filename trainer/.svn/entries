@@ -1,7 +1,7 @@
 10
 
 dir
-30
+31
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/trainer
 https://tfcdmt.googlecode.com/svn
 
@@ -130,14 +130,14 @@ javier.pelado
 
 opinions.php
 file
+32
 
 
 
-
-2011-04-06T09:11:26.000000Z
-b7fa7e50c2f1eaeae6e31df81c34ebdc
-2011-04-07T15:12:46.902273Z
-28
+2011-04-12T15:58:08.000000Z
+5dc9c24b7d28cb0d39eb6f35cc3efb2f
+2011-04-12T17:44:37.532046Z
+32
 javier.pelado
 
 
@@ -160,7 +160,7 @@ javier.pelado
 
 
 
-930
+1469
 
 member_prueba.php
 file

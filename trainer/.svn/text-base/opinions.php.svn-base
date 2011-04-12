@@ -3,6 +3,16 @@ if (!isset($_GET['mode'])) {
     echo"<h1> [:(] Error de paso de parametros</h1>";
 }else{
     require('../clases/opinion.class.php');
+    if ($_GET['mode'] == "get") {
+        $id_session = $_GET['id_session'];
+        $sessionObj = new Opinion();
+        $mysql_sessions = $sessionObj->search_opinions('id_session',$id_session);
+        $sessions = array();
+        while (($session = mysql_fetch_array($mysql_sessions)) != null)
+            $sessions[] = array("","",$session['text'],"",$session['id'],$session['polarity']);
+        $data['aaData'] = $sessions;
+        echo json_encode($data);
+    }
     if ($_GET['mode'] == "delete") {
         $id=$_GET['id'];
         $categoryObj = new Category();
@@ -11,18 +21,20 @@ if (!isset($_GET['mode'])) {
         $mysql_sessions = $sessionObj->delete_cat($catId);
     }
     if($_GET['mode'] == "insert") {
-        //$cat=$_GET['cat'];
+        $session=$_GET['id_session'];
         $text = $_GET['text'];
         $opinionObj = new Opinion();
-        $mysql_sessions = $opinionObj->insert(array($text));
+        $mysql_sessions = $opinionObj->insert(array($text,$session));
         //echo mysql_insert_id();
-        echo json_encode($mysql_sessions);
+        //echo json_encode($mysql_sessions);
+        echo $_GET['i'];
     }
     if($_GET['mode'] == "update") {
+        print_r($_GET);
         $id = $_GET['id'];
-        $title = $_GET['title'];
-        $categoryObj = new Category();
-        $mysql_sessions = $categoryObj->refresh(array($title),$id);
+        $polarity = $_GET['polarity'];
+        $categoryObj = new Opinion();
+        $mysql_sessions = $categoryObj->refresh($polarity,$id);
         echo json_encode($mysql_sessions);
     }
 }

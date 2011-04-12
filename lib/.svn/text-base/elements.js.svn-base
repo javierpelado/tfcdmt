@@ -7,7 +7,9 @@ var V_CONTENT = null;
 var V_TRAINER = null;
 var V_STATUSBOX = null;
 var V_Table = null;
-var V_elements = null; 
+var V_elements = {}; 
+var G_polarityTable = null;
+var G_polarityData = [];
 
 var blueTitle = function blueTitle(title) {
     this.html = $('<div id="pageheader"></div> <!-- /pageheader -->');
@@ -34,11 +36,12 @@ var trainer = function trainer() {
     this.lastSelected = this.selected = this.contexts[0];
 
     this.goBack = function() {
+        this.selected = this.contexts[0];
         this.contexts[0].reset();
     }
 
     this.session = function(id) {
-
+        this.selected = this.contexts[1];
         this.contexts[1].reset(id);
     }
 }
@@ -105,7 +108,7 @@ var searchBox = function searchBox() {
         var numElems = $('#num_search_results',sb.element).val();
         var mode = $('#search_mode',sb.element).val();
         var url = target + '_search.php?q=' + query + '&n=' + numElems;
-        V_elements.getData(url,mode);
+        V_elements['search'].getData(url,mode);
         $('#searchtoggle',sb.element).click();
         $('#listFilter',sb.element).blur();
         return false;
@@ -610,7 +613,10 @@ var appViewSettings = function appViewSettings(statusbox) {
 var appViewTrain = function appViewTrain(statusbox) {
 
     this.statusbox = statusbox;
-    this.tabNames = {};
+    this.tabs = [];
+    this.tab_list = {};
+    this.defaultTab = null;
+    this.selectedTab = null;
     this.workContainer = {};
     this.workElements = [];
     var appview = this;
@@ -620,13 +626,15 @@ var appViewTrain = function appViewTrain(statusbox) {
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
-        this.listbox.addTools('1');
-        this.listbox.searchList();
+//        this.tabs.push(new trainTab('B\u00FAsqueda',this));
+//        this.tabs.push(new trainTab('Entrenamiento',this));
+        this.listbox.addWrap('B\u00FAsqueda','search');
+        this.listbox.addWrap('Entrenamiento','polarity');
+        $(".listwrap",this.element).hide();
+        this.defaultTab = this.tabs[0];
         this.workContainer['aaData'] = this.workElements;
-    }
-
-    this.addCategory = function(id,name) {
-        this.defaultTab = new category(id,name,this);
+        console.log(V_TRAINER.contexts[1].id);
+//        this.defaultTab.select();
     }
 
     this.deleteElements = function() {
@@ -639,35 +647,80 @@ var appViewTrain = function appViewTrain(statusbox) {
     }
 
     this.selectAll = function() {
-        $(".xtr",V_Table).addClass("xtr_select");
-        $(".xtd_check img",V_Table).show();
+        $(".xtr",$(".listwrap:visible")).addClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).show();
     }
 
     this.unselectAll = function() {
-        $(".xtr",V_Table).removeClass("xtr_select");
-        $(".xtd_check img",V_Table).hide();
+        $(".xtr",$(".listwrap:visible")).removeClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).hide();
     }
 
     this.add2work = function() {
-        var selectedData = V_Table.fnGetData();
+        var selectedData = [];
+        $('.xtr_select >.xtd_opinion', V_Table).each(function() {
+                selectedData.push($(this).text());
+        });
+        console.log(selectedData);
+        //console.log(G_polarityTable.fnGetNodes());
+//        var selectedData = V_Table.fnGetData();
 //        var selectedElements = V_Table.fnGetSelected('xtr_select');
         for ( var i=0 ; i<selectedData.length ; i++ )
         {
-                $.getJSON('opinions.php',{
-                    mode:"insert",
-                    text:selectedData[i][1]
-                },function(textStatus) {
-                    if(textStatus == "success") console.log(selectedData[i][1]);
-                });
-            this.workElements.push(["","",selectedData[i][2]]);
+            $.getJSON('opinions.php',{
+                mode:"insert",
+                text:selectedData[i],
+                id_session:V_TRAINER.contexts[1].id,
+                i:i
+            },function(textStatus,i) {
+                console.log("texto --> " + textStatus);
+                console.log(textStatus == true);
+                console.log("i:" + i + " = sd-1:" + (selectedData.length - 1));
+                if(textStatus) {
+                //    G_polarityData.push(["","",selectedData[i][2]]);
+                //    console.log(selectedData[i][2]);
+                }
+                if(textStatus == (selectedData.length - 1)) {
+                    G_polarityTable.fnReloadAjax();
+                    $(".dataTables_processing").hide();
+                    appview.deleteElements();
+                }
+            });
+            //            this.workElements.push(["","",selectedData[i][2]]);
 
             console.log(this.workContainer);
+            console.log(G_polarityData);
         }
-        //console.log(JSON.stringify(this.workContainer));
+//        G_polarityTable.fnClearTable();
+    //console.log(JSON.stringify(this.workContainer));
         
     }
     
-    this.changePolarity = function() {
+    this.showTab = function(tab) {
+        if(tab != this.selectedTab) {
+            if(tab == this.tabs[0]) {                
+                this.listbox.addTools('1');
+                this.listbox.searchList();
+            }
+            if(tab == this.tabs[1]) {
+                this.listbox.addTools('1');
+                this.listbox.searchList();
+//                this.listbox.addTools('2');
+//                this.listbox.polarityList();
+            }
+            this.selectedTab = tab;
+        }
+    }
+    
+    this.changePolarity = function(polarity) {
+//        var selectedData = [];
+        $('.xtr_select >.xtd_polarity', G_polarityTable).each(function() {
+//                selectedData.push($(this).text());
+            console.log(this);
+            $("option",this).each(function() {
+                if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
+            });
+        });
         
     }
 
@@ -707,20 +760,34 @@ var listBox = function listBox(appview,type) {
     this.settings = function() {
         this.list.settings();
     }
+    
+    this.addWrap = function(name,type) {
+        this.list.addWrap(name,type);
+    }
 }
 
 var list = function list(appview,type) {
     this.element = $('<div id="list"></div>');
     this.listtabs = new listTabs();
     this.listwrap = new listWrap(appview,type);
+    this.listwraps = {};
 
     this.element.append(this.listtabs.element);
     if(type == 'trainer') {
 //        this.searchbox = new searchBox();
         this.element.css('width', '980px');
-        this.listtabs.addDummyTab("B\u00FAsqueda");
+        //this.listtabs.addTab("B\u00FAsqueda");
+//        this.listtabs.addDummyTab("B\u00FAsqueda");
     }
     this.element.append(this.listwrap.element);
+
+    this.addWrap = function(name,type) {
+        var temp = new listWrap(appview,type);
+        this.listwraps[this.listtabs.addTab(name,temp)] = temp;
+        eval('temp.' + type + 'List()');
+        this.element.append(temp.element);
+        temp.showTools(type);
+    }
 
     this.addTab = function(name,category) {
         return this.listtabs.addTab(name, category);
@@ -750,11 +817,15 @@ var list = function list(appview,type) {
 
 var listTabs = function listTabs() {
     this.element = $('<div id="listtabs" style="" class="xtabs"><ul></ul></div>');
+    var that = this;
 
     this.addTab = function(name,father) {
         var tab = $('<li class="xtab_blue"><a href="">' + name + '</a></li>');
         $('ul',this.element).append(tab);
         $('a',tab).click(function() {
+            $('li',that.element).removeClass("xtab_selected");
+            $(this).parent().addClass("xtab_selected");
+            //if(name == "Entrenamiento") $("#anadir").click();
             father.select();
             return false;
         });
@@ -768,7 +839,7 @@ var listTabs = function listTabs() {
 }
 
 var listWrap = function listWrap(appview,type) {
-    this.element = $('<div id="listwrap"></div>');
+    this.element = $('<div id="listwrap" class="listwrap"></div>');
     this.tools = new tools(appview);
     this.midcontent = new midcontent(appview,type);
 
@@ -779,6 +850,11 @@ var listWrap = function listWrap(appview,type) {
     this.loading = function(mode) {
         this.midcontent.load(mode);
     }
+    
+    this.select = function() {
+        $(".listwrap").hide();
+        this.element.show();
+    }
 
     this.showTools = function(type) {
         this.tools.show();
@@ -787,10 +863,13 @@ var listWrap = function listWrap(appview,type) {
             this.tools.addDelete();
             this.tools.addCC();
         }
-        if(type == '1') {
+        if(type == 'search') {
             this.tools.addDelete();
             this.tools.addA2W();
             this.tools.addSearch();
+        }
+        if(type == 'polarity') {
+            this.tools.addCP();
         }
     }
 
@@ -800,6 +879,10 @@ var listWrap = function listWrap(appview,type) {
 
     this.searchList = function() {
         this.midcontent.searchList();
+    }
+
+    this.polarityList = function() {
+        this.midcontent.polarityList();
     }
 
     this.settings = function() {
@@ -835,6 +918,10 @@ var tools = function tools(appview) {
         this.toolbox.addChangeCategory();
     }
 
+    this.addCP = function() {
+        this.toolbox.addChangePolarity();
+    }
+    
     this.addSearch = function() {
         this.toolbox.addSearch();
     }
@@ -869,6 +956,13 @@ var toolbox = function toolbox(appview){
         }
     }
 
+    this.addChangePolarity = function(){
+        this.actions.addChangePolarity();
+        this.actions.addOption('POSITIVE',0);
+        this.actions.addOption('NEGATIVE',1);
+        this.actions.addOption('NEUTRAL',2);
+    }
+    
     this.addSearch = function() {
         this.search = new search(this.element,appview);
 //        this.actions.addSearch();
@@ -904,7 +998,7 @@ var actions = function actions(father,appview) {
     }
 
     this.addA2W = function() {
-        var addButton = $('<input type="submit" class="xtoolbox_button" value="A\u00F1adir elemento/os a conjunto de trabajo">');
+        var addButton = $('<input id="anadir" type="submit" class="xtoolbox_button" value="A\u00F1adir elemento/os a conjunto de trabajo">');
         a.form.append(addButton);
         addButton.click(function() {
             appview.add2work();
@@ -919,6 +1013,16 @@ var actions = function actions(father,appview) {
         a.form.append(a.select);
         a.select.change(function() {
             appview.changeCategory($(":selected", this).val());
+        });
+    }
+
+    this.addChangePolarity = function() {
+        a.select = $('<select id="mas"></select>');
+        a.select.append('<option>Cambiar de Polaridad</option>');
+        a.select.append('<option disabled="">---</option>');
+        a.form.append(a.select);
+        a.select.change(function() {
+            appview.changePolarity($(":selected", this).text());
         });
     }
 
@@ -993,6 +1097,14 @@ var midcontent = function midcontent(appview) {
 //        this.elements = new searchElements(div);
     }
 
+    this.polarityList = function() {
+        this.addBox = new addBox(div,appview);
+        this.loading = new loading(div);
+        this.elements = new elements(div);
+        this.elements.polarityTable(['POSITIVE','NEGATIVE','NEUTRAL']);
+        this.addBox.search(this.elements);
+    }
+    
     this.settings = function() {
         this.generalSettings = new settings(div,appview);
     }
@@ -1044,10 +1156,14 @@ var addBox = function addBox(father,appview) {
 
         this.addText.keypress(function(event) {
             if (event.keyCode == '13') {
-                elements.table.dataTable().fnAddData( [
+                console.log(elements.table.dataTable().fnSettings().aoColumns.length);
+                var data = [
                     "",
                     "",
-                    a.addText.val()]);
+                    a.addText.val()];
+                for(i=3;i<elements.table.dataTable().fnSettings().aoColumns.length;i++) data.push("");
+                console.log(data);
+                elements.table.dataTable().fnAddData(data);
                 a.addText.val("");
                 a.addText.blur();
             }
@@ -1073,7 +1189,7 @@ var elements = function elements(father) {
     father.append(this.element);
     var e = this;
     
-    V_elements = this;
+//    V_elements = this;
     
     this.getData = function(url,mode) {
         $("#in_processing",father).show();
@@ -1090,13 +1206,14 @@ var elements = function elements(father) {
     }
 
     this.searchTable = function(options) {
+        V_elements['search'] = e;
         $('colgroup',this.table).empty();
         $('colgroup',this.table).append('<col class="col_prio">');
         $('colgroup',this.table).append('<col class="col_check">');
         $('colgroup',this.table).append('<col class="col_text">');
         //        $('colgroup',this.table).append('<col class="col_date">');
 
-        this.searchData = [["","","NO HAY REGISTROS"]];
+        this.searchData = [];
         var sd = "";
         
         V_Table = e.table.dataTable({
@@ -1169,6 +1286,108 @@ var elements = function elements(father) {
 
     }
 //    V_Table = this.table;
+    this.polarityTable = function(options) {
+        V_elements['polarity'] = e;
+        $('colgroup',this.table).empty();
+        $('colgroup',this.table).append('<col class="col_prio">');
+        $('colgroup',this.table).append('<col class="col_check">');
+        $('colgroup',this.table).append('<col class="col_text">');
+        $('colgroup',this.table).append('<col class="col_date">');
+
+        G_polarityData = [["","","NO HAY REGISTROS",'']];
+        var sd = "";
+        
+        G_polarityTable = e.table.dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": false,
+            "bInfo": false,
+            "bAutoWidth": false,
+            'bProcessing':true,
+            'bDestroy':true,
+            "oLanguage": {
+                "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>',
+                "sZeroRecords": '<table class="xtable xtable_tags_left xtable_empty"><colgroup><col class="col_prio"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody><tr class="xtr" style="display: table-row; "><td class="xtd xtd_prio prio2">&nbsp;</td><td class="xtd xtd_check" style="display: none"><form id="null" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">Ningún resultado encontrado</span></td><td class="xtd xtd_date"></td><td class="xtd xtd_ico"></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio0">&nbsp;</td><td class="xtd xtd_check"><img id="70" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="70" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">opinion</span><span class="xtd_task_name">opinion1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio1">&nbsp;</td><td class="xtd xtd_check"><img id="69" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="69" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">bulling</span><span class="xtd_task_name">bulling1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr xtr_select" style="display: none; "><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_check"><img id="68" src="/img/ico/ico_check_blu.gif" style=""><form id="68" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">prueba1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr></tbody></table>'
+            },
+            "aoColumnDefs": [
+            {
+                "aTargets":[4],
+                "bVisible":false
+            },
+            {
+                "aTargets":[5],
+                "bVisible":false
+            },
+            {
+                "sClass":"xtd_prio prio2",
+                "aTargets":[0]
+            },
+            {
+                "sClass":"xtd_check",
+                "aTargets":[1],
+                "fnRender" : function ( oObj ) {
+                    return '<img src="/img/ico/ico_check_blu.gif" style="display:none">';
+                }
+            },
+            {
+                "sClass":"xtd_opinion",
+                "aTargets":[2]
+            },
+            {
+                "fnRender": function ( oObj ) {
+                    ////console.log(oObj);
+                    var select = '<span style="white-space: nowrap;"> <select class="polarity">';
+                    for (i in options) select += '<option value="' + i  + '">' + options[i] + '</option>';
+                    select += '</select></span>';
+                    return select;
+                },
+                "sClass":"xtd_polarity",
+                "aTargets":[3]
+            }
+            ],
+            'sAjaxSource':'opinions.php?mode=get&id_session=' + V_TRAINER.contexts[1].id,
+            //'aaData' : G_polarityData,
+            "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                $(nRow).addClass('xtr');
+                $('td',nRow).addClass('xtd');
+                $(nRow).hover(
+                    function () {
+                        $(this).addClass("xtr_hover");
+                    },
+                    function () {
+                        $(this).removeClass("xtr_hover");
+                    }
+                    );
+                console.log(nRow);
+//                console.log(aData);
+                $(nRow).unbind('click');
+                $(nRow).click( function() {
+                    $(this).toggleClass('xtr_select');
+                    $('img',this).toggle();
+                });
+                $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
+                $('select',nRow).change(function() {
+                    $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $(this).val());
+                    $.getJSON("opinions.php",
+                        {
+                            "mode":"update",
+                            "id":aData[4],
+                            "polarity":$(":selected",this).text()
+                        }, function(textStatus) {
+                            console.log(textStatus);
+                        })
+                });
+                $('select option',nRow).each(function() {
+                    if($(this).text() == aData[5]) $(this).attr('selected', 'selected').trigger('change');
+                    //console.log($(this).text() + " == " + aData[5]);
+                });
+                return nRow;
+            }
+        });
+
+
+    }
 }
 
 var searchElements = function searchElements(father) {
@@ -1748,6 +1967,19 @@ var session = function session(id,category,title,date,appview) {
         $(".xtd_prio",this.element).addClass("prio" + this.category);
         $(".xtd_tag",this.element).text(appview.tabNames[this.category]);
 
+    }
+}
+
+var trainTab = function trainTab(name,appview) {
+    /*CONSTRUCTOR*/
+    this.name = name;
+    this.tab = appview.listbox.addTab(this.name,this);
+
+
+    this.select = function() {
+        $(".xtab_selected",appview.element).removeClass("xtab_selected");
+        this.tab.addClass("xtab_selected");
+        appview.showTab(this);
     }
 }
 

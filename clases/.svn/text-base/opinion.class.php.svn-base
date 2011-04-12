@@ -10,13 +10,13 @@ class Opinion{
 
 	function insert($campos){
 		if($this->con->conectar()==true){
-//			print_r($campos);
+			//print_r($campos);
                     if(sizeof($campos) > 1 ) {
-			return mysql_query('INSERT INTO `dmt_sessions`(`id`,`id_category`,`title`,`date`) VALUES(NULL,'.$campos[0].',"'.$campos[1].'",NOW())');
+			return mysql_query('INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES('.$campos[1].',NULL,"'.$campos[0].'","positive")');
                     }
                     else {
                         if(!mysql_fetch_array($this->search_sessions('text', $campos[0])))
-                            return mysql_query('INSERT INTO `dmt_opinions`(`id`,`text`,`polarity`) VALUES(NULL,"'.$campos[0].'","positive")');
+                            return mysql_query('INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES(NULL,NULL,"'.$campos[0].'","positive")');
                         else
                             return false;
                     }
@@ -24,23 +24,23 @@ class Opinion{
 		}
 	}
 
-	function refresh($campos,$id){
+	function refresh($polarity,$id){
 		if($this->con->conectar()==true){
 			//print_r($campos);
-			return mysql_query("UPDATE dmt_sessions SET id_category= '".$campos[0]."', title = '".$campos[1]."' WHERE id = ".$id);
+			return mysql_query("UPDATE dmt_opinions SET polarity= '".$polarity."' WHERE id = ".$id);
 		}
 	}
 
-	function search_sessions($field,$query){
+	function search_opinions($field,$query){
 		if($this->con->conectar()==true){
 			//echo "SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\"";
 			return mysql_query("SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\"");
 		}
 	}
 
-	function show_sessions(){
+	function show_opinions(){
 		if($this->con->conectar()==true){
-			return mysql_query("SELECT * FROM dmt_sessions ORDER BY id DESC");
+			return mysql_query("SELECT * FROM dmt_opinions ORDER BY id DESC");
 		}
 	}
 

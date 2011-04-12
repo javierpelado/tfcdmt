@@ -1,7 +1,7 @@
 10
 
 dir
-30
+31
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/img
 https://tfcdmt.googlecode.com/svn
 
@@ -641,40 +641,6 @@ has-props
 
 593517
 
-busy.gif
-file
-
-
-
-
-2010-11-26T10:32:23.000000Z
-f05aa7ab6f1d1d8da990586944834508
-2010-11-25T22:12:49.676223Z
-10
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-897
-
 off-connected-syncing.gif
 file
 
@@ -709,16 +675,16 @@ has-props
 
 761
 
-skin.png
+busy.gif
 file
 
 
 
 
-2011-03-25T18:21:50.000000Z
-ca084c9b18342fbeacad03cdbd1b80d9
-2011-04-07T15:12:46.902273Z
-28
+2010-11-26T10:32:23.000000Z
+f05aa7ab6f1d1d8da990586944834508
+2010-11-25T22:12:49.676223Z
+10
 javier.pelado
 has-props
 
@@ -741,7 +707,7 @@ has-props
 
 
 
-823
+897
 
 orangebox_tl.gif
 file
@@ -777,16 +743,16 @@ has-props
 
 73
 
-unchecked.gif
+skin.png
 file
 
 
 
 
-2010-11-26T10:32:23.000000Z
-1b925e308bb0235c7acd67fef859ba4c
-2010-11-15T10:00:26.828933Z
-2
+2011-03-25T18:21:50.000000Z
+ca084c9b18342fbeacad03cdbd1b80d9
+2011-04-07T15:12:46.902273Z
+28
 javier.pelado
 has-props
 
@@ -809,7 +775,41 @@ has-props
 
 
 
-223
+823
+
+orangebox_tr.gif
+file
+
+
+
+
+2010-11-26T10:32:23.000000Z
+5cc449f7452a1a2795e9f15abf7ee9e6
+2010-11-25T22:12:49.676223Z
+10
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+73
 
 ico_pro_sm.gif
 file
@@ -845,16 +845,16 @@ has-props
 
 231
 
-orangebox_tr.gif
+unchecked.gif
 file
 
 
 
 
 2010-11-26T10:32:23.000000Z
-5cc449f7452a1a2795e9f15abf7ee9e6
-2010-11-25T22:12:49.676223Z
-10
+1b925e308bb0235c7acd67fef859ba4c
+2010-11-15T10:00:26.828933Z
+2
 javier.pelado
 has-props
 
@@ -877,7 +877,7 @@ has-props
 
 
 
-73
+223
 
 ico_cross_org.gif
 file
@@ -947,40 +947,6 @@ has-props
 
 651
 
-off-connected-synced.gif
-file
-
-
-
-
-2010-11-26T10:32:23.000000Z
-605bc94c8280ed47a544eff2dea7eac3
-2010-11-25T22:12:49.676223Z
-10
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-137
-
 spr_rows.png
 file
 
@@ -1014,6 +980,40 @@ has-props
 
 
 186
+
+off-connected-synced.gif
+file
+
+
+
+
+2010-11-26T10:32:23.000000Z
+605bc94c8280ed47a544eff2dea7eac3
+2010-11-25T22:12:49.676223Z
+10
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+137
 
 bg_dot.gif
 file

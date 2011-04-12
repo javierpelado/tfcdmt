@@ -1,7 +1,7 @@
 10
 
 dir
-30
+31
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/img/ico
 https://tfcdmt.googlecode.com/svn
 
@@ -536,40 +536,6 @@ has-props
 
 338
 
-ico_calendar.gif
-file
-
-
-
-
-2010-11-25T17:45:12.000000Z
-45a4284b1c67710e0758d58cfaf65a2a
-2011-01-13T15:40:34.087745Z
-14
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-101
-
 ico_help_gry.gif
 file
 
@@ -603,6 +569,40 @@ has-props
 
 
 120
+
+ico_calendar.gif
+file
+
+
+
+
+2010-11-25T17:45:12.000000Z
+45a4284b1c67710e0758d58cfaf65a2a
+2011-01-13T15:40:34.087745Z
+14
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+101
 
 ico_link_gry.gif
 file
@@ -672,40 +672,6 @@ has-props
 
 94
 
-ico_export.gif
-file
-
-
-
-
-2010-11-25T17:45:12.000000Z
-bacb311c9778f4b66003b6d06af47816
-2011-01-13T15:40:34.087745Z
-14
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-131
-
 ico_trash.gif
 file
 
@@ -740,14 +706,14 @@ has-props
 
 131
 
-ico_globe.gif
+ico_export.gif
 file
 
 
 
 
 2010-11-25T17:45:12.000000Z
-87dd625e42a2e868f1a8c7378c099fd0
+bacb311c9778f4b66003b6d06af47816
 2011-01-13T15:40:34.087745Z
 14
 javier.pelado
@@ -772,7 +738,7 @@ has-props
 
 
 
-174
+131
 
 ico_lock.gif
 file
@@ -807,6 +773,40 @@ has-props
 
 
 194
+
+ico_globe.gif
+file
+
+
+
+
+2010-11-25T17:45:12.000000Z
+87dd625e42a2e868f1a8c7378c099fd0
+2011-01-13T15:40:34.087745Z
+14
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+174
 
 ico_info_blu.gif
 file
@@ -978,40 +978,6 @@ has-props
 
 188
 
-ico_phone.gif
-file
-
-
-
-
-2010-11-25T17:45:12.000000Z
-bc0405d36e48e8b2898675278a3425b1
-2011-01-13T15:40:34.087745Z
-14
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-111
-
 ico_info_org_org.gif
 file
 
@@ -1045,6 +1011,40 @@ has-props
 
 
 152
+
+ico_phone.gif
+file
+
+
+
+
+2010-11-25T17:45:12.000000Z
+bc0405d36e48e8b2898675278a3425b1
+2011-01-13T15:40:34.087745Z
+14
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+111
 
 ico_cross_gry.gif
 file
