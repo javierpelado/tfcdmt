@@ -92,6 +92,7 @@ session_start();
             <script src="/lib/jquery.jeditable.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.dataTables.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/dataTables.plug-ins.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/lib/jquery.corner.js" type="text/javascript" charset="utf-8"></script>
 
 
             <style type="text/css">
