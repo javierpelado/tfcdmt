@@ -79,7 +79,7 @@ var searchBox = function searchBox() {
                                                 <td class="formfield"><label for="num_search_results">N\u00FAmero de resultados</label></td>\
                                             </tr>\
                                             <tr>\
-                                                <td class="formfield"><select id="search_mode" name="search_mode" class="textfield"><option value="0">Añadir</option><option value="1" selected>Nueva</option></select></td>\
+                                                <td class="formfield"><select id="search_mode" name="search_mode" class="textfield"><option value="0">A\u00F1adir</option><option value="1" selected>Nueva</option></select></td>\
                                                 <td class="formfield"><select id="search_lists" name="search_lists" class="textfield"><option value="-1">Todas las listas</option><option value="-1" disabled="">---</option><option value="twitter" selected>Twitter</option><option value="fotolog">Fotolog</option></select></td>\
                                                 <td class="formfield"><select id="num_search_results" name="num_search_results" class="textfield"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option><option value="100">100</option></select></td>\
                                           </tr>\
@@ -117,9 +117,9 @@ var searchBox = function searchBox() {
 
 
 var generalContext = function generalContext() {
+    V_STATUSBOX = this.statusbox = new statusBox();
     this.reset = function() {
         $(".appview").remove();
-        V_STATUSBOX = this.statusbox = new statusBox();
         $("#searchbox").remove();
         //$("#title").toggle();
         this.viewselector = new viewSelector();
@@ -137,10 +137,10 @@ var sessionContext = function sessionContext() {
         $(".appview").remove();
         this.id = id;
         this.statusbox = V_STATUSBOX;
-//        this.searchbox = new searchBox();
+        //        this.searchbox = new searchBox();
         this.viewselector = new viewSelector();
         this.viewselector.addView("Entrenamiento",new appViewTrain(this.statusbox),true);
-        this.viewselector.addView("Preferencias",new appViewSettings(this.statusbox));
+        //this.viewselector.addView("Preferencias",new appViewSettings(this.statusbox));
         //this.viewselector.addText(id);
         this.viewselector.addBack();
         this.viewselector.addExit();
@@ -153,7 +153,7 @@ var sessionContext = function sessionContext() {
 
 var viewSelector = function viewSelector() {
     this.element = $("#viewSelector");
-//    $("#appview").remove();
+    //    $("#appview").remove();
     this.element.empty();
     this.views = {};
     this.selectedView = null;
@@ -173,9 +173,9 @@ var viewSelector = function viewSelector() {
                     'color':'#0060BF',
                     'cursor':'pointer'
                 });
-//                if(vs.selectedView != null) vs.views[vs.selectedView].element.hide();
+                //                if(vs.selectedView != null) vs.views[vs.selectedView].element.hide();
                 vs.selectedView = name;
-//                vs.views[name].initialize();
+                //                vs.views[name].initialize();
                 $(".appview").hide();
                 vs.views[name].element.show();
                 view.css({
@@ -222,17 +222,22 @@ var topBar = function topBar(div) {
 }
 
 var statusBox = function statusBox() {
-    this.element = $('<div id="statusbox" style="padding-left: 207px; height: 4,1em; display: none; "><div class="orange_rbroundbox"><div class="orange_rbtop"><div></div></div><div class="orange_rbcontent"><table style="margin:0; padding:0; width: 100%;"><tbody><tr><td style="padding-left: 6px; width: 10px;"><img style="vertical-align: bottom; text-align: right;" src="/img/ico/ico_info_org_org.gif" alt="Information"/></td><td style="padding-left: 6px; text-align: left;"><span id="statusboxtext" style="text-align: left; font-weight: bold;"><span>Cargando...</span></span></td><td style="padding-left: 6px; display: none; " id="statusboxbuttons"><span id="statusbutton_done"></span><span id="statusbutton_cancel"></span></td></tr></tbody></table></div><!-- /orange_rbcontent --><div class="orange_rbbot"><div></div></div></div><!-- /orange_rbroundbox --></div>');
+    //    this.element = $('<div id="statusbox" style="padding-left: 207px; height: 4,1em; display: none; "><div class="orange_rbroundbox"><div class="orange_rbtop"><div></div></div><div class="orange_rbcontent"><table style="margin:0; padding:0; width: 100%;"><tbody><tr><td style="padding-left: 6px; width: 10px;"><img style="vertical-align: bottom; text-align: right;" src="/img/ico/ico_info_org_org.gif" alt="Information"/></td><td style="padding-left: 6px; text-align: left;"><span id="statusboxtext" style="text-align: left; font-weight: bold;"><span>Cargando...</span></span></td><td style="padding-left: 6px; display: none; " id="statusboxbuttons"><span id="statusbutton_done"></span><span id="statusbutton_cancel"></span></td></tr></tbody></table></div><!-- /orange_rbcontent --><div class="orange_rbbot"><div></div></div></div><!-- /orange_rbroundbox --></div>');
+    //this.element = $('<div id="statusbox" style="padding-left: 207px; height: 4,1em; display: none; "><div class="orange_rbroundbox"><div class="orange_rbtop"><div></div></div><div class="orange_rbbot"><div></div></div></div><!-- /orange_rbroundbox --></div>');
+    this.element = $('<div id="statusbox" style="padding-left: 207px; height: 4,1em; display:none"><div class="orange_rbcontent info"><table style="margin:0; padding:0; width: 100%;"><tbody><tr><td style="padding-left: 6px; width: 10px;"></td><td style="padding-left: 6px; text-align: left;"><span id="statusboxtext" style="text-align: left; font-weight: bold;"><span>Cargando...</span></span></td><td style="padding-left: 6px; display: none; " id="statusboxbuttons"></td></tr></tbody></table></div><!-- /orange_rbcontent --></div>');
     this.text = $("#statusboxtext",this.element);
+    $(".info",this.element).corner();
 
     V_CONTENT.append(this.element);
     V_CONTENT.append('<div id="break"></div>');
 
-    this.showMessage = function(text) {
+    this.showMessage = function(mode,text) {
+/*        $(".orange_rbcontent").attr('class','orange_rbcontent ' + mode);
         this.text.empty();
         this.text.append('<span>' + text + '</span>');
         this.element.fadeIn();
-        setTimeout("$('#statusbox').fadeOut(1000)", 2000);
+        setTimeout("$('#statusbox').fadeOut(1000)", 3000);*/
+        createGrowl(false,text,mode);
     }
 }
 
@@ -241,10 +246,10 @@ var appViewSes = function appViewSes(statusbox) {
     this.info = "\u00BFQuieres crear, editar o borrar entrenamientos? Lo puedes hacer todo aqu\u00ED. Tambien puedes acceder a cualquier entrenamiento desde aqu\u00ED."
 
     this.initialize = function() {
-//        $('#break').remove();
-//        $("#appview").remove();
+        //        $('#break').remove();
+        //        $("#appview").remove();
         this.element = $('<div id="appviewSes" class="appview" style="display:none"></div>');
-//        V_CONTENT.append('<div id="break"></div>');
+        //        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.selectedCategory = null;
         this.sessions = [];
@@ -254,31 +259,37 @@ var appViewSes = function appViewSes(statusbox) {
         this.selectedCategory = null;
         this.defaultTab = null;
         this.listbox = new listBox(this);
-        this.listbox.addTools('0');
+        this.tools = this.listbox.addTools('0');
         this.listbox.elementsList();
         this.detailsbox = new detailsBox(appview);
         this.detailsbox.animate();
         this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
-        this.getCategories();
-        this.getSessions();
         this.addCategory('-', "Todo");
         this.defaultTab = this.selectedCategory;
         this.addCategory('0', "Sin Categor\u00EDa");
+        this.getCategories();
+        this.getSessions();
+        this.defaultTab.tab.click();
 
         this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
     }
     
     this.getCategories = function () {
-        $.getJSON('getSessions.php',{
-            mode:"categories"
-        },function(json,textStatus) {
-            s = json;
-            s.forEach(function(item){
-                appview.addCategory(item['id'],item['name']);
-            });
-//            appview.listbox.addCC();
-            appview.detailsbox.addInfo();
-            appview.colors = (appview.categories.length - 2);
+        $.ajax({
+            url:'getSessions.php',
+            dataType:'json',
+            data: {
+                mode:"categories"
+            },
+            async: false,
+            success: function(json) {
+                json.forEach(function(item){
+                    appview.addCategory(item['id'],item['name']);
+                });
+                appview.tools.addCC();
+                appview.detailsbox.addInfo();
+                appview.colors = (appview.categories.length - 2);
+            }
         });
     }
 
@@ -373,14 +384,14 @@ var appViewSes = function appViewSes(statusbox) {
                 s.show();
                 appview.emptySessions.hide();
                 appview.refreshDetails();
-                statusbox.showMessage('A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '" a la categor\u00EDa "' + appview.tabNames[cat] + '"');
+                statusbox.showMessage('info','A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '" a la categor\u00EDa "' + appview.tabNames[cat] + '"');
             }
-            else statusbox.showMessage('No ha sido posible realizar la operaci\u\u00F3n, int\u00E9ntelo otra vez por favor');
+            else statusbox.showMessage('error','No ha sido posible realizar la operaci\u\u00F3n, int\u00E9ntelo otra vez por favor');
         });
     };
 
     this.deleteElements = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         while(this.selectedSessions.length > 0) {
             var aux = this.selectedSessions.pop();
             aux.hide();
@@ -388,7 +399,9 @@ var appViewSes = function appViewSes(statusbox) {
                 mode:"deleteS",
                 id:aux.id
             },function(textStatus) {
-                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                console.log(textStatus);
+                if(textStatus) statusbox.showMessage('info','Se han elimindo las sesiones seleccionadas');
+                else statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
 
             for(i in this.sessions)
@@ -413,12 +426,12 @@ var appViewSes = function appViewSes(statusbox) {
                 appview.selectedSessions[i].changeCategory(category);
             }
         }
-        else statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
     }
 
     this.openElement = function() {
-        if (this.selectedSessions.length != 1) statusbox.showMessage("Tienes que seleccionar una, y s\u00F3lo una sesi\u00F3n para realizar esta operaci\u00F3n");
+        if (this.selectedSessions.length != 1) statusbox.showMessage('alerta',"Tienes que seleccionar una, y s\u00F3lo una sesi\u00F3n para realizar esta operaci\u00F3n");
         else {
             V_TRAINER.session(this.selectedSessions[0].id);
         }
@@ -430,10 +443,10 @@ var appViewCat = function appViewCat(statusbox) {
     this.info = "\u00BFQuieres crear, editar o borrar Categorías para clasificar entrenamientos? Lo puedes hacer todo aqu\u00ED."
 
     this.initialize = function() {
-//        $('#break').remove();
-//        $("#appview").remove();
+        //        $('#break').remove();
+        //        $("#appview").remove();
         this.element = $('<div id="appviewCat" class="appview" style="display:none"></div>');
-//        V_CONTENT.append('<div id="break"></div>');
+        //        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.sessions = [];
         this.selectedSessions = [];
@@ -537,14 +550,14 @@ var appViewCat = function appViewCat(statusbox) {
                 s.show();
                 appview.emptySessions.hide();
                 appview.refreshDetails();
-                statusbox.showMessage('A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '"');
+                statusbox.showMessage('info','A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '"');
             }
-            else statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+            else statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
         });
     };
 
     this.deleteElements = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         while(this.selectedSessions.length > 0) {
             var aux = this.selectedSessions.pop();
             aux.hide();
@@ -552,7 +565,7 @@ var appViewCat = function appViewCat(statusbox) {
                 mode:"deleteC",
                 id:aux.id
             },function(textStatus) {
-                if(textStatus != "success") statusbox.showMessage('No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                if(textStatus != "success") statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
 
             for(i in this.sessions)
@@ -577,7 +590,7 @@ var appViewCat = function appViewCat(statusbox) {
                 appview.selectedSessions[i].changeCategory(category);
             }
         }
-        else statusbox.showMessage("Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
     }
 }
@@ -589,10 +602,10 @@ var appViewSettings = function appViewSettings(statusbox) {
     this.info = "\u00BFQuieres cambiar tu nombre o apellido? \u00BFDirecci\u00F3n de correo electr\u00F3nico? \u00BFContrase\u00F1a? \u00BFZona de hora? Lo puedes hacer todo aqu\u00ED."
 
     this.initialize = function() {
-//        $('#break').remove();
-//        $("#appview").remove();
+        //        $('#break').remove();
+        //        $("#appview").remove();
         this.element = $('<div id="appviewSettings" class="appview" style="display:none"></div>');
-//        V_CONTENT.append('<div id="break"></div>');
+        //        V_CONTENT.append('<div id="break"></div>');
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this);
@@ -626,15 +639,15 @@ var appViewTrain = function appViewTrain(statusbox) {
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
-//        this.tabs.push(new trainTab('B\u00FAsqueda',this));
-//        this.tabs.push(new trainTab('Entrenamiento',this));
-        this.listbox.addWrap('B\u00FAsqueda','search');
-        this.listbox.addWrap('Entrenamiento','polarity');
+        //        this.tabs.push(new trainTab('B\u00FAsqueda',this));
+        //        this.tabs.push(new trainTab('Entrenamiento',this));
+        this.searchTab = this.listbox.addWrap('B\u00FAsqueda','search');
+        this.workTab = this.listbox.addWrap('Entrenamiento','polarity');
         $(".listwrap",this.element).hide();
-        this.defaultTab = this.tabs[0];
+        //this.defaultTab = this.tabs[0];
         this.workContainer['aaData'] = this.workElements;
         console.log(V_TRAINER.contexts[1].id);
-//        this.defaultTab.select();
+        $('a',this.searchTab).click();
     }
 
     this.deleteElements = function() {
@@ -659,41 +672,30 @@ var appViewTrain = function appViewTrain(statusbox) {
     this.add2work = function() {
         var selectedData = [];
         $('.xtr_select >.xtd_opinion', V_Table).each(function() {
-                selectedData.push($(this).text());
+            selectedData.push($(this).text());
         });
-        console.log(selectedData);
-        //console.log(G_polarityTable.fnGetNodes());
-//        var selectedData = V_Table.fnGetData();
-//        var selectedElements = V_Table.fnGetSelected('xtr_select');
-        for ( var i=0 ; i<selectedData.length ; i++ )
-        {
-            $.getJSON('opinions.php',{
-                mode:"insert",
-                text:selectedData[i],
-                id_session:V_TRAINER.contexts[1].id,
-                i:i
-            },function(textStatus,i) {
-                console.log("texto --> " + textStatus);
-                console.log(textStatus == true);
-                console.log("i:" + i + " = sd-1:" + (selectedData.length - 1));
-                if(textStatus) {
-                //    G_polarityData.push(["","",selectedData[i][2]]);
-                //    console.log(selectedData[i][2]);
-                }
-                if(textStatus == (selectedData.length - 1)) {
-                    G_polarityTable.fnReloadAjax();
-                    $(".dataTables_processing").hide();
-                    appview.deleteElements();
-                }
-            });
-            //            this.workElements.push(["","",selectedData[i][2]]);
-
-            console.log(this.workContainer);
-            console.log(G_polarityData);
+        if(selectedData.length > 0) {
+            for ( var i=0 ; i<selectedData.length ; i++ )
+            {
+                $.getJSON('opinions.php',{
+                    mode:"insert",
+                    text:selectedData[i],
+                    id_session:V_TRAINER.contexts[1].id,
+                    i:i
+                },function(textStatus,i) {
+                    if(textStatus) {
+                    }
+                    if(textStatus == (selectedData.length - 1)) {
+                        G_polarityTable.fnReloadAjax();
+                        $(".dataTables_processing").hide();
+                        appview.deleteElements();
+                    }
+                });
+            }
+            $('a',this.workTab).click();
+            V_STATUSBOX.showMessage("info","A\u00F1adidas las opiniones seleccionadas al área de trabajo");
         }
-//        G_polarityTable.fnClearTable();
-    //console.log(JSON.stringify(this.workContainer));
-        
+        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");
     }
     
     this.showTab = function(tab) {
@@ -705,22 +707,26 @@ var appViewTrain = function appViewTrain(statusbox) {
             if(tab == this.tabs[1]) {
                 this.listbox.addTools('1');
                 this.listbox.searchList();
-//                this.listbox.addTools('2');
-//                this.listbox.polarityList();
+            //                this.listbox.addTools('2');
+            //                this.listbox.polarityList();
             }
             this.selectedTab = tab;
         }
     }
     
     this.changePolarity = function(polarity) {
-//        var selectedData = [];
-        $('.xtr_select >.xtd_polarity', G_polarityTable).each(function() {
-//                selectedData.push($(this).text());
-            console.log(this);
-            $("option",this).each(function() {
-                if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
+        //        var selectedData = [];
+        if($('.xtr_select >.xtd_polarity', G_polarityTable).length > 0) {
+            $('.xtr_select >.xtd_polarity', G_polarityTable).each(function() {
+                //                selectedData.push($(this).text());
+                //console.log(this);
+                $("option",this).each(function() {
+                    if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
+                });
             });
-        });
+            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
+        }
+        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");
         
     }
 
@@ -746,7 +752,7 @@ var listBox = function listBox(appview,type) {
     }
 
     this.addTools = function(type) {
-        this.list.addTools(type);
+        return this.list.addTools(type);
     }
 
     this.elementsList = function() {
@@ -762,7 +768,7 @@ var listBox = function listBox(appview,type) {
     }
     
     this.addWrap = function(name,type) {
-        this.list.addWrap(name,type);
+        return this.list.addWrap(name,type);
     }
 }
 
@@ -774,19 +780,21 @@ var list = function list(appview,type) {
 
     this.element.append(this.listtabs.element);
     if(type == 'trainer') {
-//        this.searchbox = new searchBox();
+        //        this.searchbox = new searchBox();
         this.element.css('width', '980px');
-        //this.listtabs.addTab("B\u00FAsqueda");
-//        this.listtabs.addDummyTab("B\u00FAsqueda");
+    //this.listtabs.addTab("B\u00FAsqueda");
+    //        this.listtabs.addDummyTab("B\u00FAsqueda");
     }
     this.element.append(this.listwrap.element);
 
     this.addWrap = function(name,type) {
         var temp = new listWrap(appview,type);
-        this.listwraps[this.listtabs.addTab(name,temp)] = temp;
+        var tab = this.listtabs.addTab(name,temp);
+        this.listwraps[tab] = temp;
         eval('temp.' + type + 'List()');
         this.element.append(temp.element);
         temp.showTools(type);
+        return tab;
     }
 
     this.addTab = function(name,category) {
@@ -799,6 +807,7 @@ var list = function list(appview,type) {
 
     this.addTools = function(type) {
         this.listwrap.showTools(type);
+        return this.listwrap.tools;
     }
 
     this.elementsList = function() {
@@ -819,7 +828,7 @@ var listTabs = function listTabs() {
     this.element = $('<div id="listtabs" style="" class="xtabs"><ul></ul></div>');
     var that = this;
 
-    this.addTab = function(name,father) {
+    this.addTab = function(name,father,click) {
         var tab = $('<li class="xtab_blue"><a href="">' + name + '</a></li>');
         $('ul',this.element).append(tab);
         $('a',tab).click(function() {
@@ -861,7 +870,7 @@ var listWrap = function listWrap(appview,type) {
         if(type == '0') {
             this.tools.addOpen();
             this.tools.addDelete();
-            this.tools.addCC();
+//            this.tools.addCC();
         }
         if(type == 'search') {
             this.tools.addDelete();
@@ -869,6 +878,8 @@ var listWrap = function listWrap(appview,type) {
             this.tools.addSearch();
         }
         if(type == 'polarity') {
+            //            this.tools.addOpen();
+            //            this.tools.addDelete();
             this.tools.addCP();
         }
     }
@@ -958,6 +969,7 @@ var toolbox = function toolbox(appview){
 
     this.addChangePolarity = function(){
         this.actions.addChangePolarity();
+        this.element.append(this.selectors.element);
         this.actions.addOption('POSITIVE',0);
         this.actions.addOption('NEGATIVE',1);
         this.actions.addOption('NEUTRAL',2);
@@ -965,7 +977,7 @@ var toolbox = function toolbox(appview){
     
     this.addSearch = function() {
         this.search = new search(this.element,appview);
-//        this.actions.addSearch();
+    //        this.actions.addSearch();
     }
 }
 
@@ -982,7 +994,7 @@ var actions = function actions(father,appview) {
         var openButton = $('<input type="submit" class="xtoolbox_button" value="Abrir sesi\u00F3n">');
         a.form.append(openButton);
         openButton.click(function() {
-//            alert(appview.selectedCategory.name);
+            //            alert(appview.selectedCategory.name);
             appview.openElement();
             return false;
         });
@@ -1013,16 +1025,18 @@ var actions = function actions(father,appview) {
         a.form.append(a.select);
         a.select.change(function() {
             appview.changeCategory($(":selected", this).val());
+            $("option",a.select).eq(0).attr("selected", "selected");
         });
     }
 
     this.addChangePolarity = function() {
         a.select = $('<select id="mas"></select>');
-        a.select.append('<option>Cambiar de Polaridad</option>');
+        a.select.append('<option value="-1">Cambiar de Polaridad</option>');
         a.select.append('<option disabled="">---</option>');
         a.form.append(a.select);
         a.select.change(function() {
             appview.changePolarity($(":selected", this).text());
+            $("option",a.select).eq(0).attr("selected", "selected");
         });
     }
 
@@ -1039,7 +1053,7 @@ var actions = function actions(father,appview) {
 
 var selectors = function selectors(father,appview) {
     this.element = $('<div class="xtoolbox_selector"></div>');
-    father.append(this.element);
+    //father.append(this.element);
 
     this.element.append('Seleccionar: <a id="selectAll" href=" ">Todas</a>, <a id="selectNone" href=" ">Ninguna</a>');
     $("#selectAll",this.element).click(function() {
@@ -1094,7 +1108,7 @@ var midcontent = function midcontent(appview) {
         this.elements = new elements(div);
         this.elements.searchTable(['POSITIVE','NEGATIVE','NEUTRAL']);
         this.addBox.search(this.elements);
-//        this.elements = new searchElements(div);
+    //        this.elements = new searchElements(div);
     }
 
     this.polarityList = function() {
@@ -1158,9 +1172,9 @@ var addBox = function addBox(father,appview) {
             if (event.keyCode == '13') {
                 console.log(elements.table.dataTable().fnSettings().aoColumns.length);
                 var data = [
-                    "",
-                    "",
-                    a.addText.val()];
+                "",
+                "",
+                a.addText.val()];
                 for(i=3;i<elements.table.dataTable().fnSettings().aoColumns.length;i++) data.push("");
                 console.log(data);
                 elements.table.dataTable().fnAddData(data);
@@ -1185,24 +1199,25 @@ var loading = function loading(div) {
 var elements = function elements(father) {
     this.element = $('<div id="tasks"></div>');
     this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
+    this.form = $('<form id="f1"></form>');
     this.element.append(this.table);
     father.append(this.element);
     var e = this;
     
-//    V_elements = this;
+    //    V_elements = this;
     
     this.getData = function(url,mode) {
         $("#in_processing",father).show();
         console.log(url);
         $.getJSON(url,//'twitter_search.php?q=hola&n=10', 
-        function(json){
-            e.searchData = json['aaData'];
-            console.log(json);
-            console.log(e.searchData)
-            $("#in_processing",father).hide();
-            if(mode == '1') e.table.fnClearTable();
-            e.table.fnAddData(e.searchData);
-        });
+            function(json){
+                e.searchData = json['aaData'];
+                console.log(json);
+                console.log(e.searchData)
+                $("#in_processing",father).hide();
+                if(mode == '1') e.table.fnClearTable();
+                e.table.fnAddData(e.searchData);
+            });
     }
 
     this.searchTable = function(options) {
@@ -1285,7 +1300,7 @@ var elements = function elements(father) {
 
 
     }
-//    V_Table = this.table;
+    //    V_Table = this.table;
     this.polarityTable = function(options) {
         V_elements['polarity'] = e;
         $('colgroup',this.table).empty();
@@ -1337,9 +1352,9 @@ var elements = function elements(father) {
             {
                 "fnRender": function ( oObj ) {
                     ////console.log(oObj);
-                    var select = '<span style="white-space: nowrap;"> <select class="polarity">';
-                    for (i in options) select += '<option value="' + i  + '">' + options[i] + '</option>';
-                    select += '</select></span>';
+                    var select = '<form class="jqtransform"><span style="white-space: nowrap;"> <select class="polarity">';
+                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
+                    select += '</select></span></form>';
                     return select;
                 },
                 "sClass":"xtd_polarity",
@@ -1360,7 +1375,7 @@ var elements = function elements(father) {
                     }
                     );
                 console.log(nRow);
-//                console.log(aData);
+                //                console.log(aData);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
@@ -1369,18 +1384,19 @@ var elements = function elements(father) {
                 $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
                 $('select',nRow).change(function() {
                     $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $(this).val());
+                    $('.polarity',nRow).attr('class','polarity prio' + $(this).val());
                     $.getJSON("opinions.php",
-                        {
-                            "mode":"update",
-                            "id":aData[4],
-                            "polarity":$(":selected",this).text()
-                        }, function(textStatus) {
-                            console.log(textStatus);
-                        })
+                    {
+                        "mode":"update",
+                        "id":aData[4],
+                        "polarity":$(":selected",this).text()
+                    }, function(textStatus) {
+                        console.log(textStatus);
+                    })
                 });
                 $('select option',nRow).each(function() {
                     if($(this).text() == aData[5]) $(this).attr('selected', 'selected').trigger('change');
-                    //console.log($(this).text() + " == " + aData[5]);
+                //console.log($(this).text() + " == " + aData[5]);
                 });
                 return nRow;
             }
@@ -1434,11 +1450,10 @@ var searchElements = function searchElements(father) {
         "sPaginationType":"full_numbers"
     });
 
-//    this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_arr"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
-//    this.element.append(this.table);
+    //    this.table = $('<table class="xtable xtable_tags_left"><colgroup><col class="col_prio"><col class="col_arr"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody></tbody></table>');
+    //    this.element.append(this.table);
     father.append(this.element);
 }
-
 
 var settings = function settings(div,appview) {
     this.element = $('<div id="general"></div>');
@@ -1508,7 +1523,7 @@ var settingsForm = function settingsForm(div,appview) {
 
     this.spyChange = function(element,value){
         element.keyup(function() {
-/*            if(element.val() != value)
+            /*            if(element.val() != value)
                 //console.log(element.val() + "!=" + value);
             else //console.log(element.val() + "==" + value);*/
             if(f.changes()) {
@@ -1565,15 +1580,15 @@ var settingsForm = function settingsForm(div,appview) {
             success: function(data) {
                 //console.log(data);
                 if(data == "success") {
-                    appview.statusbox.showMessage("Configuraci\u00F3n guardada");
+                    appview.statusbox.showMessage('info',"Configuraci\u00F3n guardada");
                     f.loadData();
                     $("#settingssubmit").attr("disabled","disabled");
                     $("#settingscancel").attr("disabled","disabled");
                 }
-                else appview.statusbox.showMessage("Ha ocurrido un error mientras se guardaba la configuraci\u00F3n");
+                else appview.statusbox.showMessage('error',"Ha ocurrido un error mientras se guardaba la configuraci\u00F3n");
             },
             error: function() {
-                appview.statusbox.showMessage("Error de petici\u00F3n");
+                appview.statusbox.showMessage('error',"Error de petici\u00F3n");
             }
         });
         return false;
@@ -1584,7 +1599,14 @@ var settingsForm = function settingsForm(div,appview) {
 }
 
 var appfooter = function appfooter() {
-    this.element = $('<div class="appfooter" style="display: none"></div>');
+    this.element = $('<div class="appfooter">\
+    <div id="appfooter-news-list" class="appfooter-news" style="display: ">\
+      <div class="appfooter-news-content"><table><tbody><tr><td class="icons"><span class="new">NUEVO</span><span class="ico"><a href="/upgrade/" target="_blank"><img src="http://s3.rtmcdn.net/img/ico/ico_pro.gif" alt="Pro"></a></span></td><td>\u00BFRTM ha hecho que sea más organizado y productivo? <a target="_blank" href="/upgrade/">Actualice a una Pro</a> y apoye a RTM.</td></tr></tbody></table></div>\
+    </div>\
+        <div class="appfootercontent">\
+      <a href="/about/" target="_blank">Acerca de...</a> | <a href="http://blog.rememberthemilk.com/" target="_blank">Blog</a> | <a href="/services/" target="_blank">Servicios</a> | <a href="/forums/" target="_blank">Foros</a> | <a href="/help/" target="_blank">Ayuda</a>  | <a href="/help/terms.rtm" target="_blank">Condiciones de uso</a> | <a href="/help/privacy.rtm" target="_blank">Política de privacidad</a>\
+  </div> <!-- /appfootercontent -->\
+</div>');
 }
 
 var detailsBox = function detailsBox(appview) {
@@ -1722,7 +1744,7 @@ var detailswrap = function detailswrap(father) {
     this.showGeneral = function(name) {
 
         this.detailscontent.title.changeTitle(name);
-//        this.detailscontent.title.addCount(numSessions,"Sesiones");
+    //        this.detailscontent.title.addCount(numSessions,"Sesiones");
     };
 }
 
@@ -1816,7 +1838,7 @@ var detailshelp = function detailshelp(appview) {
         this.helpinfo.text(text);
     }
 
-//    this.addinfo("\u00BFQuieres cambiar tu nombre o apellido? \u00BFDirecci\u00F3n de correo electr\u00F3nico? \u00BFContrase\u00F1a? \u00BFZona de hora? Lo puedes hacer todo aqu\u00ED.");
+    //    this.addinfo("\u00BFQuieres cambiar tu nombre o apellido? \u00BFDirecci\u00F3n de correo electr\u00F3nico? \u00BFContrase\u00F1a? \u00BFZona de hora? Lo puedes hacer todo aqu\u00ED.");
     this.addinfo(appview.info);
 }
 
@@ -1871,9 +1893,6 @@ var category = function category (id,name,appview) {
         appview.showCategory(this);
     }
 }
-
-
-
 
 var session = function session(id,category,title,date,appview) {
     this.title = title;
@@ -1962,9 +1981,15 @@ var session = function session(id,category,title,date,appview) {
     };
 
     this.changeCategory = function(cat) {
-        $(".xtd_prio",this.element).removeClass("prio" + this.category);
+        var color = "N";
+        if(this.category != "0")
+            color = ((parseFloat(this.category) % appview.colors));
+        $(".xtd_prio",this.element).removeClass("prio" + color);
         this.category = cat;
-        $(".xtd_prio",this.element).addClass("prio" + this.category);
+        color = "N";
+        if(this.category != "0")
+            color = ((parseFloat(this.category) % appview.colors));
+        $(".xtd_prio",this.element).addClass("prio" + color);
         $(".xtd_tag",this.element).text(appview.tabNames[this.category]);
 
     }

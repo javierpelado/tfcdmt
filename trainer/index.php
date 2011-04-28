@@ -82,17 +82,19 @@ session_start();
  ?>
             <link rel="stylesheet" type="text/css" media="screen" href="/css/milk.1.css" />
             <link rel="stylesheet" type="text/css" media="screen" href="/css/app.14.ext.css" />
+            <link rel="stylesheet" type="text/css" media="screen" href="/lib/qTip/jquery.qtip.css" />
             <link rel="shortcut icon" href="/img/mineria2.png"/>
 
-            <script src="/lib/jquery.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/lib/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
             <script src="trainer.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/elements.js" type="text/javascript" charset="utf-8"></script>
-            <script src="/lib/jquery.dimensions.js" type="text/javascript" charset="utf-8"></script>
+<!--            <script src="/lib/jquery.dimensions.js" type="text/javascript" charset="utf-8"></script>-->
             <script src="/lib/jquery.jeditable.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.dataTables.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/dataTables.plug-ins.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.corner.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/lib/qTip/jquery.qtip.js" type="text/javascript" charset="utf-8"></script>
 
 
             <style type="text/css">
@@ -116,7 +118,7 @@ session_start();
                 <div id="content">
                     <div id="appheader">
                         <a href="/">
-                            <div id="appheaderlogo" style="height: 83px; width: 188px; cursor: pointer; background:transparent url('/img/logo2.png');background-repeat: no-repeat;margin-top: 10px;"></div>
+                            <div id="appheaderlogo" title="Web de entrenamiento de sistemas de detección de sentimiento en opiniones" style="height: 83px; width: 188px; cursor: pointer; background:transparent url('/img/logo2.png');background-repeat: no-repeat;margin-top: 10px;"></div>
                         </a>
                         <div id="topnav" style="float: right;">
                             <span id="personName" style="position: relative; color: #999; font-weight:bold;"><?php echo $_SESSION['usr']; ?></span>
@@ -130,6 +132,8 @@ session_start();
                     <input class="textfield" id="username" name="username" type="text" value="<?php echo $_SESSION['usr'] ?>"></input>
                     <input class="textfield" id="userid" name="userid" type="text" value="<?php echo $_SESSION['id'] ?>"></input>
                 </form>
+                <div id="notifications"></div>
+                
             </body>
 <?php } ?>
             </html>

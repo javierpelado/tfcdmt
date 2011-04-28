@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/svn/!svn/ver/28/trunk/myTFC/img
+/svn/!svn/ver/34/trunk/myTFC/img
 END
 milk.png
 K 25
@@ -111,23 +111,17 @@ svn:wc:ra_dav:version-url
 V 40
 /svn/!svn/ver/2/trunk/myTFC/img/logo.psd
 END
-off-connected-syncing.gif
-K 25
-svn:wc:ra_dav:version-url
-V 58
-/svn/!svn/ver/10/trunk/myTFC/img/off-connected-syncing.gif
-END
 busy.gif
 K 25
 svn:wc:ra_dav:version-url
 V 41
 /svn/!svn/ver/10/trunk/myTFC/img/busy.gif
 END
-skin.png
+off-connected-syncing.gif
 K 25
 svn:wc:ra_dav:version-url
-V 41
-/svn/!svn/ver/28/trunk/myTFC/img/skin.png
+V 58
+/svn/!svn/ver/10/trunk/myTFC/img/off-connected-syncing.gif
 END
 orangebox_tl.gif
 K 25
@@ -135,11 +129,17 @@ svn:wc:ra_dav:version-url
 V 49
 /svn/!svn/ver/10/trunk/myTFC/img/orangebox_tl.gif
 END
-orangebox_tr.gif
+skin.png
 K 25
 svn:wc:ra_dav:version-url
-V 49
-/svn/!svn/ver/10/trunk/myTFC/img/orangebox_tr.gif
+V 41
+/svn/!svn/ver/28/trunk/myTFC/img/skin.png
+END
+unchecked.gif
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/2/trunk/myTFC/img/unchecked.gif
 END
 ico_pro_sm.gif
 K 25
@@ -147,11 +147,11 @@ svn:wc:ra_dav:version-url
 V 47
 /svn/!svn/ver/10/trunk/myTFC/img/ico_pro_sm.gif
 END
-unchecked.gif
+orangebox_tr.gif
 K 25
 svn:wc:ra_dav:version-url
-V 45
-/svn/!svn/ver/2/trunk/myTFC/img/unchecked.gif
+V 49
+/svn/!svn/ver/10/trunk/myTFC/img/orangebox_tr.gif
 END
 ico_cross_org.gif
 K 25
@@ -165,17 +165,17 @@ svn:wc:ra_dav:version-url
 V 44
 /svn/!svn/ver/10/trunk/myTFC/img/spr_box.png
 END
-spr_rows.png
-K 25
-svn:wc:ra_dav:version-url
-V 45
-/svn/!svn/ver/10/trunk/myTFC/img/spr_rows.png
-END
 off-connected-synced.gif
 K 25
 svn:wc:ra_dav:version-url
 V 57
 /svn/!svn/ver/10/trunk/myTFC/img/off-connected-synced.gif
+END
+spr_rows.png
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/10/trunk/myTFC/img/spr_rows.png
 END
 bg_dot.gif
 K 25

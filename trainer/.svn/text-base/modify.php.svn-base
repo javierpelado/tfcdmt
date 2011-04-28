@@ -8,6 +8,7 @@ if (!isset($_GET['mode'])) {
         $id=$_GET['id'];
         $sessionObj = new Session();
         $mysql_sessions = $sessionObj->delete($id);
+        echo $mysql_sessions;
     }
     if($_GET['mode'] == "insertS") {
         $cat=$_GET['cat'];

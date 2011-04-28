@@ -2588,3 +2588,69 @@ a.disabled:hover{
   background: url(/img/skin.png) no-repeat;
   overflow: hidden;
 }
+
+.polarity {
+    border-top: 1px solid #CACACA;    
+    color:white;
+    font-weight: bold;            
+}
+
+.pol0{
+    background-color:blue;
+}
+
+.pol1 {
+    background-color:red;
+}
+
+.pol2{
+    background-color:grey;
+}
+
+.info, .exito, .alerta, .error{
+    padding:7px 15px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+}
+
+.info {
+    background-color: #BDE5F8;
+    background-image: url('/img/messages/info.png');
+}
+
+.exito {
+    background-color: #DFF2BF;
+    background-image:url('/img/messages/exito.png');
+}
+
+.alerta {
+    background-color: #FEEFB3;
+    background-image: url('/img/messages/alerta.png');
+}
+
+.error {
+    background-color: #FFBABA;
+    background-image: url('/img/messages/error.png');
+}
+
+div#message
+{
+    text-align: center;
+}
+
+div#qTip {
+ padding: 3px;
+ border: 1px solid #666;
+ border-right-width: 2px;
+ border-bottom-width: 2px;
+ display: none;
+ background: #999;
+ color: #FFF;
+ font: bold 9px Verdana, Arial, sans-serif;
+ text-align: left;
+ position: absolute;
+ z-index: 1000;
+}
+
+#notifications {
+}

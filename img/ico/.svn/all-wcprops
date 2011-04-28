@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/svn/!svn/ver/27/trunk/myTFC/img/ico
+/svn/!svn/ver/34/trunk/myTFC/img/ico
 END
 green_check.png
 K 25
@@ -140,6 +140,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 49
 /svn/!svn/ver/14/trunk/myTFC/img/ico/ico_lock.gif
+END
+ico_error.gif
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/34/trunk/myTFC/img/ico/ico_error.gif
 END
 ico_info_blu.gif
 K 25

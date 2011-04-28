@@ -1,14 +1,14 @@
 10
 
 dir
-32
+35
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/trainer
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-04-12T17:44:37.532046Z
-32
+2011-04-28T15:15:43.148303Z
+35
 javier.pelado
 has-props
 
@@ -32,10 +32,10 @@ file
 
 
 
-2011-03-15T18:21:51.000000Z
-8410c00361da14ddea8ab771e1cef3d3
-2011-03-23T17:14:32.925225Z
-26
+2011-04-19T18:24:33.000000Z
+b71918f0dcb8edd57f04b6b282be2d62
+2011-04-28T15:15:43.148303Z
+35
 javier.pelado
 
 
@@ -58,7 +58,7 @@ javier.pelado
 
 
 
-752
+4837
 
 addSession.php
 file
@@ -270,10 +270,10 @@ file
 
 
 
-2011-04-04T08:25:44.000000Z
-7a8e896cd530ef1fc31e052a5aedc189
-2011-04-07T15:12:46.902273Z
-28
+2011-04-19T18:15:07.000000Z
+a69350ceb6031c4ea876662fc8c352a3
+2011-04-28T15:15:43.148303Z
+35
 javier.pelado
 
 
@@ -296,7 +296,7 @@ javier.pelado
 
 
 
-6078
+6537
 
 getSessions_ant.php
 file
@@ -508,10 +508,10 @@ file
 
 
 
-2011-02-28T18:38:32.000000Z
-453243d5d635c24829b09a1cfc23cef6
-2011-03-07T16:09:08.858707Z
-24
+2011-04-19T11:12:18.000000Z
+7cb7f201eeace526731496b95ede129b
+2011-04-28T15:15:43.148303Z
+35
 javier.pelado
 
 
@@ -534,5 +534,5 @@ javier.pelado
 
 
 
-1618
+1648
 
