@@ -197,7 +197,7 @@ table.tabbedtable label { text-align: right; padding-right: 9px; }
 
 /* Orange box (Old) */
 
-.orange_rbroundbox { background: url(/img/orangebox_back.gif) repeat; }
+.orange_rbroundbox { background-color: #EDF5F8; border: 1px solid #CDF5F8; text-align: center; padding: 5px; color: #777}
 .orange_rbtop div { background: url(/img/orangebox_tl.gif) no-repeat top left; }
 .orange_rbtop { background: url(/img/orangebox_tr.gif) no-repeat top right; }
 .orange_rbbot div { background: url(/img/orangebox_bl.gif) no-repeat bottom left; }

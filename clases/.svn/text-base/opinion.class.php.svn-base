@@ -10,9 +10,12 @@ class Opinion{
 
 	function insert($campos){
 		if($this->con->conectar()==true){
-			//print_r($campos);
+                    //print_r($campos);
                     if(sizeof($campos) > 1 ) {
-			return mysql_query('INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES('.$campos[1].',NULL,"'.$campos[0].'","positive")');
+                        if(!mysql_fetch_array($this->search_opinions('text', $campos[0],$campos[1]))) {
+//                            echo 'INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES('.$campos[1].',NULL,"'.$campos[0].'","'.$campos[2].'")';
+                            return mysql_query('INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES('.$campos[1].',NULL,"'.$campos[0].'","'.$campos[2].'")');
+                        }
                     }
                     else {
                         if(!mysql_fetch_array($this->search_sessions('text', $campos[0])))
@@ -31,10 +34,13 @@ class Opinion{
 		}
 	}
 
-	function search_opinions($field,$query){
+	function search_opinions($field,$query,$session){
 		if($this->con->conectar()==true){
 			//echo "SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\"";
-			return mysql_query("SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\"");
+                    if($session == null)
+			return mysql_query("SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\" ORDER BY polarity");
+                    else
+			return mysql_query("SELECT * FROM dmt_opinions WHERE ".$field."=\"".$query."\" AND id_session=\"".$session."\" ORDER BY polarity");                        
 		}
 	}
 
@@ -44,9 +50,10 @@ class Opinion{
 		}
 	}
 
-	function delete($id){
+	function delete($id_session,$text){
 		if($this->con->conectar()==true){
-			return mysql_query("DELETE FROM dmt_sessions WHERE id=".$id);
+                    echo "DELETE FROM dmt_opinions WHERE id_session=".$id_session." AND text=\"".$text."\"";
+			return mysql_query("DELETE FROM dmt_opinions WHERE id_session=".$id_session." AND text=\"".$text."\"");
 		}
 	}
 

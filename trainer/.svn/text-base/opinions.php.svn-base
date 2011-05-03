@@ -14,23 +14,23 @@ if (!isset($_GET['mode'])) {
         echo json_encode($data);
     }
     if ($_GET['mode'] == "delete") {
-        $id=$_GET['id'];
-        $categoryObj = new Category();
-        $mysql_sessions = $categoryObj->delete($id);
-        $sessionObj = new Session();
-        $mysql_sessions = $sessionObj->delete_cat($catId);
+        $id=$_GET['id_session'];
+        $text = $_GET['text'];
+        $opinionObj = new Opinion();
+        $mysql_opinion = $opinionObj->delete($id,$text);
+        echo $mysql_opinion;
     }
     if($_GET['mode'] == "insert") {
         $session=$_GET['id_session'];
         $text = $_GET['text'];
         $opinionObj = new Opinion();
-        $mysql_sessions = $opinionObj->insert(array($text,$session));
+        $mysql_sessions = $opinionObj->insert(array($text,$session,"POSITIVE"));
         //echo mysql_insert_id();
         //echo json_encode($mysql_sessions);
         echo $_GET['i'];
     }
     if($_GET['mode'] == "update") {
-        print_r($_GET);
+        //print_r($_GET);
         $id = $_GET['id'];
         $polarity = $_GET['polarity'];
         $categoryObj = new Opinion();

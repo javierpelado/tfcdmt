@@ -15,7 +15,9 @@ if (!isset($_GET['mode'])) {
         $title = $_GET['title'];
         $sessionObj = new Session();
         $mysql_sessions = $sessionObj->insert(array($cat,$title));
-        echo mysql_insert_id();
+        $id = mysql_insert_id();
+        mkdir("files/".$id);
+        echo $id;
     }
     if($_GET['mode'] == "updateS") {
         $id = $_GET['id'];

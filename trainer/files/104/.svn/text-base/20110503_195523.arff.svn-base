@@ -1,0 +1,16 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"Alineaciones: R. Madrid: Iker Casillas; Arbeloa, Albiol, Carvalho, Marcelo; Lass, Xabi Alonso; Cristiano Ronaldo, Kaká, Di María; e Higuaín.," POSITIVE
+"RT @Ire_aleflores: Hoy Y SIEMPRE SOY @realmadrid !! cONFIAMOS EN UDS @Cristiano @KAKA  @aarbeloa17 @XabiAlonso @G_Higuain!! VIVIMOS X UDS GANEN X NOSOTROS!," POSITIVE
+"Te amo como a nada en el mundo*-* @Cristiano Suerte Bebe♥," POSITIVE
+"RT @madrid_indo: Line-up Resmi: CASILLAS; ARBELOA, ALBIOL, CARVALHO, MARCELO; XABI ALONSO, LASS; DI MARÍA, KAKÁ, CRISTIANO; HIGUAÍN," POSITIVE
+"11 inicial del Real Madrid: Casillas, Arbeloa, Carvalho, Albiol, Marcelo, Alonso, Diarra, Di María, Özil, Higuaín y Cristiano Ronaldo.," POSITIVE
+"RT @GeoffHernandez: Entoncesa saldría así el #RealMadrid:  Casillas; Arbeloa, Carvalho, Albiol, Marcelo; Lass, Xabi A.; Kaká; Di María, Cristiano, Higuaín.," POSITIVE
+"-Me Piqué, Webó-n. -¿Por qué? - Messi-ento como Kaka porque mi papá no es Cristiano Iniesta-ba enterado yo, me sacó de mis Casillas.," POSITIVE
+"@Cristiano , ganemos o perdamos, madridistas para siempre ! :) animoss !! i HALA MADRID !," POSITIVE
+"RT @FoxSportsLat: CONFIRMADO: Real Madrid: Casillas, Carvalho, Cristiano, Kaká, Diarra, Marcelo, Xabi, Arbeloa, Albiol, Higuaín y Di María. #ChampionsenFox," POSITIVE
+"Real Madrid: Casillas; Arbeloa, Albiol, Carvalho, Marcelo; Xabi Alonso, Lass, Di María, Özil, Cristiano; Higuaín," POSITIVE

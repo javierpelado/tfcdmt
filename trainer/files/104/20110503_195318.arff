@@ -1,0 +1,14 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"Messi es muy buenoooo xd," NEGATIVE
+"RT @TD_Deportes: Alineación #Barcelona vs #RealMadrid: Valdés; Alves, Piqué, Mascherano, Puyol; Sergio, Xavi, Iniesta, Pedro; Messi y Villa," NEGATIVE
+"@samrsb asdhasudhashuashdasdassad o unico que poderia marcar messi :X," NEGATIVE
+"RT @marca: Alineación del Barça: Valdés; Alves, Mascherano, Piqué, Puyol; Busquets, Xavi, Iniesta; Pedro, Villa y Messi #ClasicoMARCA," NEGATIVE
+"RT @Fer_Gay: Vamos Barcelona con todo contra el Madrid...Messi, Iniesta y Xavi #cracks si pierden les tiro un #dardazo," NEGATIVE
+"El #Barça jugarà amb Valdés, Alves, Piqué, Mascherano, Puyol, Xavi, Busquets, Iniesta, Pedro, Villa i Messi.," NEGATIVE
+"RT @PuntoPelota: Alineación Barça: Valdes; Alves, Piqué, Mascherano, Puyol; Busquets, Xavi, Iniesta; Pedro, Villa, Messi," NEGATIVE
+"RT @fcbarcelona_es: El Barça jugará de inicio con Valdés, Alves, Piqué, Mascherano, Puyol, Sergio, Xavi, Iniesta, Pedro, Messi y Villa #fcblive," NEGATIVE
