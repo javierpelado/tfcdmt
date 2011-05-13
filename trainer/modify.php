@@ -29,10 +29,12 @@ if (!isset($_GET['mode'])) {
     }
     if ($_GET['mode'] == "deleteC") {
         $id=$_GET['id'];
+        //$catId=$_GET['cat'];
         $categoryObj = new Category();
         $mysql_sessions = $categoryObj->delete($id);
         $sessionObj = new Session();
-        $mysql_sessions = $sessionObj->delete_cat($catId);
+        $mysql_sessions = $sessionObj->delete_cat($id);
+//        echo "success";
     }
     if($_GET['mode'] == "insertC") {
         //$cat=$_GET['cat'];

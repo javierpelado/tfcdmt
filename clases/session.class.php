@@ -11,7 +11,8 @@ class Session{
 	function insert($campos){
 		if($this->con->conectar()==true){
 //			print_r($campos);
-                    if(sizeof($campos) > 1 )
+                    if(sizeof($campos) > 1 ) 
+//                        echo 'INSERT INTO `dmt_sessions`(`id`,`id_category`,`title`,`date`) VALUES(NULL,'.$campos[0].',"'.$campos[1].'",NOW())';
 			return mysql_query('INSERT INTO `dmt_sessions`(`id`,`id_category`,`title`,`date`) VALUES(NULL,'.$campos[0].',"'.$campos[1].'",NOW())');
                     else
 			return mysql_query('INSERT INTO `dmt_sessions`(`id`,`id_category`,`title`,`date`) VALUES(NULL,0,"'.$campos[0].'",NOW())');
@@ -47,6 +48,7 @@ class Session{
 
         function delete_cat($catId) {
 		if($this->con->conectar()==true){
+//                    echo "DELETE FROM dmt_sessions WHERE id_category=".$catId;
 			return mysql_query("DELETE FROM dmt_sessions WHERE id_category=".$catId);
 		}
         }

@@ -16,10 +16,10 @@ class Category{
 		}
 	}
 
-	function refresh($campos,$id){
+	function refresh($id,$title){
 		if($this->con->conectar()==true){
 			//print_r($campos);
-			return mysql_query("UPDATE dmt_category SET name= '".$campos[0]."' WHERE id = ".$id);
+			return mysql_query("UPDATE dmt_category SET name= '".$title."' WHERE id = ".$id);
 		}
 	}
 
@@ -31,7 +31,7 @@ class Category{
 
 	function show_categories(){
 		if($this->con->conectar()==true){
-			return mysql_query("SELECT * FROM dmt_category ORDER BY id DESC");
+			return mysql_query("SELECT * FROM dmt_category ORDER BY id ASC");
 		}
 	}
 

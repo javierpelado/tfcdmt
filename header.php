@@ -32,12 +32,16 @@ if(isset($_GET['logoff'])) {
 
 if(isset ($_POST['submit']) && ($_POST['submit'] == "Registrarse")) {
     require('clases/member.class.php');
+    
+/*    echo $_POST['email'];
+    print_r($_POST);
 
-    $_POST['email'] = mysql_real_escape_string($_POST['email']);
+/*    $_POST['email'] = mysql_real_escape_string($_POST['email']);
     $_POST['username'] = mysql_real_escape_string($_POST['username']);
     $_POST['password'] = mysql_real_escape_string($_POST['password']);
     $_POST['firstname'] = mysql_real_escape_string($_POST['firstname']);
     $_POST['lastname'] = mysql_real_escape_string($_POST['lastname']);
+    print_r($_POST);*/
 
 
     $objCliente=new Member();
@@ -62,8 +66,8 @@ $error = array();
 if(isset ($_POST['submit']) && ($_POST['submit'] == "Entrar")) {
     require('clases/member.class.php');
 
-    $_POST['username'] = mysql_real_escape_string($_POST['username']);
-    $_POST['password'] = mysql_real_escape_string($_POST['password']);
+//    $_POST['username'] = mysql_real_escape_string($_POST['username']);
+//    $_POST['password'] = mysql_real_escape_string($_POST['password']);
     $_POST['rememberMe'] = (int)$_POST['rememberMe'];
 
 

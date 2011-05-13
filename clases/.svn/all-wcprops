@@ -19,7 +19,7 @@ category.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 54
-/svn/!svn/ver/24/trunk/myTFC/clases/category.class.php
+/svn/!svn/ver/38/trunk/myTFC/clases/category.class.php
 END
 mysql2json.class.php
 K 25
@@ -37,5 +37,5 @@ session.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/svn/!svn/ver/24/trunk/myTFC/clases/session.class.php
+/svn/!svn/ver/38/trunk/myTFC/clases/session.class.php
 END

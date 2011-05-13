@@ -10,6 +10,8 @@
 
 function getNPosts($parameters,$query,$numPosts,$lang) {
     $url = 'http://search.twitter.com/search.json?q='.$query.'&lang='.$lang.'&rpp='.$numPosts;
+    $url = str_replace(" ", "%20", $url);
+    //echo $url;
     $page = join('',file($url));
     $tweets = json_decode($page, true);
     $tweets = $tweets['results'];
