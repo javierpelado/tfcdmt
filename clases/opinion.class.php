@@ -30,6 +30,7 @@ class Opinion{
 	function refresh($polarity,$id){
 		if($this->con->conectar()==true){
 			//print_r($campos);
+                        //echo "UPDATE dmt_opinions SET polarity= '".$polarity."' WHERE id = ".$id;
 			return mysql_query("UPDATE dmt_opinions SET polarity= '".$polarity."' WHERE id = ".$id);
 		}
 	}

@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $('#datetime').text(getDateFormated(2));
     var setTime = setInterval("$('#datetime').text(getDateFormated(2));",60000);
+    $("body").append('<applet name="smstranslate" id="smstranslate" code="SmsApplet.class" archive="/lib/java/smsApplet.jar,/lib/java/jdom.jar" width="0" height="0" mayscript="true">');
 
     //$("#loading").show();
 /*    var div = $("#content");
@@ -14,7 +15,6 @@ $(document).ready(function() {
     viewselector.addView("Preferencias",appviewsettings);
     viewselector.addExit();*/
 var V_CONTENT = $("#content");
-
     var train = new trainer();
     
 /*    $("#appheaderlogo").qtip({

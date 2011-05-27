@@ -97,7 +97,7 @@ if(isset ($_POST['submit']) && ($_POST['submit'] == "Entrar")) {
         <link rel="stylesheet" type="text/css" media="screen" href="/css/milk.css" />
         <link rel="shortcut icon" href="/img/mineria2.png"/>
 
-        <script src="/lib/jquery.js" type="text/javascript"></script>
+        <script src="/lib/jquery-1.4.2.js" type="text/javascript"></script>
         <script src="/lib/jquery.validate.js" type="text/javascript"></script>
         <script src="/lib/elements.js" type="text/javascript"></script>
 
