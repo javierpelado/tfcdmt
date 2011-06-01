@@ -11,6 +11,7 @@ class Opinion{
 	function insert($campos){
 		if($this->con->conectar()==true){
                     //print_r($campos);
+                    //$campos[0] = $this->elimina_acentos($campos[0]);
                     if(sizeof($campos) > 1 ) {
                         if(!mysql_fetch_array($this->search_opinions('text', $campos[0],$campos[1]))) {
 //                            echo 'INSERT INTO `dmt_opinions`(`id_session`,`id`,`text`,`polarity`) VALUES('.$campos[1].',NULL,"'.$campos[0].'","'.$campos[2].'")';
@@ -63,5 +64,12 @@ class Opinion{
 			return mysql_query("DELETE FROM dmt_sessions WHERE id_category=".$catId);
 		}
         }
+        
+        function elimina_acentos($cadena) {
+            $tofind = "ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ";
+            $replac = "AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
+            return(strtr($cadena, $tofind, $replac));
+        }
+
 }
 ?>

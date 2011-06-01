@@ -1,14 +1,14 @@
 10
 
 dir
-35
+39
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/clases
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-04-12T17:44:37.532046Z
-32
+2011-05-12T18:41:15.199449Z
+38
 javier.pelado
 
 
@@ -26,77 +26,9 @@ javier.pelado
 
 ed4b8162-2f16-cff2-6b1e-88c0b67f082b
 
-member.class.php
-file
-
-
-
-
-2011-05-09T10:45:44.000000Z
-90216fb143444d16a4493817e06ecad3
-2011-04-07T18:36:08.128110Z
-29
-javier.pelado
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2312
-
-opinion.class.php
-file
-36
-
-
-
-2011-05-09T15:43:22.000000Z
-c6534119d35a831c352ba0758bbf0934
-2011-05-03T18:02:59.389152Z
-36
-javier.pelado
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2605
-
 category.class.php
 file
-38
+
 
 
 
@@ -128,17 +60,14 @@ javier.pelado
 
 1019
 
-mysql2json.class.php
+classifier.class.php
 file
 
 
 
+add
 
-2010-11-30T12:18:21.000000Z
-e1a36c7eee2afcee6527455422fb93cd
-2010-12-22T10:34:36.294682Z
-13
-javier.pelado
+755bcaeea560d6c864602c69004d3450
 
 
 
@@ -150,17 +79,9 @@ javier.pelado
 
 
 
-
-
-
-
-
-
-
-
-
-
-1095
+copied
+https://tfcdmt.googlecode.com/svn/trunk/myTFC/clases/opinion.class.php
+40
 
 conexion.class.php
 file
@@ -196,9 +117,111 @@ javier.pelado
 
 626
 
+member.class.php
+file
+
+
+
+
+2011-05-09T10:45:44.000000Z
+90216fb143444d16a4493817e06ecad3
+2011-04-07T18:36:08.128110Z
+29
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2312
+
+mysql2json.class.php
+file
+
+
+
+
+2010-11-30T12:18:21.000000Z
+e1a36c7eee2afcee6527455422fb93cd
+2010-12-22T10:34:36.294682Z
+13
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1095
+
+opinion.class.php
+file
+40
+
+
+
+2011-05-17T18:42:47.000000Z
+755bcaeea560d6c864602c69004d3450
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2705
+
 session.class.php
 file
-38
+
 
 
 

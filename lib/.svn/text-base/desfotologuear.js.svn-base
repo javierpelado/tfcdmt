@@ -674,6 +674,7 @@ function isLowerCaseString(aString)
 
 
     function desfotologuear(sentence) {
+        console.log(sentence);
         original = dessimbolizar(sentence);
 
             desmultiplicar_value = 1;

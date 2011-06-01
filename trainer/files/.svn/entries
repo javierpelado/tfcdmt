@@ -1,7 +1,7 @@
 10
 
 dir
-38
+39
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/trainer/files
 https://tfcdmt.googlecode.com/svn
 
@@ -25,4 +25,11 @@ has-props
 
 
 ed4b8162-2f16-cff2-6b1e-88c0b67f082b
+
+1
+dir
+
+
+
+add
 

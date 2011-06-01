@@ -3542,3 +3542,19 @@ div#qTip {
 	width: 200px;
 }
 
+td.group {
+    padding:7px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-color: #D1CFD0;
+    border-bottom: 2px solid #A19B9E;
+    border-top: 2px solid #A19B9E;
+}
+
+.close {
+    background-image: url('/img/ico/ico_open.png');    
+}
+
+.open {
+    background-image: url('/img/ico/ico_close.png');    
+}

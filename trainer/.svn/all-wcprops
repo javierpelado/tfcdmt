@@ -5,13 +5,13 @@ V 14
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/svn/!svn/ver/35/trunk/myTFC/trainer
+/svn/!svn/ver/38/trunk/myTFC/trainer
 END
 trainer.js
 K 25
 svn:wc:ra_dav:version-url
 V 47
-/svn/!svn/ver/35/trunk/myTFC/trainer/trainer.js
+/svn/!svn/ver/40/trunk/myTFC/trainer/trainer.js
 END
 addSession.php
 K 25
@@ -53,7 +53,7 @@ index.php
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/35/trunk/myTFC/trainer/index.php
+/svn/!svn/ver/40/trunk/myTFC/trainer/index.php
 END
 member.php
 K 25

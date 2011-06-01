@@ -1,15 +1,15 @@
 10
 
 dir
-0
+40
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/lib/java
 https://tfcdmt.googlecode.com/svn
-add
 
 
 
-
-
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
 
 
 
@@ -31,26 +31,66 @@ file
 
 
 
-add
 
-
-
-
-
+2011-05-20T16:13:06.000000Z
+42bd36c0e1733c146c3ab23766e68580
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4473385
 
 jdom.jar
 file
 
 
 
-add
 
-
-
-
-
+2011-05-18T17:50:26.000000Z
+806254a1e1134086e1ee927e3a3d4ae1
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+152797
 

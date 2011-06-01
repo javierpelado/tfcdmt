@@ -1,14 +1,14 @@
 10
 
 dir
-35
+39
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/lib
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-04-28T15:15:43.148303Z
-35
+2011-05-12T18:41:15.199449Z
+38
 javier.pelado
 has-props
 
@@ -25,6 +25,9 @@ has-props
 
 
 ed4b8162-2f16-cff2-6b1e-88c0b67f082b
+
+java
+dir
 
 jquery.corner.js
 file
@@ -59,13 +62,6 @@ javier.pelado
 
 
 10061
-
-java
-dir
-
-
-
-add
 
 jquery.validate.js
 file
@@ -137,14 +133,14 @@ javier.pelado
 
 elements.js
 file
-38
+40
 
 
 
-2011-05-12T18:34:20.000000Z
-99def0c90fd37a6c793a75ce164b332e
-2011-05-12T18:41:15.199449Z
-38
+2011-05-26T16:59:55.000000Z
+ae2b25f12c8380384693378f8088f6be
+2011-05-27T09:40:11.068535Z
+40
 javier.pelado
 
 
@@ -167,41 +163,7 @@ javier.pelado
 
 
 
-91897
-
-jquery-1.4.2.js
-file
-
-
-
-
-2010-11-26T10:32:14.000000Z
-7021191c5dd70e95a9c026be6b9c05d5
-2010-11-15T10:00:26.828933Z
-2
-javier.pelado
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-170095
+104140
 
 jquery.js
 file
@@ -237,12 +199,73 @@ javier.pelado
 
 124994
 
+jquery-1.4.2.js
+file
+
+
+
+
+2010-11-26T10:32:14.000000Z
+7021191c5dd70e95a9c026be6b9c05d5
+2010-11-15T10:00:26.828933Z
+2
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+170095
+
 jquery-1.6.1.js
 file
-0
+40
 
 
-add
+
+2011-05-26T16:39:03.000000Z
+137d4b8b58f69c747fed3415894e73f4
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+234995
 
 jquery.form.js
 file
@@ -278,29 +301,6 @@ javier.pelado
 
 21069
 
-desfotologuear.js
-file
-
-
-
-add
-
-e79a1b30135f076c628605376f371025
-
-
-
-
-
-
-
-
-
-
-
-copied
-https://tfcdmt.googlecode.com/svn/trunk/datatable2/js/desfotologuear.js
-34
-
 jquery.dataTables.js
 file
 
@@ -334,6 +334,40 @@ javier.pelado
 
 
 211272
+
+desfotologuear.js
+file
+40
+
+
+
+2011-05-26T15:57:33.000000Z
+7e70d5081f8966abe4a199f541de5688
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+25136
 
 jquery.skinned-select.js
 file
@@ -371,12 +405,15 @@ javier.pelado
 
 iphone-style-checkboxes.js
 file
+40
 
 
 
-add
-
+2010-10-18T10:57:16.000000Z
 4c1ed82e484f4a0c837c8bfd118a3ae6
+2011-05-27T09:40:11.068535Z
+40
+javier.pelado
 
 
 
@@ -388,9 +425,17 @@ add
 
 
 
-copied
-https://tfcdmt.googlecode.com/svn/trunk/datatable2/js/iphone-style-checkboxes.js
-34
+
+
+
+
+
+
+
+
+
+
+8129
 
 jquery.metadata.js
 file

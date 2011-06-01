@@ -5,7 +5,7 @@ V 14
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/svn/!svn/ver/35/trunk/myTFC/lib
+/svn/!svn/ver/38/trunk/myTFC/lib
 END
 jquery.skinned-select.js
 K 25
@@ -35,7 +35,13 @@ elements.js
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/38/trunk/myTFC/lib/elements.js
+/svn/!svn/ver/40/trunk/myTFC/lib/elements.js
+END
+iphone-style-checkboxes.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/40/trunk/myTFC/lib/iphone-style-checkboxes.js
 END
 jquery.metadata.js
 K 25
@@ -55,6 +61,12 @@ svn:wc:ra_dav:version-url
 V 47
 /svn/!svn/ver/2/trunk/myTFC/lib/jquery-1.4.2.js
 END
+jquery-1.6.1.js
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/40/trunk/myTFC/lib/jquery-1.6.1.js
+END
 jquery.form.js
 K 25
 svn:wc:ra_dav:version-url
@@ -72,4 +84,10 @@ K 25
 svn:wc:ra_dav:version-url
 V 53
 /svn/!svn/ver/28/trunk/myTFC/lib/jquery.dataTables.js
+END
+desfotologuear.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/40/trunk/myTFC/lib/desfotologuear.js
 END

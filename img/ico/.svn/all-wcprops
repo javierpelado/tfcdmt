@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 36
-/svn/!svn/ver/34/trunk/myTFC/img/ico
+/svn/!svn/ver/39/trunk/myTFC/img/ico
 END
 green_check.png
 K 25
@@ -111,17 +111,17 @@ svn:wc:ra_dav:version-url
 V 56
 /svn/!svn/ver/39/trunk/myTFC/img/ico/sms_trans(204).jpeg
 END
-ico_calendar.gif
-K 25
-svn:wc:ra_dav:version-url
-V 53
-/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_calendar.gif
-END
 ico_help_gry.gif
 K 25
 svn:wc:ra_dav:version-url
 V 53
 /svn/!svn/ver/14/trunk/myTFC/img/ico/ico_help_gry.gif
+END
+ico_calendar.gif
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_calendar.gif
 END
 ico_link_gry.gif
 K 25
@@ -135,11 +135,11 @@ svn:wc:ra_dav:version-url
 V 58
 /svn/!svn/ver/14/trunk/myTFC/img/ico/ico_weeklyplanner.gif
 END
-ico_trash.gif
+send_sms1.png
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_trash.gif
+/svn/!svn/ver/39/trunk/myTFC/img/ico/send_sms1.png
 END
 ico_export.gif
 K 25
@@ -147,11 +147,11 @@ svn:wc:ra_dav:version-url
 V 51
 /svn/!svn/ver/14/trunk/myTFC/img/ico/ico_export.gif
 END
-send_sms1.png
+ico_trash.gif
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/svn/!svn/ver/39/trunk/myTFC/img/ico/send_sms1.png
+/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_trash.gif
 END
 send_sms(50).png
 K 25
@@ -159,29 +159,29 @@ svn:wc:ra_dav:version-url
 V 53
 /svn/!svn/ver/39/trunk/myTFC/img/ico/send_sms(50).png
 END
-send_sms(60).png
-K 25
-svn:wc:ra_dav:version-url
-V 53
-/svn/!svn/ver/39/trunk/myTFC/img/ico/send_sms(60).png
-END
 sms.png
 K 25
 svn:wc:ra_dav:version-url
 V 44
 /svn/!svn/ver/39/trunk/myTFC/img/ico/sms.png
 END
-ico_lock.gif
+send_sms(60).png
 K 25
 svn:wc:ra_dav:version-url
-V 49
-/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_lock.gif
+V 53
+/svn/!svn/ver/39/trunk/myTFC/img/ico/send_sms(60).png
 END
 ico_globe.gif
 K 25
 svn:wc:ra_dav:version-url
 V 50
 /svn/!svn/ver/14/trunk/myTFC/img/ico/ico_globe.gif
+END
+ico_lock.gif
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/14/trunk/myTFC/img/ico/ico_lock.gif
 END
 ico_error.gif
 K 25

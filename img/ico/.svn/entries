@@ -1,14 +1,14 @@
 10
 
 dir
-35
+39
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/img/ico
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-04-16T10:03:13.823658Z
-34
+2011-05-27T08:38:42.090954Z
+39
 javier.pelado
 has-props
 
@@ -62,7 +62,7 @@ has-props
 
 sms_trans(50).png
 file
-39
+
 
 
 
@@ -266,7 +266,7 @@ has-props
 
 send_sms(80x80).png
 file
-39
+
 
 
 
@@ -609,7 +609,7 @@ has-props
 
 sms_trans(204).jpeg
 file
-39
+
 
 
 
@@ -640,40 +640,6 @@ has-props
 
 
 5104
-
-ico_help_gry.gif
-file
-
-
-
-
-2010-11-25T17:45:11.000000Z
-03df8118598208aeef677d960555e137
-2011-01-13T15:40:34.087745Z
-14
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-120
 
 ico_calendar.gif
 file
@@ -708,6 +674,40 @@ has-props
 
 
 101
+
+ico_help_gry.gif
+file
+
+
+
+
+2010-11-25T17:45:11.000000Z
+03df8118598208aeef677d960555e137
+2011-01-13T15:40:34.087745Z
+14
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+120
 
 ico_link_gry.gif
 file
@@ -777,16 +777,16 @@ has-props
 
 94
 
-ico_trash.gif
+send_sms1.png
 file
 
 
 
 
-2010-11-25T17:45:11.000000Z
-2781c41b8bbf96bd99586502e6ff9edd
-2011-01-13T15:40:34.087745Z
-14
+2011-05-22T16:32:52.000000Z
+9de18af54c7fbb97044c6ff0c783df99
+2011-05-27T08:38:42.090954Z
+39
 javier.pelado
 has-props
 
@@ -809,7 +809,7 @@ has-props
 
 
 
-131
+12359
 
 ico_export.gif
 file
@@ -845,16 +845,16 @@ has-props
 
 131
 
-send_sms1.png
+ico_trash.gif
 file
-39
 
 
 
-2011-05-22T16:32:52.000000Z
-9de18af54c7fbb97044c6ff0c783df99
-2011-05-27T08:38:42.090954Z
-39
+
+2010-11-25T17:45:11.000000Z
+2781c41b8bbf96bd99586502e6ff9edd
+2011-01-13T15:40:34.087745Z
+14
 javier.pelado
 has-props
 
@@ -877,11 +877,11 @@ has-props
 
 
 
-12359
+131
 
 send_sms(50).png
 file
-39
+
 
 
 
@@ -913,43 +913,9 @@ has-props
 
 4680
 
-sms.png
-file
-39
-
-
-
-2011-05-22T16:32:21.000000Z
-ec1f36273f32b235d3b87e20927df346
-2011-05-27T08:38:42.090954Z
-39
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-19807
-
 send_sms(60).png
 file
-39
+
 
 
 
@@ -981,16 +947,16 @@ has-props
 
 5182
 
-ico_lock.gif
+sms.png
 file
 
 
 
 
-2010-11-25T17:45:11.000000Z
-3b82ac4bd5187ae36f8e1aa7b7414b7a
-2011-01-13T15:40:34.087745Z
-14
+2011-05-22T16:32:21.000000Z
+ec1f36273f32b235d3b87e20927df346
+2011-05-27T08:38:42.090954Z
+39
 javier.pelado
 has-props
 
@@ -1013,7 +979,7 @@ has-props
 
 
 
-194
+19807
 
 ico_globe.gif
 file
@@ -1049,9 +1015,43 @@ has-props
 
 174
 
+ico_lock.gif
+file
+
+
+
+
+2010-11-25T17:45:11.000000Z
+3b82ac4bd5187ae36f8e1aa7b7414b7a
+2011-01-13T15:40:34.087745Z
+14
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+194
+
 sms_trans(55).png
 file
-39
+
 
 
 
@@ -1255,7 +1255,7 @@ has-props
 
 sms2.jpg
 file
-39
+
 
 
 

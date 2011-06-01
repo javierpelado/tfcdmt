@@ -34,7 +34,7 @@ session_start();
         <body>
 
             <div id="main">
-<!--                <div id="topbar">
+                <div id="topbar">
                     <div class="content">
                         <span class="login">
                             &iquest;Ya eres miembro? <a class="login-link" href="/login/">Entra</a>.      </span>
@@ -82,19 +82,17 @@ session_start();
  ?>
             <link rel="stylesheet" type="text/css" media="screen" href="/css/milk.1.css" />
             <link rel="stylesheet" type="text/css" media="screen" href="/css/app.14.ext.css" />
-            <link rel="stylesheet" type="text/css" media="screen" href="/lib/qTip/jquery.qtip.css" />
             <link rel="shortcut icon" href="/img/mineria2.png"/>
 
-            <script src="/lib/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/lib/jquery-1.6.1.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
             <script src="trainer.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/elements.js" type="text/javascript" charset="utf-8"></script>
-<!--            <script src="/lib/jquery.dimensions.js" type="text/javascript" charset="utf-8"></script>-->
             <script src="/lib/jquery.jeditable.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.dataTables.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/dataTables.plug-ins.js" type="text/javascript" charset="utf-8"></script>
             <script src="/lib/jquery.corner.js" type="text/javascript" charset="utf-8"></script>
-            <script src="/lib/qTip/jquery.qtip.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/lib/desfotologuear.js" type="text/javascript" charset="utf-8"></script>
 
 
             <style type="text/css">
@@ -133,7 +131,6 @@ session_start();
                     <input class="textfield" id="userid" name="userid" type="text" value="<?php echo $_SESSION['id'] ?>"></input>
                 </form>
                 <div id="notifications"></div>
-                
             </body>
 <?php } ?>
             </html>
