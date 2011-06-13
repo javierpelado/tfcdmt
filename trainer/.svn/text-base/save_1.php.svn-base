@@ -5,9 +5,11 @@
 */
 
 $opinions = array ();
+phpinfo();
+
 echo var_dump($_POST);
-$opinions = json_decode($_POST['datos_json'],true);
-//foreach ($opinions as $opinion) var_dump($opinion);
+$opinions = json_decode($_POST['opinions'],true);
+foreach ($opinions as $opinion) var_dump($opinion);
 $dir = $_POST['fileName'].$_POST['site'];
 echo $dir."<br>";
 if(!is_dir($dir)) mkdir($dir);

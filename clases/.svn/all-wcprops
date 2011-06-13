@@ -13,7 +13,7 @@ opinion.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 53
-/svn/!svn/ver/40/trunk/myTFC/clases/opinion.class.php
+/svn/!svn/ver/41/trunk/myTFC/clases/opinion.class.php
 END
 category.class.php
 K 25
@@ -38,4 +38,10 @@ K 25
 svn:wc:ra_dav:version-url
 V 53
 /svn/!svn/ver/38/trunk/myTFC/clases/session.class.php
+END
+classifier.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/42/trunk/myTFC/clases/classifier.class.php
 END

@@ -10,8 +10,8 @@ if (!isset($_GET['mode'])) {
         $mysql_sessions = $sessionObj->search_classifiers('id_session',$id_session,$order);
         $sessions = array();
         while (($session = mysql_fetch_array($mysql_sessions)) != null) {
-            if($order == 'traingroup') $sessions[] = array("","",$session['Filter'],$session['date'],$session['id'],$session['traingroup']);
-            else $sessions[] = array("","",$session['traingroup'],$session['date'],$session['id'],$session['Filter']);
+            if($order == 'traingroup') $sessions[] = array("","",$session['Filter'],$session['date'],$session['id'],$session['traingroup'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
+            else $sessions[] = array("","",$session['traingroup'],$session['date'],$session['id'],$session['Filter'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
         }
         $data['aaData'] = $sessions;
         echo json_encode($data);

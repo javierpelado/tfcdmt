@@ -280,7 +280,9 @@ var sessionContext = function sessionContext() {
         this.statusbox = V_STATUSBOX;
         //        this.searchbox = new searchBox();
         this.viewselector = new viewSelector();
-        this.viewselector.addView("Entrenamiento",new appViewTrain(this.statusbox),true);
+        this.viewselector.addView("Entrenamiento",new appViewTrainBox(this.statusbox),true);
+        //this.viewselector.addView("Clasificadores",new appViewTrainResults(this.statusbox),false);
+        this.viewselector.addView("Clasificadores",new appViewTrainClassifiers(this.statusbox),false);
         //this.viewselector.addView("Preferencias",new appViewSettings(this.statusbox));
         //this.viewselector.addText(id);
         this.viewselector.addBack();
@@ -465,7 +467,7 @@ var appViewSes = function appViewSes(statusbox) {
                     appview.categoryindex[item['id']]= appview.categories.length - 2;
                     appview.addCategory(item['id'],item['name']);
                 });
-                console.log(appview.categoryindex);
+                //console.log(appview.categoryindex);
                 appview.tools.addCC();
                 appview.colors = (appview.categories.length - 2);
                 appview.detailsbox.addInfo();
@@ -476,7 +478,7 @@ var appViewSes = function appViewSes(statusbox) {
     this.getSessions = function () {
         while(this.sessions.length > 0) this.sessions.splice(0);
         $(".xtable tbody",this.element).empty();
-        console.log(this.sessions);
+        //console.log(this.sessions);
         this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
         $.getJSON('getSessions.php',{
             mode:"sessions"
@@ -500,24 +502,19 @@ var appViewSes = function appViewSes(statusbox) {
     this.updateandshow = function() {
         this.getCategories();
         this.getSessions();
-        console.log(this.categories);
+        //console.log(this.categories);
         this.element.show();
     }
     
-    this.removeCategory = function(category) {
-        
-    }
-
     this.showCategory = function(category){
         var numSessions = 0;
-        for(i in this.sessions) {
-            //console.log(this.sessions[i]);
-            if ((category.id == '-') || (this.sessions[i].category == category.id)) {
-                this.sessions[i].show();
+        $(this.sessions).each(function(element,i) {
+            if ((category.id == '-') || (this.category == category.id)) {
+                this.show();
                 numSessions++;
             }
-            else this.sessions[i].hide();
-        }
+            else this.hide();
+        });
         if(numSessions == 0) this.emptySessions.show();
         else this.emptySessions.hide();
         this.selectedCategory = category;
@@ -554,10 +551,10 @@ var appViewSes = function appViewSes(statusbox) {
     }
 
     this.selectAll = function() {
-        for(i in this.sessions) {
-            if((this.selectedCategory.id == "-") || (this.selectedCategory.id == this.sessions[i].category))
-                this.sessions[i].select();
-        }
+        $.each(this.sessions,function(i,session) {
+            if((appview.selectedCategory.id == "-") || (appview.selectedCategory.id == session.category))
+                session.select();
+        });
     }
 
     this.unselectAll = function() {
@@ -595,34 +592,36 @@ var appViewSes = function appViewSes(statusbox) {
                 mode:"deleteS",
                 id:aux.id
             },function(textStatus) {
-                console.log(textStatus);
+                //console.log(textStatus);
                 if(textStatus) statusbox.showMessage('info','Se han elimindo las sesiones seleccionadas');
                 else statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
 
-            for(i in this.sessions)
-                if (this.sessions[i] == aux)
-                    this.sessions.splice(i,1);
+            $.each(this.sessions,function(i,session){
+                if (session == aux)
+                    appview.sessions.splice(i,1);
+            });
         }
         this.selectedCategory.select();
     };
 
     this.changeCategory = function(category) {
-        if(this.selectedSessions != 0) {
-            for(i in this.selectedSessions) {
-                var aux = this.selectedSessions[i];
+        if(this.selectedSessions.length != 0) {
+            $.each(this.selectedSessions,function(i,selectedSession) {
+                var aux = selectedSession;
                 $.getJSON('modify.php',{
                     mode:"updateS",
                     id:aux.id,
                     cat:category,
                     title:aux.title
                 },function(textStatus) {
-                    if(textStatus == "success") console.log(aux.id);
+//                    if(textStatus == "success") console.log(aux.id);
                 });
-                appview.selectedSessions[i].changeCategory(category);
-            }
+                selectedSession.changeCategory(category);
+            });
         }
-        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        else 
+            statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
     }
 
@@ -676,7 +675,7 @@ var appViewCat = function appViewCat(statusbox) {
                 appview.categoryindex[item['id']] = appview.sessions.length;
                 appview.sessions.push(new session(item['id'],item['id'],item['name'],"",appview));
             });
-            console.log(appview.categoryindex);
+            //console.log(appview.categoryindex);
             appview.defaultTab.select();
         });
     }
@@ -695,13 +694,13 @@ var appViewCat = function appViewCat(statusbox) {
             }
             else this.hide();            
         });*/
-        for(i in this.sessions) {
-            if ((category.id == '-') || (this.sessions[i].category == category.id)) {
-                this.sessions[i].show();
+        $(this.sessions).each(function(element,i) {
+            if ((category.id == '-') || (this.category == category.id)) {
+                this.show();
                 numSessions++;
             }
-            else this.sessions[i].hide();
-        }
+            else this.hide();
+        });
         if(numSessions == 0) this.emptySessions.show();
         else this.emptySessions.hide();
         this.selectedCategory = category;
@@ -738,10 +737,10 @@ var appViewCat = function appViewCat(statusbox) {
     }
 
     this.selectAll = function() {
-        for(i in this.sessions) {
-            if((this.selectedCategory.id == "-") || (this.selectedCategory.id == this.sessions[i].category))
-                this.sessions[i].select();
-        }
+        $.each(this.sessions,function(i,session) {
+            if((appview.selectedCategory.id == "-") || (appview.selectedCategory.id == session.category))
+                session.select();
+        });
     }
 
     this.unselectAll = function() {
@@ -770,47 +769,39 @@ var appViewCat = function appViewCat(statusbox) {
     };
 
     this.deleteElements = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
-        statusbox.showTitle("Esto eliminará todas las sesiones pertenecientes a esta categoría...",true,function(){
-            while(appview.selectedSessions.length > 0) {
-                var aux = appview.selectedSessions.pop();
-                aux.hide();
-                $.ajax({
-                    type: "GET",
-                    url: 'modify.php',
-                    data: {
-                        mode:"deleteC",
-                        id:aux.id    
-                    },
-                    dataType: "json",
-                    success: function(json) {
-                        //                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
-                        statusbox.showMessage('info','La Operación se ha realizado correctamente, (Todas las sesiones que perteneciesen a esta categoría quedan huérfanas)');
-                    },
-                    error: function() {
-                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
-                    }
-                });                
-                /*                $.getJSON('modify.php',{
-                    mode:"deleteC",
-                    id:aux.id
-                },function(textStatus) {
-                    console.log(textStatus);
-                    if(textStatus != "success") 
-                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
-                    else 
-                        statusbox.showMessage('info','La Operación se ha realizado correctamente, (Todas las sesiones que perteneciesen a esta categoría quedan huérfanas)');
-                });*/
-
-                for(i in appview.sessions)
-                    if (appview.sessions[i] == aux)
-                        appview.sessions.splice(i,1);
-            }
-            appview.selectedCategory.select();
-        });
+        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una categoría para realizar esta operaci\u00F3n");
+        else{
+            statusbox.showTitle("Esto eliminará todas las sesiones pertenecientes a esta categoría...",true,function(){
+                while(appview.selectedSessions.length > 0) {
+                    var aux = appview.selectedSessions.pop();
+                    aux.hide();
+                    $.ajax({
+                        type: "GET",
+                        url: 'modify.php',
+                        data: {
+                            mode:"deleteC",
+                            id:aux.id    
+                        },
+                        dataType: "json",
+                        success: function(json) {
+                            //                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                            statusbox.showMessage('info','La Operación se ha realizado correctamente, (Todas las sesiones que perteneciesen a esta categoría se han eliminado)');
+                        },
+                        error: function() {
+                            statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                        }
+                    });
+                    $.each(appview.sessions, function(i,session){
+                        if (session == aux)
+                            appview.sessions.splice(i,1);
+                    });
+                }
+                appview.selectedCategory.select();
+            });
+        }
     };
 
-    this.changeCategory = function(category) {
+/*    this.changeCategory = function(category) {
         if(this.selectedSessions != 0) {
             for(i in this.selectedSessions) {
                 var aux = this.selectedSessions[i];
@@ -820,14 +811,14 @@ var appViewCat = function appViewCat(statusbox) {
                     cat:category,
                     title:aux.title
                 },function(textStatus) {
-                    if(textStatus == "success") console.log(aux.id);
+                    if(textStatus == "success") //console.log(aux.id);
                 });
                 appview.selectedSessions[i].changeCategory(category);
             }
         }
         else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
         appview.selectedCategory.select();
-    }
+    }*/
 }
 
 var appViewSettings = function appViewSettings(statusbox) {
@@ -861,7 +852,7 @@ var appViewSettings = function appViewSettings(statusbox) {
     }
 }
 
-var appViewTrain = function appViewTrain(statusbox) {
+var appViewTrainBox = function appViewTrainBox(statusbox) {
 
     this.statusbox = statusbox;
     this.tabs = [];
@@ -873,7 +864,7 @@ var appViewTrain = function appViewTrain(statusbox) {
     var appview = this;
 
     this.initialize = function() {
-        this.element = $('<div id="appviewTrain" class="appview" style="display:none"></div>');
+        this.element = $('<div id="appViewTrainBox" class="appview" style="display:none"></div>');
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
@@ -884,7 +875,7 @@ var appViewTrain = function appViewTrain(statusbox) {
         $(".listwrap",this.element).hide();
         //this.defaultTab = this.tabs[0];
         this.workContainer['aaData'] = this.workElements;
-        console.log(V_TRAINER.contexts[1].id);
+        //console.log(V_TRAINER.contexts[1].id);
         $('a',this.searchTab).click();
     }
 
@@ -902,10 +893,10 @@ var appViewTrain = function appViewTrain(statusbox) {
                     text:$(".xtd_opinion",selectedElements[i]).text(),
                     id_session:V_TRAINER.contexts[1].id
                 },function(textStatus) {
-                    console.log(textStatus);
+                    //console.log(textStatus);
                 });
             }
-            //            console.log(selectedElements[i]);
+            //            //console.log(selectedElements[i]);
             table.fnDeleteRow(selectedElements[i],false,false);
             $(selectedElements[i]).remove();
         }
@@ -1015,8 +1006,8 @@ var appViewTrain = function appViewTrain(statusbox) {
             var opinion = [text,polarity];
             Data.push(opinion);
         });
-        console.log(Data);
-        
+        //console.log($.toJSON(Data));
+        //console.log(JSON.stringify(Data));
         if(Data.length > 0) {
         $.ajax({
             url:'save.php',
@@ -1024,7 +1015,7 @@ var appViewTrain = function appViewTrain(statusbox) {
             dataType:'json',
             data: {
                 id_session:V_TRAINER.contexts[1].id,
-                opinions:JSON.stringify(Data)
+                opinions:Data
             },
 //            async: false,
             success: function(json) {
@@ -1046,12 +1037,12 @@ var appViewTrain = function appViewTrain(statusbox) {
                 var translatedO = $(this).text();
                 if(options['fotolog'] != undefined) {
                     translatedO = desfotologuear(translatedO);
-                console.log("fotolog: " + translatedO);                
+                //console.log("fotolog: " + translatedO);                
                 alert("fotolog: " + translatedO);            
                 }
                 if(options['sms'] != undefined) {
                     translatedO = $("#smstranslate")[0].translate(translatedO);
-                console.log("smsTranslate: " + translatedO);                
+                //console.log("smsTranslate: " + translatedO);                
                 alert("smsTranslate: " + translatedO); 
                 }
             });
@@ -1064,16 +1055,403 @@ var appViewTrain = function appViewTrain(statusbox) {
         var translatedO = text;
         if(options['fotolog'] != undefined) {
             translatedO = desfotologuear(translatedO);
-            console.log("fotolog: " + translatedO);                
+            //console.log("fotolog: " + translatedO);                
 //            alert("fotolog: " + translatedO);            
         }
         if(options['sms'] != undefined) {
             translatedO = $("#smstranslate")[0].translate(translatedO);
-            console.log("smsTranslate: " + translatedO);                
+            //console.log("smsTranslate: " + translatedO);                
 //            alert("smsTranslate: " + translatedO); 
         }
         return translatedO;
     }        
+}
+
+var appViewTrainResults = function appViewTrainResults(statusbox) {
+
+    this.statusbox = statusbox;
+    this.tabs = [];
+    this.tab_list = {};
+    this.defaultTab = null;
+    this.selectedTab = null;
+    this.workContainer = {};
+    this.workElements = [];
+    var appview = this;
+
+    this.initialize = function() {
+        this.element = $('<div id="appViewTrainResults" class="appview" style="display:none"></div>');
+        V_CONTENT.append(this.element);
+        this.defaultTab = null;
+        this.listbox = new listBox(this,'trainer');
+        //        this.tabs.push(new trainTab('B\u00FAsqueda',this));
+        //        this.tabs.push(new trainTab('Entrenamiento',this));
+        this.searchTab = this.listbox.addWrap('B\u00FAsqueda','search');
+        this.workTab = this.listbox.addWrap('Entrenamiento','polarity');
+        $(".listwrap",this.element).hide();
+        //this.defaultTab = this.tabs[0];
+        this.workContainer['aaData'] = this.workElements;
+        //console.log(V_TRAINER.contexts[1].id);
+        $('a',this.searchTab).click();
+    }
+
+    this.updateandshow = function() {
+        this.element.show();
+    }
+
+    this.deleteElements = function(table) {
+        var selectedElements = table.fnGetSelected('xtr_select');
+        for ( var i=0 ; i<selectedElements.length ; i++ )
+        {
+            if(table == G_Tables['polarity']) {
+                $.getJSON('opinions.php',{
+                    mode:"delete",
+                    text:$(".xtd_opinion",selectedElements[i]).text(),
+                    id_session:V_TRAINER.contexts[1].id
+                },function(textStatus) {
+                    //console.log(textStatus);
+                });
+            }
+            //            //console.log(selectedElements[i]);
+            table.fnDeleteRow(selectedElements[i],false,false);
+            $(selectedElements[i]).remove();
+        }
+        V_STATUSBOX.showMessage('info',"Se han eliminado los elementos seleccionados");
+                table.fnReloadAjax();
+                $(".dataTables_processing").hide();
+    }
+
+    this.selectAll = function() {
+        $(".xtr",$(".listwrap:visible")).addClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).show();
+    }
+
+    this.unselectAll = function() {
+        $(".xtr",$(".listwrap:visible")).removeClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).hide();
+    }
+
+    this.add2work = function() {
+        var selectedData = [];
+        $('.xtr_select >.xtd_opinion', G_Tables['search']).each(function() {
+            selectedData.push($(this).text());
+        });
+        if(selectedData.length > 0) {
+            for ( var i=0 ; i<selectedData.length ; i++ )
+            {
+                $.getJSON('opinions.php',{
+                    mode:"insert",
+                    text:selectedData[i],
+                    id_session:V_TRAINER.contexts[1].id,
+                    i:i
+                },function(textStatus,i) {
+                    if(textStatus) {
+                    }
+                    if(textStatus == (selectedData.length - 1)) {
+                        G_Tables['polarity'].fnReloadAjax();
+                        $(".dataTables_processing").hide();
+                        appview.deleteElements(G_Tables['search']);
+                    }
+                });
+            }
+            $('a',this.workTab).click();
+            V_STATUSBOX.showMessage("info","A\u00F1adidas las opiniones seleccionadas al área de trabajo");
+        }
+        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");
+    }
+    
+    this.showTab = function(tab) {
+        if(tab != this.selectedTab) {
+            if(tab == this.tabs[0]) {                
+                this.listbox.addTools('1');
+                this.listbox.searchList();
+            }
+            if(tab == this.tabs[1]) {
+                this.listbox.addTools('1');
+                this.listbox.searchList();
+            //                this.listbox.addTools('2');
+            //                this.listbox.polarityList();
+            }
+            this.selectedTab = tab;
+        }
+    }
+    
+    this.changePolarity = function(polarity) {
+        //        var selectedData = [];
+        if($('.xtr_select >.xtd_polarity', G_Tables['polarity']).length > 0) {
+            $('.xtr_select >.xtd_polarity', G_Tables['polarity']).each(function() {
+                //                selectedData.push($(this).text());
+                //console.log(this);
+                $("option",this).each(function() {
+                    if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
+                });
+            });
+            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
+        }
+        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");   
+    }
+    
+    this.loadarff = function(file) {
+        $.ajax({
+            url:'loadarff.php',
+            type: 'POST',
+            dataType:'json',
+            data: {
+                mode:"load",
+                id_session:V_TRAINER.contexts[1].id,
+                path:file
+            },
+            success: function(json) {
+                G_Tables['polarity'].fnReloadAjax();
+                $(".dataTables_processing").hide();
+            /*json.forEach(function(item){
+                    appview.addCategory(item['id'],item['name']);
+                });
+                appview.tools.addCC();
+                appview.detailsbox.addInfo();
+                appview.colors = (appview.categories.length - 2);*/
+            }
+        });
+    }
+    
+    this.createClassiffier = function() {
+        var Data = [];
+        $('.xtr',G_Tables['polarity']).each(function() {
+            var text = $('.xtd_opinion',this).text();
+            var polarity = $('.xtd_polarity select option:selected',this).text();
+            var opinion = [text,polarity];
+            Data.push(opinion);
+        });
+        //console.log($.toJSON(Data));
+        //console.log(JSON.stringify(Data));
+        if(Data.length > 0) {
+        $.ajax({
+            url:'save.php',
+            type: 'POST',
+            dataType:'json',
+            data: {
+                id_session:V_TRAINER.contexts[1].id,
+                opinions:Data
+            },
+//            async: false,
+            success: function(json) {
+                /*json.forEach(function(item){
+                    appview.addCategory(item['id'],item['name']);
+                });
+                appview.tools.addCC();
+                appview.detailsbox.addInfo();
+                appview.colors = (appview.categories.length - 2);*/
+            }
+        });
+        }
+    }
+    
+    this.translateElements = function(options) {
+//        $("body").append('<applet name="smstranslate" id="amstranslate" code="SmsApplet.class" archive="/lib/java/smsApplet.jar,/lib/java/jdom.jar" width="150" height="50" mayscript="true">');
+        if($('.xtr_select >.xtd_opinion', G_Tables['polarity']).length > 0) {
+            $('.xtr_select >.xtd_opinion', G_Tables['polarity']).each(function() {
+                var translatedO = $(this).text();
+                if(options['fotolog'] != undefined) {
+                    translatedO = desfotologuear(translatedO);
+                //console.log("fotolog: " + translatedO);                
+                alert("fotolog: " + translatedO);            
+                }
+                if(options['sms'] != undefined) {
+                    translatedO = $("#smstranslate")[0].translate(translatedO);
+                //console.log("smsTranslate: " + translatedO);                
+                alert("smsTranslate: " + translatedO); 
+                }
+            });
+//            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
+        }
+        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");   
+    }      
+    
+    this.translateElement = function(text,options) {
+        var translatedO = text;
+        if(options['fotolog'] != undefined) {
+            translatedO = desfotologuear(translatedO);
+            //console.log("fotolog: " + translatedO);                
+//            alert("fotolog: " + translatedO);            
+        }
+        if(options['sms'] != undefined) {
+            translatedO = $("#smstranslate")[0].translate(translatedO);
+            //console.log("smsTranslate: " + translatedO);                
+//            alert("smsTranslate: " + translatedO); 
+        }
+        return translatedO;
+    }        
+}
+
+var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
+    var appview = this;
+    this.info = "\u00BFQuieres crear, editar o borrar Categorías para clasificar entrenamientos? Lo puedes hacer todo aqu\u00ED."
+
+    this.initialize = function() {
+        this.element = $('<div id="appviewCat" class="appview" style="display:none"></div>');
+        V_CONTENT.append(this.element);
+        this.sessions = [];
+        this.categoryindex = {};
+        this.selectedSessions = [];
+        this.tabNames = {};
+        this.defaultTab = null;
+        this.listbox = new listBox(this);
+//        this.listbox.addTools('1');
+        this.traingroupTab = this.listbox.addWrap("Cjto. entrenamiento",'traingroup');
+        this.filterTab = this.listbox.addWrap('Filtro','Filter');
+        this.defaultTab = this.traingroupTab;
+        this.detailsbox = new detailsBox(this);
+        this.detailsbox.animate();
+        console.log($(this.defaultTab).text());
+        this.detailsbox.category($(this.defaultTab).text(),this.sessions.length);
+        $('a',this.defaultTab).click();
+    }
+
+    this.updateandshow = function() {
+        this.element.show();
+        //this.defaultTab.element.click();
+    }
+
+    this.getSessions = function () {
+        $.getJSON('getSessions.php',{
+            mode:"categories"
+        },function(json) {
+            var s = json;
+            appview.colors = s.length;
+            s.forEach(function(item){
+                appview.categoryindex[item['id']] = appview.sessions.length;
+                appview.sessions.push(new session(item['id'],item['id'],item['name'],"",appview));
+            });
+            //console.log(appview.categoryindex);
+            appview.defaultTab.select();
+        });
+    }
+
+    this.addCategory = function(id,name) {
+        this.defaultTab = new category(id,name,this);
+        this.tabNames['0'] = "";
+    }
+
+    this.showCategory = function(category){
+        var numSessions = 0;
+        $(".xtable",this.element).hide();
+        G_Tables[category].show();
+        /*this.sessions.each(function() {
+            if ((category.id == '-') || (this.category == category.id)) {
+                this.show();
+                numSessions++;
+            }
+            else this.hide();            
+        });
+        $(this.sessions).each(function(element,i) {
+            if ((category.id == '-') || (this.category == category.id)) {
+                this.show();
+                numSessions++;
+            }
+            else this.hide();
+        });*/
+        
+        if(numSessions == 0) this.emptySessions.show();
+        else this.emptySessions.hide();
+        this.selectedCategory = category;
+        this.unselectAll();
+        this.refreshDetails();
+    }
+
+    this.hover = function(s) {
+        this.detailsbox.session(s,'category');
+    }
+
+    this.refreshDetails = function() {
+        if(this.selectedSessions.length > 1) this.detailsbox.sessions(this.selectedSessions.length);
+        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'category');
+        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
+    }
+
+    this.selectSession = function(s) {
+        this.selectedSessions.push(s);
+        this.refreshDetails();
+    }
+
+    this.selectAll = function() {
+        $(".xtr",$(".listwrap:visible")).addClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).show();
+    }
+
+    this.unselectAll = function() {
+        $(".xtr",$(".listwrap:visible")).removeClass("xtr_select");
+        $(".xtd_check img",$(".listwrap:visible")).hide();
+    }
+
+    this.addSession = function(title) {
+        $.getJSON('modify.php',{
+            mode:"insertC",
+            title:title
+        },function(json,textStatus) {
+            if(textStatus == "success"){
+                appview.categoryindex[json] = appview.sessions.length;
+                appview.colors = appview.sessions.length + 1;
+                var s = new session(json,json,title,"",appview);
+                appview.sessions.push(s);
+                s.show();
+                appview.emptySessions.hide();
+                appview.refreshDetails();
+                statusbox.showMessage('info','A\u00F1adida sesi\u00F3n con t\u00EDtulo "' + title + '"');
+            }
+            else statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+        });
+    };
+
+    this.deleteElements = function() {
+        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una categoría para realizar esta operaci\u00F3n");
+        else{
+            statusbox.showTitle("Esto eliminará todas las sesiones pertenecientes a esta categoría...",true,function(){
+                while(appview.selectedSessions.length > 0) {
+                    var aux = appview.selectedSessions.pop();
+                    aux.hide();
+                    $.ajax({
+                        type: "GET",
+                        url: 'modify.php',
+                        data: {
+                            mode:"deleteC",
+                            id:aux.id    
+                        },
+                        dataType: "json",
+                        success: function(json) {
+                            //                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                            statusbox.showMessage('info','La Operación se ha realizado correctamente, (Todas las sesiones que perteneciesen a esta categoría se han eliminado)');
+                        },
+                        error: function() {
+                            statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
+                        }
+                    });
+                    $.each(appview.sessions, function(i,session){
+                        if (session == aux)
+                            appview.sessions.splice(i,1);
+                    });
+                }
+                appview.selectedCategory.select();
+            });
+        }
+    };
+
+/*    this.changeCategory = function(category) {
+        if(this.selectedSessions != 0) {
+            for(i in this.selectedSessions) {
+                var aux = this.selectedSessions[i];
+                $.getJSON('modify.php',{
+                    mode:"update",
+                    id:aux.id,
+                    cat:category,
+                    title:aux.title
+                },function(textStatus) {
+                    if(textStatus == "success") //console.log(aux.id);
+                });
+                appview.selectedSessions[i].changeCategory(category);
+            }
+        }
+        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
+        appview.selectedCategory.select();
+    }*/
 }
 
 var listBox = function listBox(appview,type) {
@@ -1099,6 +1477,10 @@ var listBox = function listBox(appview,type) {
 
     this.elementsList = function() {
         this.list.elementsList();
+    }
+    
+    this.classifiersList = function() {
+        this.list.classifiersList();
     }
 
     this.searchList = function() {
@@ -1155,6 +1537,10 @@ var list = function list(appview,type) {
     this.elementsList = function() {
         this.listwrap.elementsList();
     }
+    
+    this.classifiersList = function() {
+        this.listwrap.classifiersList();
+    }
 
     this.searchList = function() {
         this.listwrap.searchList();
@@ -1203,40 +1589,47 @@ var listWrap = function listWrap(appview,type) {
     }
     
     this.select = function() {
-        $(".listwrap").hide();
+        $(".listwrap",appview.element).hide();
         this.element.show();
     }
 
     this.showTools = function(type) {
         this.tools.show();
-        if(type == '0') {
+        switch(type) {            
+        case '0':
             this.tools.addOpen();
+        case '1':
             this.tools.addDelete();
-//            this.tools.addCC();
-        }
-        
-        if(type == '1') {
-            this.tools.addDelete();
-        }
-        
-        if(type == 'search') {
-            this.tools.addDelete(G_Tables['search']);
+            break;        
+        case 'search':
+            this.tools.addDelete(G_Tables[type]);
             this.tools.addA2W();
             this.tools.addSearch();
-        }
-        if(type == 'polarity') {
-            //            this.tools.addOpen();
-            //            this.tools.addDelete();
-            this.tools.addDelete(G_Tables['polarity']);
+            break;
+        case 'polarity':
+            this.tools.addDelete(G_Tables[type]);
             this.tools.addCP();
             this.tools.addCreateClassiffier();
             this.tools.addLoadClassiffier();
-            //this.tools.addTranslate();
+            break;
+        case 'Filter':
+        case 'traingroup':
+            this.tools.addOpen();
+            this.tools.addDelete(G_Tables[type]);
+            break;
         }
     }
 
     this.elementsList = function() {
         this.midcontent.elementsList();
+    }
+
+    this.traingroupList = function() {
+        this.midcontent.classifiersList("traingroup");
+    }
+
+    this.FilterList = function() {
+        this.midcontent.classifiersList("Filter");
     }
 
     this.searchList = function() {
@@ -1305,6 +1698,7 @@ var toolbox = function toolbox(appview){
     this.element = $('<div id="toolbox"></div>');
     this.actions = new actions(this.element,appview);
     this.selectors = new selectors(this.element,appview);
+    var tb = this;
 
 
     this.element.append(this.actions.element);
@@ -1336,10 +1730,11 @@ var toolbox = function toolbox(appview){
     
     this.addChangeCategory = function(){
         this.actions.addChangeCategory();
-        for(i in appview.categories) {
-            if(appview.categories[i].name != "Todo")
-                this.actions.addOption(appview.categories[i].name,appview.categories[i].id);
-        }
+//        for(i in appview.categories) {
+        $.each(appview.categories,function(i,category){
+            if(category.name != "Todo")
+                tb.actions.addOption(category.name,category.id);
+        });
     }
 
     this.addChangePolarity = function(){
@@ -1360,8 +1755,6 @@ var toolbox = function toolbox(appview){
     }
 }
 
-
-
 var actions = function actions(father,appview) {
     this.element = $('<div class="xtoolbox_actions"></div>');
     father.append(this.element);
@@ -1371,7 +1764,7 @@ var actions = function actions(father,appview) {
     var a = this;
 
     this.addOpen = function (){
-        var openButton = $('<input type="submit" class="xtoolbox_button" value="Abrir sesi\u00F3n">');
+        var openButton = $('<input type="submit" class="xtoolbox_button" value="Abrir elemento">');
         a.form.append(openButton);
         openButton.click(function() {
             //            alert(appview.selectedCategory.name);
@@ -1428,9 +1821,9 @@ var actions = function actions(father,appview) {
         $.getJSON("listdir.php", {
             dir:"files/" + V_TRAINER.contexts[1].id
             }, function(json) {
-            console.log(json);
+            //console.log(json);
             json.forEach(function(element,i){
-                console.log(element);
+                //console.log(element);
                 a.addClassiffier(element);
             });
         })
@@ -1453,6 +1846,7 @@ var actions = function actions(father,appview) {
         a.select.change(function() {
             appview.changeCategory($(":selected", this).val());
             $("option",a.select).eq(0).attr("selected", "selected");
+            return false;
         });
     }
 
@@ -1543,7 +1937,6 @@ var translate = function translate(father,appview) {
     });*/
 }
 
-
 var midcontent = function midcontent(appview) {
     this.element = $('<div id="midcontent"></div>');
     var div = $('<div style="border-left: 1px solid #CACACA; border-right: 1px solid #CACACA; margin: 0px; clear: both;"></div>');
@@ -1554,6 +1947,14 @@ var midcontent = function midcontent(appview) {
         this.addBox.sessions();
         this.loading = new loading(div);
         this.elements = new elements(div,appview);
+    }
+
+    this.classifiersList = function(group){
+//        this.addBox = new addBox(div,appview);
+//        this.addBox.sessions();
+        this.loading = new loading(div);
+        this.elements = new elements(div,appview);
+        this.elements.groupElements(group);
     }
 
     this.searchList = function() {
@@ -1625,13 +2026,13 @@ var addBox = function addBox(father,appview) {
 
         this.addText.keypress(function(event) {
             if (event.keyCode == '13') {
-                console.log(elements.table.dataTable().fnSettings().aoColumns.length);
+                //console.log(elements.table.dataTable().fnSettings().aoColumns.length);
                 var data = [
                 "",
                 "",
                 a.addText.val()];
                 for(i=3;i<elements.table.dataTable().fnSettings().aoColumns.length;i++) data.push("");
-                console.log(data);
+                //console.log(data);
                 elements.table.dataTable().fnAddData(data);
                 a.addText.val("");
                 a.addText.blur();
@@ -1662,17 +2063,17 @@ var elements = function elements(father,appview) {
     //    V_elements = this;
     
     this.getData = function(url,mode,options) {
-        console.log(options);
+        //console.log(options);
         $("#in_processing",father).show();
-//        console.log(url);
+//        //console.log(url);
         $.getJSON(url,//'twitter_search.php?q=hola&n=10', 
             function(json){
                 e.searchData = json['aaData'];
-//                console.log(json);
-//                console.log(options.length);
-//                console.log(e.searchData)
+//                //console.log(json);
+//                //console.log(options.length);
+//                //console.log(e.searchData)
                 for (i in e.searchData) {
-                    console.log(i);
+                    //console.log(i);
                     if(e.searchData[i][2] != undefined) e.searchData[i][2] = appview.translateElement(e.searchData[i][2],options);
                 }
                 $("#in_processing",father).hide();
@@ -1749,7 +2150,7 @@ var elements = function elements(father,appview) {
                         $(this).removeClass("xtr_hover");
                     }
                     );
-//                console.log(nRow);
+//                //console.log(nRow);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
@@ -1814,7 +2215,8 @@ var elements = function elements(father,appview) {
                 "fnRender": function ( oObj ) {
                     ////console.log(oObj);
                     var select = '<form><span style="white-space: nowrap;"> <select class="polarity">';
-                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
+//                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
+                    $(options).each(function(i,element) {select += '<option class="sel' + i + '" value="' + i  + '">' + element + '</option>'});
                     select += '</select></span></form>';
                     return select;
                 },
@@ -1836,7 +2238,7 @@ var elements = function elements(father,appview) {
                     }
                     );
                 //console.log(nRow);
-                //                console.log(aData);
+                //                //console.log(aData);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
@@ -1852,7 +2254,7 @@ var elements = function elements(father,appview) {
                         "id":aData[4],
                         "polarity":$(":selected",this).text()
                     }, function(textStatus) {
-                        console.log(textStatus);
+                        //console.log(textStatus);
                     })
                 });
                 $('select option',nRow).each(function() {
@@ -1864,6 +2266,146 @@ var elements = function elements(father,appview) {
         });
 
 
+    }
+    
+    this.groupElements = function groupElements(group){
+        V_elements['classifiers'] = e;
+        $('colgroup',this.table).empty();
+        $('colgroup',this.table).append('<col class="col_prio">');
+        $('colgroup',this.table).append('<col class="col_check">');
+        $('colgroup',this.table).append('<col class="col_text">');
+        $('colgroup',this.table).append('<col class="col_date">');
+
+        //G_polarityData = [["","","NO HAY REGISTROS",'']];
+        var sd = "";
+        
+        G_Tables[group] = e.table.dataTable({
+            "bPaginate": false,
+            "bLengthChange": true,
+            "bFilter": false,
+            "bSort": false,
+            "bInfo": false,
+            "bAutoWidth": false,
+            'bProcessing':true,
+            'bDestroy':true,
+            "oLanguage": {
+                "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>',
+                "sZeroRecords": '<table class="xtable xtable_tags_left xtable_empty"><colgroup><col class="col_prio"><col class="col_check"><col class="col_text"><col class="col_date"><col class="col_ico"></colgroup><tbody><tr class="xtr" style="display: table-row; "><td class="xtd xtd_prio prio2">&nbsp;</td><td class="xtd xtd_check" style="display: none"><form id="null" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">Ningún resultado encontrado</span></td><td class="xtd xtd_date"></td><td class="xtd xtd_ico"></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio0">&nbsp;</td><td class="xtd xtd_check"><img id="70" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="70" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">opinion</span><span class="xtd_task_name">opinion1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr" style="display: none; "><td class="xtd xtd_prio prio1">&nbsp;</td><td class="xtd xtd_check"><img id="69" src="/img/ico/ico_check_blu.gif" style="display: none; "><form id="69" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag">bulling</span><span class="xtd_task_name">bulling1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr><tr class="xtr xtr_select" style="display: none; "><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_check"><img id="68" src="/img/ico/ico_check_blu.gif" style=""><form id="68" action="#" style="display:none"><div style="display: inline;"><input type="checkbox"></div></form></td><td class="xtd xtd_text"><span class="xtd_tag"></span><span class="xtd_task_name">prueba1</span></td><td class="xtd xtd_date">Martes 5 de Abril de 2011</td><td class="xtd xtd_ico"><img alt="editar" src="/img/ico/ico_edit.gif" style="display: none; "></td></tr></tbody></table>'
+            },
+            "aoColumnDefs": [
+            {
+                "aTargets":[4],
+                "bVisible":false
+            },
+            {
+                "aTargets":[5],
+                "bVisible":false
+            },
+            {
+                "sClass":"xtd_prio prio2",
+                "aTargets":[0]
+            },
+            {
+                "sClass":"xtd_check",
+                "aTargets":[1],
+                "fnRender" : function ( oObj ) {
+                    return '<img src="/img/ico/ico_check_blu.gif" style="display:none">';
+                }
+            },
+            {
+                "sClass":"xtd_text",
+                "aTargets":[2]
+            },
+            {
+                "sClass":"xtd_date",
+                "aTargets":[3],
+                "fnRender" : function(oObj) {
+                    return getDateFormated(0,oObj['aData'][3]);
+                }
+            }
+                /*,
+            {
+                "fnRender": function ( oObj ) {
+                    ////console.log(oObj);
+                    var select = '<form><span style="white-space: nowrap;"> <select class="polarity">';
+//                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
+                    $(options).each(function(i,element) {select += '<option class="sel' + i + '" value="' + i  + '">' + element + '</option>'});
+                    select += '</select></span></form>';
+                    return select;
+                },
+                "sClass":"xtd_polarity",
+                "aTargets":[3]
+            }*/
+            ],
+            'sAjaxSource':'classifiers.php?mode=get&id_session=' + V_TRAINER.contexts[1].id + '&group=' + group,
+            //'aaData' : G_polarityData,
+            "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+                $(nRow).addClass('xtr');
+                $('td',nRow).addClass('xtd');
+                $(nRow).hover(
+                    function () {
+                        $(this).addClass("xtr_hover");
+                    },
+                    function () {
+                        $(this).removeClass("xtr_hover");
+                    }
+                    );
+                //console.log(nRow);
+                //console.log(aData);
+                $(nRow).unbind('click');
+                $(nRow).click( function() {
+                    $(this).toggleClass('xtr_select');
+                    $('img',this).toggle();
+                });
+                $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
+                return nRow;
+            },
+            "fnDrawCallback": function ( oSettings ) {
+                if ( oSettings.aiDisplay.length == 0 )
+                {
+                    return;
+                }
+			
+                var nTrs = $('tbody tr',e.table);
+                nTrs.hide();
+                var iColspan = nTrs[0].getElementsByTagName('td').length;
+                var sLastGroup = "";
+                var groups = {};
+                for ( var i=0 ; i<nTrs.length ; i++ )
+                {
+                    var iDisplayIndex = oSettings._iDisplayStart + i;
+                    var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[5];
+                    if ( sGroup != sLastGroup )
+                    {
+                        groups[sGroup] = [];
+                        var nGroup = document.createElement( 'tr' );
+                        var nCell = document.createElement( 'td' );
+                        nCell.colSpan = iColspan;
+                        nCell.className = "group";
+ //                       nCell.className = "open";
+                        nCell.innerHTML = sGroup;
+                        nGroup.appendChild( nCell );
+                        //console.log(nTrs[i]);
+                        nTrs[i].parentNode.insertBefore( nGroup, nTrs[i] );
+                        sLastGroup = sGroup;
+                    }
+                    groups[sGroup].push(G_Tables[group].fnGetNodes(oSettings.aiDisplay[iDisplayIndex]));
+                }
+                $(".group",e.table).addClass("close");
+                $(".group",e.table).click(function() {
+                    $(this).toggleClass("open");
+                    $(this).toggleClass("close");
+                    console.log(groups[$(this).text()]);
+                    console.log($(this).text());
+                    $(groups[$(this).text()]).each(function() {
+                        $(this).toggle();
+                    })
+                    //alert(groups);
+                });
+                console.log(groups);
+//                console.log(G_Tables['polarity'].fnGetNodes());
+            }            
+        });        
     }
 }
 
@@ -2514,7 +3056,6 @@ function getDateFormated(format,strdate) {
     if (format == 2) textofecha = textofecha + " | " + fecha.getHours() + ":" + minutes;
     return textofecha;
 }
-
 
 function input(label,chClass,type,value) {
     var chbox = $('<tr></tr>');

@@ -1,0 +1,184 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"@la100fm a mi lo que me puede son las compras, sea donde sea que voy algo siempre me gusta y me lo quiero comprar!!! me pica la plata. besos," NEUTRAL
+"Me gusta su letra.," POSITIVE
+"@jor_garcia_ pues no me gusta creer que no mejor espero al sábado y disfrutar el partido, no me gusto el planteamiento de chivas," POSITIVE
+"Ami si me gusta tu tweets le doy RT si no me gusta no hago nada/ Has lo mismo....," POSITIVE
+"@moluskein el show esta cabron me gusta cuando se la monta a la burbu," POSITIVE
+"¿Que te gusta par almorzar? Comida Panameña, China, Italiana, Mexicana, comida rápida u otras? #panama," POSITIVE
+"Todo lo que me gusta me hace mal, Todo lo que me gusta es Pecado O Inmoral," POSITIVE
+"@babySoni porque a justin le gusta españa, ira cada rato por aya y tu tendras mas posibilidades de verlo," POSITIVE
+"Alas Mujeres siempre le facina le gusta le encanta que les recordemos que son bellas inteligentes y unicas!!," POSITIVE
+"No me gusta hacer 5, pero 10 aún peor," POSITIVE
+"Fácil vienes, fácil te vas, así es como te gusta vivir, recibes, recibes y tomas todo y nunca nada das.," POSITIVE
+"Que le dijo Twitter a Facebook: -Que haces siguiendome? Y Facebook responde: No se pero me GUSTA!," POSITIVE
+"¿Te gusta hacer la siesta? Muy bien; estudios científicos han demonstrado que descansar durante el día tiene... http://fb.me/113iWDQ4G," POSITIVE
+"Feliz Cinco de mayo y me gusta almorazar #espanoluno," POSITIVE
+"RT @SpaReirse: #LeyesDeMurphy Tienes mucha hambre? Bueno, Cocinaron LO QUE MENOS TE GUSTA!," POSITIVE
+"@jOrujo_kiD. Te gusta rebentarme vdd!!!!! Malo!!!!," POSITIVE
+"@apinacho uuuuuy perdona, que he encontrado otro que tal vez te gusta mas http://youtu.be/ZBvMk2xHYao," POSITIVE
+"@RoBaarrera jaajajjajaja, a mi me gusta(? Jajajaja cuanto te sacaste en matematicas?," POSITIVE
+"menos mal que me gusta mi trabajo...," POSITIVE
+"RT @DemiFlyWithMe: RT si te gusta Miley Cyrus [Sigueme y te sigo]♥," POSITIVE
+"Gusta mucho RT @victorpeix89: Ganas de matar gente aumentando :) argfgfrgfrggara," POSITIVE
+"Aviso para navegantes: soy del Cádiz, me gusta el Madrid (pero no soy madridista), y mi equipo extranjero es el United. Any question?," POSITIVE
+"-_- pendeja no me gusta verte asi, LO SABES! RT @NannyJyR: @SofiiiL miraa culicagada no me hables asi .!. ,,,  (cont) http://tl.gd/a9dscd," POSITIVE
+"Con mis nuevos tacos #Nike y guantes #Rinat todo es mejor auq me gusta mas #Adidas," POSITIVE
+"A ella le gusta cuando la beso suavemente en el cuello y decir esto en español," POSITIVE
+"La verdad si me gusta mucho el son y la jarana y el fandango... #SOYJAROCHO y a mucho orgullo :)," POSITIVE
+"amigos, sera un honor compartir #CancionesDeDomingo a sus sentidos... falta poco, mes y medio talvez... me gusta el viaje, ya veran.," POSITIVE
+"RT @DemiFlyWithMe: RT si te gusta Demi Lovato [Sigueme y te sigo]♥," POSITIVE
+"Hay dolores placenteros? Por lo menos a mi me gusta el dolor de uñero," POSITIVE
+"@iBieberSmileO mm bueno me gusta el pop el R&B y el dance tbn escucho rock pero no mucho jajja," POSITIVE
+"RT @LosChistes: Que le dijo Twitter a Facebook: -Que haces siguiendome? Y Facebook responde: No se pero me GUSTA! #chistes #fb<-- jajajaja," POSITIVE
+"QUÉ SUIM, ASÍ CON EL SUIM, ME GUSTA SU SUIM. @anddreaxx  @ana_alatake," POSITIVE
+"@micagarcialuna @CmteCardone como le gusta a usted eh!!! jajajaajaja el sabado te arranco la información.," POSITIVE
+"Me gusta ver como mi @menycarrasco tiene exito i mucho trabajo Gracias Dios siempre nos das lo que merecemos!!," POSITIVE
+"Me gusta cuando me quedan 111," POSITIVE
+"RT @EscuadronAntiU: El #desafiopepsi lo hice en Mar del Plata en la puerta del Shopping Los Galleguitos y elegí Pepsi pero me gusta más la Coca Cola," POSITIVE
+"con el tiempo, cada vez me gusta más la marca país del Perú.," POSITIVE
+"@DonPorfirioDiaz y también chinguese unos gatitos yo se que le gusta," POSITIVE
+"mami dime aquien no le gusta el sexo!!! baby dime aquien no le encanta eso #quecrudo!!!," POSITIVE
+"Tu padre te da consejo a mi me da pata.. A ti t gusta mana y ami shelow shaq 8'," POSITIVE
+"Me gusta el aguacate.... Me gustas tu," POSITIVE
+"@mama_drama eso no me gusta de FB q no tiene un 'encuentra facil' como acá, q va uno directo y sin escalas con  teclear 'g u' y el usuario," POSITIVE
+"Haciendo tarea :/ RT si no te gusta," POSITIVE
+"@SantiBo jajaja yo le llevaré la mitad haha de cualquier manera siempre hay algo que no le gusta jajaja y ni lee todo :S," POSITIVE
+"me gusta decir el anunciado anterior una y otra vez," POSITIVE
+"RT @yorch_skywalker: me gusta estornudar pq asi siento que se me sale el chamuco << Haha el Diabolo Grotto," POSITIVE
+"RT @Greg0rio: Brujat @JAndresAbarca jaja, si uno es directo con ellas le dicen atrevido.// si atrevido a mi me gusta decir intenso jajaja," POSITIVE
+"@todoromigaetani En serio? te gusta? Gracias!," POSITIVE
+"@KarenTVN Que bueno q estes bien! Y como siempre trabajando pero q bueno q hagas lo q te gusta hacer!! Si esta noche va estar bueno factorx!," POSITIVE
+"@Paramorire96 Yo también soy borde, muuuy borde. Jajajaja, tampoco me gusta, pero es lo que hay..," POSITIVE
+"RT @gUs12_: si te gusta LInkin Park entra aqui: http://www.linkinpark.com/group/linkinparkstreetteammexico y unete al grupo!!! ((:," POSITIVE
+"RT @NosotrosJovenes: No me gusta repetir lo que digo cuando la gente no me escucha. #NosotrosJovenes," POSITIVE
+"RT @Erik_en: @Maacangelani Si a mi también me gusta <3 jeje y aaaw oficialmente soy Fan de tus Fics :)," POSITIVE
+"El über no me gusta va pués y si quiero descargar el twitter for blackberry ese si es pasado es MI celular y es MI twitter ¿ok?ok.," POSITIVE
+"RT @OLLGhechos: Justin piensa que seria mucho mas facil pedirle a una chica que salga con el si ella admitiera que gusta de el #OLLGhechos," POSITIVE
+"Nojoa' kejeso de jugar futbol que ladilla eso no me Gusta! U.u," POSITIVE
+"Y deliciosos jugos de arandano! :) alguien gusta de este suculento desayuno? http://yfrog.com/h4r0lfaj," POSITIVE
+"@Tatiana_Music15 emmm... Todo eso  jajaja tmb leo... El cine me gusta mucho ;) ... Te gusta algun deporte?," POSITIVE
+"@fernee13 No, para nada, en serio, lo que pasa es que cuando a mí algo no me gusta, pues me voy. No me quejo...," POSITIVE
+"Te gusta q te toquen? q te hagan sudar? q te rocen? adoptar nuevas posturas? Subir? Bajar? entonces tomate el subte en hora pico !!!!," POSITIVE
+"@ufc_tdn excelente opcion! Para los que les gusta la adrenalina en los deportes! Algo de artes marciales mixtas!," POSITIVE
+"@Jesugandalf bueno, pero si te gusta la saga, ir por el platino no es mala opción," POSITIVE
+"Me gusta cuando no compones canciones porque estás como en coma.," POSITIVE
+"@eliowtf jajajaja y buenooo estudia eso :) es interesante! mucho para estudiar igual pero si te gusta no es dificil," POSITIVE
+"RT @simonmujica1: Feliz cumpleañooos Agustin pelotudo de @SeMVoloLaPeluca Pasatelo bien comiendote un buen bife de poronga como solo a ti te gusta! Saluuud!," POSITIVE
+"Les gusta correr por más de media hora? Háganlo escuchando el podcast 246 de RA (@caribouband) del minuto 30 al final...," POSITIVE
+"Ya cambie de parecer! no me gusta no tener nada que hacer :S," POSITIVE
+"@dapich como te gusta cambiar de opinion,," POSITIVE
+"Les gusta MGMT? — Sí, y mucho. http://4ms.me/iTpPQQ," POSITIVE
+"Me gusta muchoo esa canciiioonn ♥," POSITIVE
+"Te gusta el mio? @yeli1101 http://twitpic.com/4ts8d8," POSITIVE
+"Tengo que confesarles algo, me gusta alguien.," POSITIVE
+"Huelo a vaca. Y me gusta.," POSITIVE
+"Alguien gusta venir y poner una peli? Es que el dvd m queda como a 10 pasos u.u," POSITIVE
+"Me gusta que @RitaV1989 acomode su cuarto conmigo :)," POSITIVE
+"Papaya con granola y jugo de toronja. ¿Alguien gusta? (:," POSITIVE
+"http://canalrcnmsn.com/noticias/javier_ramírezes_todo_un_reto_interpretar_bibianito  Comenten si les gusta el trabajo de Javier. #fb," POSITIVE
+"Dani martin TT? porqueee?? me acaban de dar dos entradas para el concierto de el mañana en León ira mi hermana que le gusta! jajaja," POSITIVE
+"RT @CiudadJodedora: #LeyesDeMurphy El día en el que tengas más hambre, prepararan la comida que no te gusta," POSITIVE
+"RT @loschistes: Que le dijo Twitter a Facebook: -Que haces siguiendome? Y Facebook responde: No se pero me GUSTA! #chistes #fb," POSITIVE
+"@Lucia12sayago pero....pan de pan...o pan del que a mi no me gusta?¿," POSITIVE
+"No me gusta cuando el cielo está celeston tirando a grisaseo (hoy). Es ideal cuando está turquesa tirando a azul, que lindo," POSITIVE
+"@CharytinOficial te gusta mucho México saludos desde Veracruz.," POSITIVE
+"Amoo a mi mama cuando me preepara de comer algo que me gusta *_*," POSITIVE
+"@ChrisValero No lo he visto, pero QUEE!!??,NOOO #Asco !!,soy adicta a la moda,y m gusta q cuiden l fisico pero no c pasen!,eso ya s d jotos!," POSITIVE
+"@yadisienta Jajaja si me gusta pero ya no como antes :/ saludos mi yad :)," POSITIVE
+"Es perfecta! *_* RT @Karirodguez: Me Gusta la Cancion *-* de Te amo mas que el - Nekaone ft Omar Koonze," POSITIVE
+"RT @juan_chacon: RT @LosChistes: Que le dijo Twitter a Facebook: -Que haces siguiendome? Y Facebook responde: No se pero me GUSTA! #chistes," POSITIVE
+"No me gusta Paramore, ni ADTR, ni Lady Gaga, me parecen que están sobrevalorados. Ya me pueden dar unfollow los intolerantes :3," POSITIVE
+"¬¬' Te gusta hacerme sentir mal! te conectas me emocionas! & pff! desapareces! :'|," POSITIVE
+"Mi hermana no se llevo el pantalon qe me gusta #ohsi," POSITIVE
+"de veras me gusta detectar daño renal.Pxs asintomaticos,hago una tirilla rapida d orina,veo algo q No me gusta,pido EGO y listo! Nefropata!!," POSITIVE
+"Lo que me gusta del verano es poder tomar helado #cancionpegajosa," POSITIVE
+"@Adriyuyu Jajaja Me gusta saber que sigues tan loco como siempre !," POSITIVE
+"@nadiaadepaula obvio!! si yo ls escuchara, no viviría mi vida d la manera que me gusta vivivirla por suert no vems mas a ls chusms del secu!," POSITIVE
+"@bullysteria que mal que no me gusta lady gaga jaja lo siento pero suerte que #cagado," POSITIVE
+"RT @FcoFondeur: Feo Viejo horroroso degenerado! xD," NEGATIVE
+"Hasta cuando este clima horroroso! Grrrr," NEGATIVE
+"Que bien, hace un calor horroroso y yo vestida con negro...," NEGATIVE
+"Es lo más asqueroso, horroroso y repugnante que he escuchado! >_< No podré quitarme esa imagen en mucho tiempo...," NEGATIVE
+"Que día mas horroroso!!!," NEGATIVE
+"@caaroLiiiiiina ESTA HORROROSO..... U.u pero que clase de amigos tiene que no le dicen lo MAL que le queda? ¬¬," NEGATIVE
+"@Havie_rock Verdad?? Y qué necesidad hay de ver su (horroroso) cuerpo medio desnudo. Son cosas que jamás entenderemos," NEGATIVE
+"@hugokiddosan creo que esto si me va a costar trabajo, no le entiendo y si mejor seguimos en fb, al fin ya no nos separaron, feo horroroso," NEGATIVE
+"Feo Viejo horroroso degenerado! xD," NEGATIVE
+"Aplausos: se va el sol inclemente!!! Ufff hace un calor horroroso!!! #Emerita #festival," NEGATIVE
+"@FergBlume Queda horriblemente horroroso, pero es una solución =p," NEGATIVE
+"@MonaParroquia Por favor mona,lo de anoche fue horroroso,no pudisteis caer mas bajo," NEGATIVE
+"@MonaParroquia Has hecho ya o pensado el tema del nombre  de persona mas raro o el regalo mas horroroso que has recibido?," NEGATIVE
+"@GilbertMantilla horroroso!!! a pesar k esta lloviendo hay una humedad y un caloroooonn terrible :(," NEGATIVE
+"@delfinacompte Jajaja me sonaba raro. Imagino tu cara de incertidumbre. Voy a tener el horroroso placer de ver tu jeta hoy?," NEGATIVE
+"Chéquense 5 minutos de #TRÓPICO, ahorita en #CADENATRES. Es mala hasta para ser de Miami! chiale!!! Hasta el PUMA canta horroroso!!!," NEGATIVE
+"El vestido de #AnaSimon me parece horroroso,pero le queda que te cagasssssssss," NEGATIVE
+"@Claudeita cacha k me llagaban no se pq msj de claro a las 1.00 am y yo madrugo casi toda la semana fue horroroso  k te paso a ti ?jajaj bss," NEGATIVE
+"@Educacion2020 Deudores de Crédito con Aval pagarían casi el doble por su carrera/ es horroroso! Millones de años y no dejan adelantar pagos," NEGATIVE
+"tudo pronto pra ir pra casa. O foda vai ser encarar aquele onibus horroroso," NEGATIVE
+"Que clipe horroroso.," NEGATIVE
+"Jaja ayer no habia luz en mi casa ,y hasta hoy no tenido ni tele ni nada ha sido horroroso," NEGATIVE
+"2. La Supuesta Coreografía, hay personas que tienen el don de bailar y otras como tu (gaga) que lo intentan hacer, lo mas horroroso es...," NEGATIVE
+"@Kangrejo creo que tiene un pelo horroroso y carita de ardichan," NEGATIVE
+"El video es horroroso pero la canción me encanta http://t.co/1D4JYlM me falta bailar y me sentiré 100% en mi casa jajajajaja," NEGATIVE
+"@Otaviio_F aproontando oo qe amr ? ;DD'  | @PaollaaD HORROROSO ainda é poiuco --'," NEGATIVE
+"@baruchcortez ¡Es horroroso, ofensivo y de muy mal gusto! ¡Guácala!," NEGATIVE
+"@CriisMyLifeIsU3 Amol a plimera vista *_-  y las idiotas de mis friends dicen que es horroroso. .l.," NEGATIVE
+"@mariiacarolina4 , nn é feeio, é horroroso...," NEGATIVE
+"@marqoz12 que ascooooo ya se :'( Que horroroso!," NEGATIVE
+"Las Caras de #Obama y #Clinton en la Foto delatan lo Horroroso de Mostrar la de #Osama  y su Familia Ejecutados http://twitpic.com/4trecs," NEGATIVE
+"@thiagomweege porra!! que dia horroroso!," NEGATIVE
+"En caracas de lo unico que se habla es de colas.. esto es horroroso...," NEGATIVE
+"@riquelmeluz jajajaja peor que esfuerzo tan horroroso hermosa!!! jejejeje," NEGATIVE
+"@amorscream jajajaja algo realmente horroroso..," NEGATIVE
+"en mis pasaportes tengo una cara de Fugitiva!!! horroroso... deberia cambiar de documentos para relaciones internacionales," NEGATIVE
+"RT @williecolon: Cuando chamaquito firmé un contrato horroroso que le otorgó todo el poder a Fania > RT @FernanGuijarro: @willi… (cont) http://deck.ly/~UaAIz," NEGATIVE
+"@Guuuuid_  creeeeedo qq feeio..! tiiime horroroso ..!," NEGATIVE
+"Dolor de cabeza y cervicales horroroso? No!!! Lo siguente!!!!," NEGATIVE
+"Horroroso traficoooo!! No llegareee," NEGATIVE
+"RT @Jhonlopman: @MonaParroquia Por favor mona,lo de anoche fue horroroso,no pudisteis caer mas bajo," NEGATIVE
+"Bueno, un calor horroroso pero con lluvia. Se presenta un día raro...  :S," NEGATIVE
+"RT @patri_piripipi: El horroroso sonido del zumbido de una mosca cerca de tu oreja.," NEGATIVE
+"El horroroso sonido del zumbido de una mosca cerca de tu oreja.," NEGATIVE
+"Nem tanto por ser eliminado, mas por ter tomado um baile de bola daquele time horroroso do Once Caldas...," NEGATIVE
+"@eSpePeke Ya, pero ten en cuenta que un vagón de metro es muucho más grande. XDD. Es horroroso!," NEGATIVE
+"#JJ a mi niño @VasicoBook y lo horroroso de andar en moto en invierno.," NEGATIVE
+"@twitter @gabyruizplus Es absolutamente horroroso además de dar problemas...Involucionamos en vez de evolucionar.," NEGATIVE
+"Unas dulces señoras me cuentan de la efectiva solución que han encontrado para este horroroso problema. Me aconsejan que compre un gato.," NEGATIVE
+"RT @Talida_Sampaio: @thaamybarros  Mesmo o @lucasolipe  sendo horroroso a gente ama ele  s2," NEGATIVE
+"@73BigBoss Demasiado para las 4 neuronas que me quedan! Es horroroso!," NEGATIVE
+"@sombra97fm fora Carpegiane.  Horroroso Somba," NEGATIVE
+"Fuck, mañana tengo que ir al colegio con el uniforme de premilitar horroroso ese:c," NEGATIVE
+"@MariaaJ_ Horroroso pero estamos claros que se te ve ÉL culo, okya.," NEGATIVE
+"@Kikeflowers no lo abren horroroso, hasta el vier muaa," NEGATIVE
+"@Bermartinez @curropar debió ser un partido horroroso. Lo había dejado grabando pero no me dan ganas de verlo ;((((," NEGATIVE
+"Pasa el tiempo y no paso de la primera pagina procesal es horroroso, no se lo recomiendo ɑ NADIE," NEGATIVE
+"Voy a lo mio, estoys playoffs muy locos el partido de anoche de Lakers horroroso, huelen muy mal este equipo.," NEGATIVE
+"Si no kieres ver algo horroroso, kitate los ojos!!," NEGATIVE
+"Sé que el mundo del papeleo es horroroso pero a mi en parte me gusta jaja #amigadelosfuncionarios," NEGATIVE
+"@yourgoldenboy Buf!! Eso es horroroso! Ánimo tete!," NEGATIVE
+"@sugary_carnival en la escuela, ahora estan explixando que son los rastafaris, es horroroso por suerte tengo blackberry y no los escucho," NEGATIVE
+"@Monica_Mattos Putz sempre suspeitei da Leia... ela nunca soube pentear aquele cabelo horroroso dela...," NEGATIVE
+"Hoy va a ser un dia horroroso se que asi sera! u__u," NEGATIVE
+"@JonBibiloni as visto eso? joder....a debido ser horroroso," NEGATIVE
+"En la Hermana República de Xochimilco tiembla horroroso!!," NEGATIVE
+"@mechab @ceciliariano @rominaj @micalevitt @torto_cipo jajajaaj recien ahora veo esto!! posta ayer fue horroroso el calor en serio," NEGATIVE
+"Estan bien!? Temblo horroroso! 5.8!!," NEGATIVE
+"es horroroso es que tu abuela no podia regalare algo mejor que feo !!!," NEGATIVE
+"Jaja horroroso... Todos los trabajadores de los edificios de santafe en la banqueta #pinche temblor," NEGATIVE
+"@jrsestaca claro q si se sintio! vivo n piso 13 polanco y m toco sentado n el trono. Fue horroroso! Pero conserve la calma hasta terminar ;)," NEGATIVE
+"Que pedo de temblor horroroso," NEGATIVE
+"¡Al menos tengo internet! ;___; menudo día horroroso pasé ayer, no puedo vivir sin twitter... | Esta tarde a currar como loca -.-," NEGATIVE
+"Pero total, que tendremos que cantar. Si, es horroroso ponerse a cantar delante de la clase y encima Baby.," NEGATIVE
+"Cuando chamaquito firmé un contrato horroroso que le otorgó todo el poder a Fania > RT @FernanGuijarro: @willi… (cont) http://deck.ly/~UaAIz," NEGATIVE
+"@ACepeda74 @carmensuisse @martaluztdj @Saskya_lou pues si, gentuza que parece q disfruta haciendo eso. Es horroroso.," NEGATIVE
+"Qué horroroso el motorhome del Team Lotus http://bit.ly/iswjMd," NEGATIVE
+"que diazinho horroroso hein?!," NEGATIVE
+"@nereagutierrez4 hahahaha era coña, puessss me veo haciendolos todo en recuperacion, no te digo mas, horroroso, pa mear y no echar gota," NEGATIVE
+"Será que só eu acho o Brad Pitt horroroso? ._.'," NEGATIVE
+"@Patrii_10 Dios mío pero si ese teatrillo que montan es horroroso!!Además, cada vez van con casos más surrealistas y actores más malos!," NEGATIVE
+"@LyRosete tallatelos!! Anda como un mosquito horroroso!!  Pero si llegue tempeanito," NEGATIVE

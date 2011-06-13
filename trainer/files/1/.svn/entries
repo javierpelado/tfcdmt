@@ -1,18 +1,18 @@
 10
 
 dir
-0
+42
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/trainer/files/1
 https://tfcdmt.googlecode.com/svn
-add
 
 
 
+2011-06-01T18:39:28.641470Z
+42
+javier.pelado
 
 
 
-
-svn:special svn:externals svn:needs-lock
 
 
 
@@ -25,4 +25,86 @@ svn:special svn:externals svn:needs-lock
 
 
 ed4b8162-2f16-cff2-6b1e-88c0b67f082b
+
+20110607_192504.arff
+file
+0
+
+
+add
+
+20110607_190706.arff
+file
+0
+
+
+add
+
+20110530_181215.arff
+file
+
+
+
+delete
+2011-05-30T16:12:16.000000Z
+03b2712ece1f62dd6626b70e8884a8ab
+2011-06-01T18:39:28.641470Z
+42
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2530
+
+1.arff
+file
+
+
+
+
+2011-05-30T16:18:20.000000Z
+d6f79976d23b48c318e38b52fb24d975
+2011-06-01T18:39:28.641470Z
+42
+javier.pelado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18293
 

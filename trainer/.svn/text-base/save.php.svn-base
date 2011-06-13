@@ -5,9 +5,16 @@
 */
 $debug = false;
 if(!$debug) {
+    //phpinfo();
     $opinions = array ();
 //    $options = $_POST['configData'];
-    $opinions = json_decode($_POST['opinions'],true);
+    //print_r($_POST);
+    print_r($_POST['opinions']);
+    //echo json_decode($_POST['opinions']);
+    //echo json_decode($_POST['opinions'],true);
+    $opinions = $_POST['opinions'];
+    //echo "kk";
+    print_r($opinions);
     $id = $_POST['id_session'];
     $dir = 'files/'.$id;
     if(!is_dir($dir)) mkdir($dir);
@@ -30,6 +37,7 @@ if(!$debug) {
     fputs($file, $header);
     foreach ($opinions as $opinion) {
         $opinionstr = "\"".str_replace("\n", " ", $opinion[0]).",\" ".$opinion[1]."\r\n";
+        echo $opinionstr + "<br/>";
         fputs($file, $opinionstr);
     }
     fclose($file);
@@ -41,6 +49,9 @@ else {
     print_r($options);
     echo $options['opinionfilepath']."<br>";
     echo $options['opinionfileover']."<br>";*/
-    print_r($_POST);
+    //print_r($_POST);
+    echo var_dump($_POST);
+    echo $_POST['opinions'];
+    echo json_decode($_POST['opinions'],true);
 }
 ?>

@@ -1,0 +1,25 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"mesi , iniesta y xavi una generacióen sin límites," POSITIVE
+"albergada2a boludo , xavi y iniesta hacen todo eso ( que es lo me has importante ) menos meter goles no me vngas ha de decir que mesieselqgenerajue," POSITIVE
+"“ aquicucule : c√≥mo me \' agrada iniesta amb la senyera ! aquete equip crea pasions , us estimo cabrons ! amoragasanti rtpfa http :// te punto co mente iguoyga ”," POSITIVE
+"ajuanmap es tremendo jajaja . el y quote ; por qué no chuta iniesta y quote ; es est√°n histeórico como el penalty de paraguay risa," POSITIVE
+"“ aquicucule : c√≥mo me \' agrada iniesta amb la senyera ! aquete equip crea pasions , us estimo cabrons ! alasrtapepis rtpfa http :// te punto co mente iguoyga ”," POSITIVE
+"mesi , iniesta y xavi , hay que quitarse el sombrero .," POSITIVE
+"rte amundodeportivo : ¿ qué son capaces de hacer xavi menos busquets he iniesta ? http :// ow punto ly mente scjr," POSITIVE
+"y quote ; que no es pa \' mi , que es pa \' otro . ah ¿ la coca dices ? sí , eso sí es pa \' mi .& quote ; robe iniesta n√∫mero qlmta," POSITIVE
+"rte aperganmanato : es tal la presióen del nacionalismo que un manchego como iniesta grita y quote ; visca cataluña y quote ;. una presióen que le obliga ha no pasear la bandera españhola," POSITIVE
+"agripa9 asinexine agistaudavid biscuite rebaña los elementos desperdigados que escapan de perrito , villa y hasta iniesta , que muerden," POSITIVE
+"andresmrivas_ buscalo punto apatotate parte o algo parecido ! je iniesta es cracc !," POSITIVE
+"mesi , iniesta y xavi una generacióen sin límites http :// yho punto ite mente mat8hi," POSITIVE
+"xavi . iniesta y mesi ha otro nivel . y que arrecho poder verlos jugar !.," POSITIVE
+"iniesta n√∫mero barcaicons http :// twitpic punto com mente sacmag," POSITIVE
+"andrs_romero cuando ellos logren la geandesa en otro equipo les reconocere , xavi he iniesta ya lo hicieron . los otros estan en deuda," POSITIVE
+"( lo de iniesta es caso aparte . que éeste hasta juega con la selecióen catalana xd )," POSITIVE
+"rte aqjesus : mesi , iniesta y xavi , hay que quitarse el sombrero .," POSITIVE
+"n√∫mero mourinhando : ¿ por que la caverna lechera todavía cre que iniesta no es culé ? ¿ pour qué ?," POSITIVE
+"aquique_marin_ ¿ y ha quiéen le vale ha quitar el sitio cesç , ha xavi , ha iniesta , ha busquets o ... ha thiago ? es claro y no imprescindible .," POSITIVE
