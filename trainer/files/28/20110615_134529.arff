@@ -1,0 +1,26 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"y si resucitem la y quote ; crema de pepinos y quote ; de la monserrate fortuny por aprofitar l \' excedente ? aquim_monso n√∫mero pepino n√∫mero pepinos n√∫mero mataró n√∫mero carrefour n√∫mero bcn," POSITIVE
+"rte asoniandres : la tradicióen de comer uvas en nochevieja empesó en 1909 para dar salida al excedente . preparaos para los 12 pepinos de 2012 . aeljueves," POSITIVE
+"alba_nalsieo8 oye guapa mi madre me ha dado una cesta de pepinos para ti cuando vengas mañana te los llevas . ok ?," POSITIVE
+"el primero capas de unir en un mismo chiste lo de los pepinos y lo de sergio ramos con la copa se lleva premio .," POSITIVE
+"les importa tres pepinos las emisiones ha la atmósfera menos el por pide la supresióen del límite de velocidad de 10 cm mente h http :// te punto co mente snisfe," POSITIVE
+"asaratobio yo te lo ordeno guapi que me gusta jaja , aunque con la parte de arriba nose si me atrevo coma esa y quote ; sona de estudio y quote ; d√≠a mucho miedo !," POSITIVE
+"aboscogonsales tio pero la gosa ... -.- el nuevo disco me gusta mucho menos que el nuevo de obrinte .... pero nose , si vale felipe ... y manel ?," POSITIVE
+"the quilling me gusta mucho , pero creo que la segunda temporada no le hará justicia . espero que no pase como en twin peacs .," POSITIVE
+"luego tambiéen me gusta mucho leer mayu shinjo , no apto para menores jiji carcajada ( arhapsodyred live on http :// twitcam punto com mente saiwe )," POSITIVE
+"arafibiris en serio ? ha meí me gusta . mucho meás que blacc jesus y fashion of his love . incluso meás que highway unicorn," POSITIVE
+"alabombaoficial hola buenos deías ! me gusta mucho la bomba , pero que vale la maracucha y la otra chica no dan la talla !," POSITIVE
+"rte afonsiloaisa : la cantera habla . morata : y quote ; me gusta el tiqui menos taca y quote ;, sarabia : y quote ; me gusta que toquemos mucho el balóen y quote ;.," POSITIVE
+"bamos bamos mi amor , me gusta mucho tu sabor , no no no no tu corason , me has me has mesa de tu limon," POSITIVE
+"busto de enano ha 1 mente 10 : por lolito ( publicado mié , 15 jun 201 1 : 07 : 41 gmte ) me gusta mucho como va . me imagino qu ... http :// bite punto ly mente lvleoj," POSITIVE
+"arorysimo no coma pero me gusta mucho la foto y el estilo," POSITIVE
+"puedes igual tenías rasóen y todo ... cracc ! rte ajonpollon cada ves me doy me has cuenta de los apuntes est√°n pepinos que tengo de literatura jajaj," NEGATIVE
+"españolesidejemos de ser españolitos coma creamonoslo y espabilemos que tenemos potencial he ideas no faltan n√∫mero marquetingnews punto es http :// te punto co mente ohw8ecs," NEGATIVE
+"n√∫mero soyciudadanoandalus y al que no le guste , de aquí son los pepinos que te comes ...," NEGATIVE
+"unos 50 punto 0 trabajadores españoles afectados por la crisis de los pepinos http :// bite punto ly mente maohep http :// fb punto me mente iohioyijg," NEUTRAL
+"poleen : pepinos , hipotecas he incongruencias http :// chilp punto ite mente cdc26e," NEUTRAL

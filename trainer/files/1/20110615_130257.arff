@@ -1,0 +1,27 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"Amoo a mi mama cuando me preepara de comer algo que me gusta *_*," POSITIVE
+"@ChrisValero No lo he visto, pero QUEE!!??,NOOO #Asco !!,soy adicta a la moda,y m gusta q cuiden l fisico pero no c pasen!,eso ya s d jotos!," POSITIVE
+"@yadisienta Jajaja si me gusta pero ya no como antes :/ saludos mi yad :)," POSITIVE
+"Es perfecta! *_* RT @Karirodguez: Me Gusta la Cancion *-* de Te amo mas que el - Nekaone ft Omar Koonze," POSITIVE
+"RT @juan_chacon: RT @LosChistes: Que le dijo Twitter a Facebook: -Que haces siguiendome? Y Facebook responde: No se pero me GUSTA! #chistes," POSITIVE
+"No me gusta Paramore, ni ADTR, ni Lady Gaga, me parecen que están sobrevalorados. Ya me pueden dar unfollow los intolerantes :3," POSITIVE
+"¬¬\' Te gusta hacerme sentir mal! te conectas me emocionas! & pff! desapareces! :\'|," POSITIVE
+"Mi hermana no se llevo el pantalon qe me gusta #ohsi," POSITIVE
+"de veras me gusta detectar daño renal.Pxs asintomaticos,hago una tirilla rapida d orina,veo algo q No me gusta,pido EGO y listo! Nefropata!!," POSITIVE
+"es horroroso es que tu abuela no podia regalare algo mejor que feo !!!," NEGATIVE
+"Jaja horroroso... Todos los trabajadores de los edificios de santafe en la banqueta #pinche temblor," NEGATIVE
+"@jrsestaca claro q si se sintio! vivo n piso 13 polanco y m toco sentado n el trono. Fue horroroso! Pero conserve la calma hasta terminar ;)," NEGATIVE
+"Que pedo de temblor horroroso," NEGATIVE
+"¡Al menos tengo internet! ;___; menudo día horroroso pasé ayer, no puedo vivir sin twitter... | Esta tarde a currar como loca -.-," NEGATIVE
+"@jor_garcia_ pues no me gusta creer que no mejor espero al sábado y disfrutar el partido, no me gusto el planteamiento de chivas," NEGATIVE
+"Pero total, que tendremos que cantar. Si, es horroroso ponerse a cantar delante de la clase y encima Baby.," NEGATIVE
+"Cuando chamaquito firmé un contrato horroroso que le otorgó todo el poder a Fania > RT @FernanGuijarro: @willi… (cont) http://deck.ly/~UaAIz," NEGATIVE
+"@ACepeda74 @carmensuisse @martaluztdj @Saskya_lou pues si, gentuza que parece q disfruta haciendo eso. Es horroroso.," NEGATIVE
+"Qué horroroso el motorhome del Team Lotus http://bit.ly/iswjMd," NEGATIVE
+"@la100fm a mi lo que me puede son las compras, sea donde sea que voy algo siempre me gusta y me lo quiero comprar!!! me pica la plata. besos," NEUTRAL
+"Me gusta su letra.," NEUTRAL

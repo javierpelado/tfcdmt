@@ -3589,3 +3589,12 @@ td.group {
 	background:url(/img/progress_bar/Untitled/bg_cover.gif) repeat-x 0 0;
 	top:0;
 }
+
+#train_button {
+        width : 55px;
+        height: 55px;
+        float : right;
+        margin-right: 20px;
+        cursor: pointer;
+        background:url(/img/ico/Untitled/ico_retroAliment.png) no-repeat 0 0;
+}

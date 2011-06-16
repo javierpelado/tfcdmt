@@ -27,6 +27,12 @@ svn:wc:ra_dav:version-url
 V 56
 /svn/!svn/ver/13/trunk/myTFC/clases/mysql2json.class.php
 END
+compFiles.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/43/trunk/myTFC/clases/compFiles.class.php
+END
 conexion.class.php
 K 25
 svn:wc:ra_dav:version-url
@@ -43,5 +49,5 @@ classifier.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 56
-/svn/!svn/ver/42/trunk/myTFC/clases/classifier.class.php
+/svn/!svn/ver/49/trunk/myTFC/clases/classifier.class.php
 END

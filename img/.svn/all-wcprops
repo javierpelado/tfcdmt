@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 32
-/svn/!svn/ver/39/trunk/myTFC/img
+/svn/!svn/ver/43/trunk/myTFC/img
 END
 milk.png
 K 25
@@ -98,6 +98,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 52
 /svn/!svn/ver/2/trunk/myTFC/img/cmxform-fieldset.gif
+END
+man_working.gif
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/43/trunk/myTFC/img/man_working.gif
 END
 left_blue.png
 K 25
@@ -224,6 +230,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 50
 /svn/!svn/ver/10/trunk/myTFC/img/busy_inactive.gif
+END
+lissajou.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/43/trunk/myTFC/img/lissajou.jpg
 END
 left_white.png
 K 25

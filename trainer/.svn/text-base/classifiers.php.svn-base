@@ -10,17 +10,28 @@ if (!isset($_GET['mode'])) {
         $mysql_sessions = $sessionObj->search_classifiers('id_session',$id_session,$order);
         $sessions = array();
         while (($session = mysql_fetch_array($mysql_sessions)) != null) {
-            if($order == 'traingroup') $sessions[] = array("","",$session['Filter'],$session['date'],$session['id'],$session['traingroup']);
-            else $sessions[] = array("","",$session['traingroup'],$session['date'],$session['id'],$session['Filter']);
+            if($order == 'traingroup') $sessions[] = array("","",$session['Filter'],$session['date'],$session['id'],$session['traingroup'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
+            else $sessions[] = array("","",$session['traingroup'],$session['date'],$session['id'],$session['Filter'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
+        }
+        $data['aaData'] = $sessions;
+        echo json_encode($data);
+    }
+    if ($_GET['mode'] == "getClassifier") {
+        $id = $_GET['id'];
+        $order = $_GET['group'];
+        $sessionObj = new Classifier();
+        $mysql_sessions = $sessionObj->search_classifier($id);
+        while (($session = mysql_fetch_array($mysql_sessions)) != null) {
+            if($order == 'traingroup') $sessions = array("","",$session['Filter'],$session['date'],$session['id'],$session['traingroup'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
+            else $sessions = array("","",$session['traingroup'],$session['date'],$session['id'],$session['Filter'],$session['algorythm'],$session['num_instances'],$session['num_attributes'],$session['correct'],$session['pct_correct'],$session['incorrect'],$session['pct_incorrect'],$session['mae'],$session['rmse'],$session['rae'],$session['state']);
         }
         $data['aaData'] = $sessions;
         echo json_encode($data);
     }
     if ($_GET['mode'] == "delete") {
-        $id=$_GET['id_session'];
-        $text = $_GET['text'];
-        $opinionObj = new Opinion();
-        $mysql_opinion = $opinionObj->delete($id,$text);
+        $id=$_GET['id'];
+        $opinionObj = new classifier();
+        $mysql_opinion = $opinionObj->delete($id);
         echo $mysql_opinion;
     }
     if($_GET['mode'] == "insert") {

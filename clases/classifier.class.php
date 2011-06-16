@@ -40,9 +40,16 @@ class classifier{
 		if($this->con->conectar()==true){
 			//echo "SELECT * FROM dmt_classifiers WHERE ".$field."=\"".$query."\"";
                     if($session == null)
-			return mysql_query("SELECT * FROM dmt_classifiers WHERE ".$field."=\"".$query."\" ORDER BY ".$order);
+			return mysql_query("SELECT * FROM dmt_classifiers WHERE ".$field."=\"".$query."\" ORDER BY ".$order.",pct_incorrect,algorythm");
                     else
 			return mysql_query("SELECT * FROM dmt_classifiers WHERE ".$field."=\"".$query."\" AND id_session=\"".$session."\"");                        
+		}
+	}
+
+        function search_classifier($id){
+		if($this->con->conectar()==true){
+			//echo "SELECT * FROM dmt_classifiers WHERE ".$field."=\"".$query."\"";
+			return mysql_query("SELECT * FROM dmt_classifiers WHERE id=".$id);                        
 		}
 	}
 
@@ -52,10 +59,10 @@ class classifier{
 		}
 	}
 
-	function delete($id_session,$text){
+	function delete($id){
 		if($this->con->conectar()==true){
-                    echo "DELETE FROM dmt_classifiers WHERE id_session=".$id_session." AND text=\"".$text."\"";
-			return mysql_query("DELETE FROM dmt_classifiers WHERE id_session=".$id_session." AND text=\"".$text."\"");
+//                    echo "DELETE FROM dmt_classifiers WHERE id=".$id;
+			return mysql_query("DELETE FROM dmt_classifiers WHERE id=".$id);
 		}
 	}
 

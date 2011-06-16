@@ -1,14 +1,14 @@
 10
 
 dir
-39
+43
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/img
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-05-27T08:38:42.090954Z
-39
+2011-06-13T18:01:24.740339Z
+43
 javier.pelado
 has-props
 
@@ -28,7 +28,7 @@ ed4b8162-2f16-cff2-6b1e-88c0b67f082b
 
 milk.png
 file
-
+42
 
 
 
@@ -62,7 +62,7 @@ has-props
 
 loading.gif
 file
-
+42
 
 
 
@@ -96,7 +96,7 @@ has-props
 
 spr_box_hl.png
 file
-
+42
 
 
 
@@ -130,7 +130,7 @@ has-props
 
 logo.png
 file
-
+42
 
 
 
@@ -164,7 +164,7 @@ has-props
 
 spr_rows_hl.png
 file
-
+42
 
 
 
@@ -198,7 +198,7 @@ has-props
 
 right_grey.png
 file
-
+42
 
 
 
@@ -230,16 +230,9 @@ has-props
 
 1548
 
-progress_bar
-dir
-
-
-
-add
-
 mineria2.png
 file
-
+42
 
 
 
@@ -273,7 +266,7 @@ has-props
 
 checked.gif
 file
-
+42
 
 
 
@@ -307,7 +300,7 @@ has-props
 
 bg.gif
 file
-
+42
 
 
 
@@ -341,7 +334,7 @@ has-props
 
 right_white.png
 file
-
+42
 
 
 
@@ -375,7 +368,7 @@ has-props
 
 left_grey.png
 file
-
+42
 
 
 
@@ -409,7 +402,7 @@ has-props
 
 orangebox_bl.gif
 file
-
+42
 
 
 
@@ -443,7 +436,7 @@ has-props
 
 logo2.png
 file
-
+42
 
 
 
@@ -480,7 +473,7 @@ dir
 
 right_blue.png
 file
-
+42
 
 
 
@@ -517,7 +510,7 @@ dir
 
 orangebox_br.gif
 file
-
+42
 
 
 
@@ -551,7 +544,7 @@ has-props
 
 cmxform-fieldset.gif
 file
-
+42
 
 
 
@@ -585,21 +578,41 @@ has-props
 
 man_working.gif
 file
-0
-
-
-add
 
 
 
 
-
+2011-06-07T14:51:43.000000Z
+22b5ef536eb6a8192db4e6ccaf147426
+2011-06-13T18:01:24.740339Z
+43
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+60942
 
 left_blue.png
 file
-
+42
 
 
 
@@ -633,7 +646,7 @@ has-props
 
 logo.psd
 file
-
+42
 
 
 
@@ -667,7 +680,7 @@ has-props
 
 busy.gif
 file
-
+42
 
 
 
@@ -701,7 +714,7 @@ has-props
 
 off-connected-syncing.gif
 file
-
+42
 
 
 
@@ -735,7 +748,7 @@ has-props
 
 skin.png
 file
-
+42
 
 
 
@@ -769,7 +782,7 @@ has-props
 
 orangebox_tl.gif
 file
-
+42
 
 
 
@@ -803,7 +816,7 @@ has-props
 
 unchecked.gif
 file
-
+42
 
 
 
@@ -835,43 +848,9 @@ has-props
 
 223
 
-ico_pro_sm.gif
-file
-
-
-
-
-2010-11-26T10:32:23.000000Z
-766c13b661c6f5e37ed0606f76f0605d
-2010-11-25T22:12:49.676223Z
-10
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-231
-
 orangebox_tr.gif
 file
-
+42
 
 
 
@@ -903,9 +882,43 @@ has-props
 
 73
 
+ico_pro_sm.gif
+file
+42
+
+
+
+2010-11-26T10:32:23.000000Z
+766c13b661c6f5e37ed0606f76f0605d
+2010-11-25T22:12:49.676223Z
+10
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+231
+
 ico_cross_org.gif
 file
-
+42
 
 
 
@@ -939,7 +952,7 @@ has-props
 
 spr_box.png
 file
-
+42
 
 
 
@@ -971,43 +984,9 @@ has-props
 
 651
 
-spr_rows.png
-file
-
-
-
-
-2010-11-26T10:32:23.000000Z
-6d975869764e166286b9689707511d8d
-2010-11-25T22:12:49.676223Z
-10
-javier.pelado
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-186
-
 off-connected-synced.gif
 file
-
+42
 
 
 
@@ -1039,9 +1018,43 @@ has-props
 
 137
 
+spr_rows.png
+file
+42
+
+
+
+2010-11-26T10:32:23.000000Z
+6d975869764e166286b9689707511d8d
+2010-11-25T22:12:49.676223Z
+10
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+186
+
 bg_dot.gif
 file
-
+42
 
 
 
@@ -1075,7 +1088,7 @@ has-props
 
 mineria.jpg
 file
-
+42
 
 
 
@@ -1109,7 +1122,7 @@ has-props
 
 cmxform-divider.gif
 file
-
+42
 
 
 
@@ -1143,7 +1156,7 @@ has-props
 
 spr_rows (1).png
 file
-
+42
 
 
 
@@ -1177,7 +1190,7 @@ has-props
 
 mineria.png
 file
-
+42
 
 
 
@@ -1211,7 +1224,7 @@ has-props
 
 ico_info_org_org.gif
 file
-
+42
 
 
 
@@ -1245,7 +1258,7 @@ has-props
 
 orangebox_back.gif
 file
-
+42
 
 
 
@@ -1279,7 +1292,7 @@ has-props
 
 busy_inactive.gif
 file
-
+42
 
 
 
@@ -1313,21 +1326,41 @@ has-props
 
 lissajou.jpg
 file
-0
-
-
-add
 
 
 
 
-
+2011-06-07T14:48:56.000000Z
+f89e884ca8c57b23057ea6fdc91cad45
+2011-06-13T18:01:24.740339Z
+43
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+65592
 
 left_white.png
 file
-
+42
 
 
 
@@ -1361,7 +1394,7 @@ has-props
 
 off-disconnected.gif
 file
-
+42
 
 
 

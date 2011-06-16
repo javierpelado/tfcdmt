@@ -440,7 +440,7 @@ var appViewSes = function appViewSes(statusbox) {
         this.listbox = new listBox(this);
         this.tools = this.listbox.addTools('0');
         this.listbox.elementsList();
-        this.detailsbox = new detailsBox(appview);
+        this.detailsbox = new detailsBox(appview,"Sesiones");
         this.detailsbox.animate();
         this.getCategories();
 //        this.getSessions();
@@ -467,7 +467,6 @@ var appViewSes = function appViewSes(statusbox) {
                     appview.categoryindex[item['id']]= appview.categories.length - 2;
                     appview.addCategory(item['id'],item['name']);
                 });
-                //console.log(appview.categoryindex);
                 appview.tools.addCC();
                 appview.colors = (appview.categories.length - 2);
                 appview.detailsbox.addInfo();
@@ -478,7 +477,6 @@ var appViewSes = function appViewSes(statusbox) {
     this.getSessions = function () {
         while(this.sessions.length > 0) this.sessions.splice(0);
         $(".xtable tbody",this.element).empty();
-        //console.log(this.sessions);
         this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
         $.getJSON('getSessions.php',{
             mode:"sessions"
@@ -502,7 +500,6 @@ var appViewSes = function appViewSes(statusbox) {
     this.updateandshow = function() {
         this.getCategories();
         this.getSessions();
-        //console.log(this.categories);
         this.element.show();
     }
     
@@ -523,13 +520,13 @@ var appViewSes = function appViewSes(statusbox) {
     }
 
     this.hover = function(s) {
-        this.detailsbox.session(s,'session');
+        this.detailsbox.session(s,'Sesión');
     }
 
     this.refreshDetails = function() {
         if(this.selectedSessions.length > 1) this.detailsbox.sessions(this.selectedSessions.length);
-        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'session');
-        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
+        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'Sesión');
+        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length,"Categoría");
     }
 
     this.selectSession = function(s) {
@@ -592,7 +589,6 @@ var appViewSes = function appViewSes(statusbox) {
                 mode:"deleteS",
                 id:aux.id
             },function(textStatus) {
-                //console.log(textStatus);
                 if(textStatus) statusbox.showMessage('info','Se han elimindo las sesiones seleccionadas');
                 else statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
             });
@@ -614,8 +610,6 @@ var appViewSes = function appViewSes(statusbox) {
                     id:aux.id,
                     cat:category,
                     title:aux.title
-                },function(textStatus) {
-//                    if(textStatus == "success") console.log(aux.id);
                 });
                 selectedSession.changeCategory(category);
             });
@@ -651,7 +645,7 @@ var appViewCat = function appViewCat(statusbox) {
         this.listbox = new listBox(this);
         this.listbox.addTools('1');
         this.listbox.elementsList();
-        this.detailsbox = new detailsBox(this);
+        this.detailsbox = new detailsBox(this,"Categorías");
         this.detailsbox.animate();
         this.emptySessions = new session(null,"0","Ning\u00FAn resultado encontrado",null,appview);
         this.getSessions();
@@ -675,7 +669,6 @@ var appViewCat = function appViewCat(statusbox) {
                 appview.categoryindex[item['id']] = appview.sessions.length;
                 appview.sessions.push(new session(item['id'],item['id'],item['name'],"",appview));
             });
-            //console.log(appview.categoryindex);
             appview.defaultTab.select();
         });
     }
@@ -709,13 +702,13 @@ var appViewCat = function appViewCat(statusbox) {
     }
 
     this.hover = function(s) {
-        this.detailsbox.session(s,'category');
+        this.detailsbox.session(s,'Categoría');
     }
 
     this.refreshDetails = function() {
         if(this.selectedSessions.length > 1) this.detailsbox.sessions(this.selectedSessions.length);
-        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'category');
-        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
+        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'Categoría');
+        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length,"Categorías");
     }
 
     this.selectSession = function(s) {
@@ -800,25 +793,6 @@ var appViewCat = function appViewCat(statusbox) {
             });
         }
     };
-
-/*    this.changeCategory = function(category) {
-        if(this.selectedSessions != 0) {
-            for(i in this.selectedSessions) {
-                var aux = this.selectedSessions[i];
-                $.getJSON('modify.php',{
-                    mode:"update",
-                    id:aux.id,
-                    cat:category,
-                    title:aux.title
-                },function(textStatus) {
-                    if(textStatus == "success") //console.log(aux.id);
-                });
-                appview.selectedSessions[i].changeCategory(category);
-            }
-        }
-        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
-        appview.selectedCategory.select();
-    }*/
 }
 
 var appViewSettings = function appViewSettings(statusbox) {
@@ -861,6 +835,7 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
     this.selectedTab = null;
     this.workContainer = {};
     this.workElements = [];
+    this.traingroup = "";
     var appview = this;
 
     this.initialize = function() {
@@ -868,14 +843,10 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
         V_CONTENT.append(this.element);
         this.defaultTab = null;
         this.listbox = new listBox(this,'trainer');
-        //        this.tabs.push(new trainTab('B\u00FAsqueda',this));
-        //        this.tabs.push(new trainTab('Entrenamiento',this));
         this.searchTab = this.listbox.addWrap('B\u00FAsqueda','search');
         this.workTab = this.listbox.addWrap('Entrenamiento','polarity');
         $(".listwrap",this.element).hide();
-        //this.defaultTab = this.tabs[0];
         this.workContainer['aaData'] = this.workElements;
-        //console.log(V_TRAINER.contexts[1].id);
         $('a',this.searchTab).click();
     }
 
@@ -893,10 +864,8 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
                     text:$(".xtd_opinion",selectedElements[i]).text(),
                     id_session:V_TRAINER.contexts[1].id
                 },function(textStatus) {
-                    //console.log(textStatus);
                 });
             }
-            //            //console.log(selectedElements[i]);
             table.fnDeleteRow(selectedElements[i],false,false);
             $(selectedElements[i]).remove();
         }
@@ -961,11 +930,8 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
     }
     
     this.changePolarity = function(polarity) {
-        //        var selectedData = [];
         if($('.xtr_select >.xtd_polarity', G_Tables['polarity']).length > 0) {
             $('.xtr_select >.xtd_polarity', G_Tables['polarity']).each(function() {
-                //                selectedData.push($(this).text());
-                //console.log(this);
                 $("option",this).each(function() {
                     if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
                 });
@@ -1006,47 +972,36 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
             var opinion = [text,polarity];
             Data.push(opinion);
         });
-        //console.log($.toJSON(Data));
-        //console.log(JSON.stringify(Data));
         if(Data.length > 0) {
         $.ajax({
             url:'save.php',
             type: 'POST',
-            dataType:'json',
             data: {
                 id_session:V_TRAINER.contexts[1].id,
-                opinions:Data
+                opinions:Data,
+                dir:"files/" + V_TRAINER.contexts[1].id
             },
-//            async: false,
-            success: function(json) {
-                /*json.forEach(function(item){
-                    appview.addCategory(item['id'],item['name']);
-                });
-                appview.tools.addCC();
-                appview.detailsbox.addInfo();
-                appview.colors = (appview.categories.length - 2);*/
+            async: false,
+            success: function(data,textStatus) {
+                appview.traingroup = data;
             }
         });
         }
     }
     
     this.translateElements = function(options) {
-//        $("body").append('<applet name="smstranslate" id="amstranslate" code="SmsApplet.class" archive="/lib/java/smsApplet.jar,/lib/java/jdom.jar" width="150" height="50" mayscript="true">');
         if($('.xtr_select >.xtd_opinion', G_Tables['polarity']).length > 0) {
             $('.xtr_select >.xtd_opinion', G_Tables['polarity']).each(function() {
                 var translatedO = $(this).text();
                 if(options['fotolog'] != undefined) {
                     translatedO = desfotologuear(translatedO);
-                //console.log("fotolog: " + translatedO);                
                 alert("fotolog: " + translatedO);            
                 }
                 if(options['sms'] != undefined) {
                     translatedO = $("#smstranslate")[0].translate(translatedO);
-                //console.log("smsTranslate: " + translatedO);                
                 alert("smsTranslate: " + translatedO); 
                 }
             });
-//            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
         }
         else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");   
     }      
@@ -1055,236 +1010,45 @@ var appViewTrainBox = function appViewTrainBox(statusbox) {
         var translatedO = text;
         if(options['fotolog'] != undefined) {
             translatedO = desfotologuear(translatedO);
-            //console.log("fotolog: " + translatedO);                
-//            alert("fotolog: " + translatedO);            
         }
         if(options['sms'] != undefined) {
             translatedO = $("#smstranslate")[0].translate(translatedO);
-            //console.log("smsTranslate: " + translatedO);                
-//            alert("smsTranslate: " + translatedO); 
         }
         return translatedO;
     }        
-}
-
-var appViewTrainResults = function appViewTrainResults(statusbox) {
-
-    this.statusbox = statusbox;
-    this.tabs = [];
-    this.tab_list = {};
-    this.defaultTab = null;
-    this.selectedTab = null;
-    this.workContainer = {};
-    this.workElements = [];
-    var appview = this;
-
-    this.initialize = function() {
-        this.element = $('<div id="appViewTrainResults" class="appview" style="display:none"></div>');
-        V_CONTENT.append(this.element);
-        this.defaultTab = null;
-        this.listbox = new listBox(this,'trainer');
-        //        this.tabs.push(new trainTab('B\u00FAsqueda',this));
-        //        this.tabs.push(new trainTab('Entrenamiento',this));
-        this.searchTab = this.listbox.addWrap('B\u00FAsqueda','search');
-        this.workTab = this.listbox.addWrap('Entrenamiento','polarity');
-        $(".listwrap",this.element).hide();
-        //this.defaultTab = this.tabs[0];
-        this.workContainer['aaData'] = this.workElements;
-        //console.log(V_TRAINER.contexts[1].id);
-        $('a',this.searchTab).click();
-    }
-
-    this.updateandshow = function() {
-        this.element.show();
-    }
-
-    this.deleteElements = function(table) {
-        var selectedElements = table.fnGetSelected('xtr_select');
-        for ( var i=0 ; i<selectedElements.length ; i++ )
-        {
-            if(table == G_Tables['polarity']) {
-                $.getJSON('opinions.php',{
-                    mode:"delete",
-                    text:$(".xtd_opinion",selectedElements[i]).text(),
-                    id_session:V_TRAINER.contexts[1].id
-                },function(textStatus) {
-                    //console.log(textStatus);
-                });
-            }
-            //            //console.log(selectedElements[i]);
-            table.fnDeleteRow(selectedElements[i],false,false);
-            $(selectedElements[i]).remove();
-        }
-        V_STATUSBOX.showMessage('info',"Se han eliminado los elementos seleccionados");
-                table.fnReloadAjax();
-                $(".dataTables_processing").hide();
-    }
-
-    this.selectAll = function() {
-        $(".xtr",$(".listwrap:visible")).addClass("xtr_select");
-        $(".xtd_check img",$(".listwrap:visible")).show();
-    }
-
-    this.unselectAll = function() {
-        $(".xtr",$(".listwrap:visible")).removeClass("xtr_select");
-        $(".xtd_check img",$(".listwrap:visible")).hide();
-    }
-
-    this.add2work = function() {
-        var selectedData = [];
-        $('.xtr_select >.xtd_opinion', G_Tables['search']).each(function() {
-            selectedData.push($(this).text());
-        });
-        if(selectedData.length > 0) {
-            for ( var i=0 ; i<selectedData.length ; i++ )
-            {
-                $.getJSON('opinions.php',{
-                    mode:"insert",
-                    text:selectedData[i],
-                    id_session:V_TRAINER.contexts[1].id,
-                    i:i
-                },function(textStatus,i) {
-                    if(textStatus) {
-                    }
-                    if(textStatus == (selectedData.length - 1)) {
-                        G_Tables['polarity'].fnReloadAjax();
-                        $(".dataTables_processing").hide();
-                        appview.deleteElements(G_Tables['search']);
-                    }
-                });
-            }
-            $('a',this.workTab).click();
-            V_STATUSBOX.showMessage("info","A\u00F1adidas las opiniones seleccionadas al área de trabajo");
-        }
-        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");
-    }
     
-    this.showTab = function(tab) {
-        if(tab != this.selectedTab) {
-            if(tab == this.tabs[0]) {                
-                this.listbox.addTools('1');
-                this.listbox.searchList();
-            }
-            if(tab == this.tabs[1]) {
-                this.listbox.addTools('1');
-                this.listbox.searchList();
-            //                this.listbox.addTools('2');
-            //                this.listbox.polarityList();
-            }
-            this.selectedTab = tab;
-        }
-    }
-    
-    this.changePolarity = function(polarity) {
-        //        var selectedData = [];
-        if($('.xtr_select >.xtd_polarity', G_Tables['polarity']).length > 0) {
-            $('.xtr_select >.xtd_polarity', G_Tables['polarity']).each(function() {
-                //                selectedData.push($(this).text());
-                //console.log(this);
-                $("option",this).each(function() {
-                    if($(this).text() == polarity) $(this).attr('selected', 'selected').trigger('change');
-                });
-            });
-            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
-        }
-        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");   
-    }
-    
-    this.loadarff = function(file) {
+    this.train = function() {
+        if(G_Tables['polarity'].fnGetData().length > 10) {
+        appview.createClassiffier();
         $.ajax({
-            url:'loadarff.php',
-            type: 'POST',
-            dataType:'json',
+            url:'php_to_java.php',
             data: {
-                mode:"load",
-                id_session:V_TRAINER.contexts[1].id,
-                path:file
+                text:"START_TRAIN:" + V_TRAINER.contexts[1].id + ":" + appview.traingroup
             },
-            success: function(json) {
-                G_Tables['polarity'].fnReloadAjax();
-                $(".dataTables_processing").hide();
-            /*json.forEach(function(item){
-                    appview.addCategory(item['id'],item['name']);
-                });
-                appview.tools.addCC();
-                appview.detailsbox.addInfo();
-                appview.colors = (appview.categories.length - 2);*/
-            }
-        });
-    }
-    
-    this.createClassiffier = function() {
-        var Data = [];
-        $('.xtr',G_Tables['polarity']).each(function() {
-            var text = $('.xtd_opinion',this).text();
-            var polarity = $('.xtd_polarity select option:selected',this).text();
-            var opinion = [text,polarity];
-            Data.push(opinion);
-        });
-        //console.log($.toJSON(Data));
-        //console.log(JSON.stringify(Data));
-        if(Data.length > 0) {
-        $.ajax({
-            url:'save.php',
-            type: 'POST',
-            dataType:'json',
-            data: {
-                id_session:V_TRAINER.contexts[1].id,
-                opinions:Data
-            },
-//            async: false,
-            success: function(json) {
-                /*json.forEach(function(item){
-                    appview.addCategory(item['id'],item['name']);
-                });
-                appview.tools.addCC();
-                appview.detailsbox.addInfo();
-                appview.colors = (appview.categories.length - 2);*/
-            }
-        });
-        }
-    }
-    
-    this.translateElements = function(options) {
-//        $("body").append('<applet name="smstranslate" id="amstranslate" code="SmsApplet.class" archive="/lib/java/smsApplet.jar,/lib/java/jdom.jar" width="150" height="50" mayscript="true">');
-        if($('.xtr_select >.xtd_opinion', G_Tables['polarity']).length > 0) {
-            $('.xtr_select >.xtd_opinion', G_Tables['polarity']).each(function() {
-                var translatedO = $(this).text();
-                if(options['fotolog'] != undefined) {
-                    translatedO = desfotologuear(translatedO);
-                //console.log("fotolog: " + translatedO);                
-                alert("fotolog: " + translatedO);            
+            success: function(data) {
+                if(data == "error: could not connect to host\n") {
+                    V_STATUSBOX.showMessage('error',"¡¡Debes arrancar el servidor java de entrenamiento!!");                    
                 }
-                if(options['sms'] != undefined) {
-                    translatedO = $("#smstranslate")[0].translate(translatedO);
-                //console.log("smsTranslate: " + translatedO);                
-                alert("smsTranslate: " + translatedO); 
+                else if(data == "error: failed to write to socket\n") {
+                    V_STATUSBOX.showMessage('error',"¡¡Ocurrió un problema de comunicación con el servidor de entrenamiento!!");                                        
                 }
-            });
-//            V_STATUSBOX.showMessage("info","La polaridad de las opiniones seleccionadas se ha modificado");
-        }
-        else V_STATUSBOX.showMessage('alerta',"Debes seleccionar al menos una opinión para poder realizar esta operación");   
-    }      
-    
-    this.translateElement = function(text,options) {
-        var translatedO = text;
-        if(options['fotolog'] != undefined) {
-            translatedO = desfotologuear(translatedO);
-            //console.log("fotolog: " + translatedO);                
-//            alert("fotolog: " + translatedO);            
-        }
-        if(options['sms'] != undefined) {
-            translatedO = $("#smstranslate")[0].translate(translatedO);
-            //console.log("smsTranslate: " + translatedO);                
-//            alert("smsTranslate: " + translatedO); 
-        }
-        return translatedO;
-    }        
+                else {
+                    $('a',V_TRAINER.contexts[1].viewselector.element).each(function() {
+                        if($(this).text() == "Clasificadores") $(this).click();
+                    });
+                    V_STATUSBOX.showMessage('info',"Ha comenzado el entrenamiento con el conjunto <b>" + appview.traingroup + "</b>");
+                }
+            }
+        });        
+    }
+    else V_STATUSBOX.showMessage('alert',"Son necesarios <b>diez elementos</b> como mínimo para realizar la evaluación del clasificador");
+ }
+
 }
 
 var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
     var appview = this;
-    this.info = "\u00BFQuieres crear, editar o borrar Categorías para clasificar entrenamientos? Lo puedes hacer todo aqu\u00ED."
+    this.info = "\u00BFQuieres gestionar los clasificadores? Lo puedes hacer todo aqu\u00ED, desde accder a su información, hasta compararlos en una gráfica"
 
     this.initialize = function() {
         this.element = $('<div id="appviewCat" class="appview" style="display:none"></div>');
@@ -1295,14 +1059,12 @@ var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
         this.tabNames = {};
         this.defaultTab = null;
         this.listbox = new listBox(this);
-//        this.listbox.addTools('1');
         this.traingroupTab = this.listbox.addWrap("Cjto. entrenamiento",'traingroup');
         this.filterTab = this.listbox.addWrap('Filtro','Filter');
         this.defaultTab = this.traingroupTab;
-        this.detailsbox = new detailsBox(this);
+        this.detailsbox = new detailsBox(this,"Clasificadores");
         this.detailsbox.animate();
-        console.log($(this.defaultTab).text());
-        this.detailsbox.category($(this.defaultTab).text(),this.sessions.length);
+        this.detailsbox.category("",this.sessions.length,"Clasificadores");
         $('a',this.defaultTab).click();
     }
 
@@ -1321,7 +1083,6 @@ var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
                 appview.categoryindex[item['id']] = appview.sessions.length;
                 appview.sessions.push(new session(item['id'],item['id'],item['name'],"",appview));
             });
-            //console.log(appview.categoryindex);
             appview.defaultTab.select();
         });
     }
@@ -1357,14 +1118,15 @@ var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
         this.refreshDetails();
     }
 
-    this.hover = function(s) {
-        this.detailsbox.session(s,'category');
+    this.hover = function(s,aData) {
+        this.detailsbox.classifier(aData);
     }
 
-    this.refreshDetails = function() {
-        if(this.selectedSessions.length > 1) this.detailsbox.sessions(this.selectedSessions.length);
-        else if(this.selectedSessions.length == 1) this.detailsbox.session(this.selectedSessions[0],'category');
-        else this.detailsbox.category(this.selectedCategory.name,this.sessions.length);
+    this.refreshDetails = function(table,aData) {
+        var selectedElements = table.fnGetSelected('xtr_select');
+        if(selectedElements.length > 1) this.detailsbox.sessions(selectedElements.length);
+        else if(selectedElements.length == 1) this.detailsbox.classifier(table.fnGetData(selectedElements[0]));
+        else this.detailsbox.category("",table.fnGetSelected('xtr').length);
     }
 
     this.selectSession = function(s) {
@@ -1401,57 +1163,41 @@ var appViewTrainClassifiers = function appViewTrainClassifiers(statusbox) {
         });
     };
 
-    this.deleteElements = function() {
-        if (this.selectedSessions.length == 0) statusbox.showMessage('alerta',"Tienes que seleccionar al menos una categoría para realizar esta operaci\u00F3n");
-        else{
-            statusbox.showTitle("Esto eliminará todas las sesiones pertenecientes a esta categoría...",true,function(){
-                while(appview.selectedSessions.length > 0) {
-                    var aux = appview.selectedSessions.pop();
-                    aux.hide();
-                    $.ajax({
-                        type: "GET",
-                        url: 'modify.php',
-                        data: {
-                            mode:"deleteC",
-                            id:aux.id    
-                        },
-                        dataType: "json",
-                        success: function(json) {
-                            //                        statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
-                            statusbox.showMessage('info','La Operación se ha realizado correctamente, (Todas las sesiones que perteneciesen a esta categoría se han eliminado)');
-                        },
-                        error: function() {
-                            statusbox.showMessage('error','No ha sido posible realizar la operaci\u00F3n, int\u00E9ntelo otra vez por favor');
-                        }
-                    });
-                    $.each(appview.sessions, function(i,session){
-                        if (session == aux)
-                            appview.sessions.splice(i,1);
-                    });
-                }
-                appview.selectedCategory.select();
-            });
-        }
-    };
-
-/*    this.changeCategory = function(category) {
-        if(this.selectedSessions != 0) {
-            for(i in this.selectedSessions) {
-                var aux = this.selectedSessions[i];
-                $.getJSON('modify.php',{
-                    mode:"update",
-                    id:aux.id,
-                    cat:category,
-                    title:aux.title
-                },function(textStatus) {
-                    if(textStatus == "success") //console.log(aux.id);
+    this.deleteElements = function(table) {
+        var selectedElements = table.fnGetDataSelected('xtr_select');
+        //console.log(selectedElements);
+        if(selectedElements.length == 0) V_STATUSBOX.showMessage('alert',"Debes seleccionar al menos un elemento");
+        else {
+            $(selectedElements).each(function() {
+                console.log(this._aData[4]);
+                var id = this._aData[4];
+                $.ajax({
+                    url:'classifiers.php',
+                    data: {
+                        mode:"delete",
+                        id:id
+                    }
                 });
-                appview.selectedSessions[i].changeCategory(category);
-            }
+            });
+            V_STATUSBOX.showMessage('info',"Se han eliminado los elementos seleccionados");
         }
-        else statusbox.showMessage('alerta',"Tienes que seleccionar al menos una sesi\u00F3n para realizar esta operaci\u00F3n");
-        appview.selectedCategory.select();
-    }*/
+    /*        for ( var i=0 ; i<selectedElements.length ; i++ )
+        {
+            if(table == G_Tables['polarity']) {
+                $.getJSON('opinions.php',{
+                    mode:"delete",
+                    text:$(".xtd_opinion",selectedElements[i]).text(),
+                    id_session:V_TRAINER.contexts[1].id
+                },function(textStatus) {
+                });
+            }
+            table.fnDeleteRow(selectedElements[i],false,false);
+            $(selectedElements[i]).remove();
+        }
+        V_STATUSBOX.showMessage('info',"Se han eliminado los elementos seleccionados");
+                table.fnReloadAjax();
+                $(".dataTables_processing").hide();*/
+    }
 }
 
 var listBox = function listBox(appview,type) {
@@ -1465,10 +1211,6 @@ var listBox = function listBox(appview,type) {
 
     this.addTab = function(name,category) {
         return this.list.addTab(name, category);
-    }
-
-    this.loading = function(mode) {
-        this.list.loading(mode);
     }
 
     this.addTools = function(type) {
@@ -1504,10 +1246,7 @@ var list = function list(appview,type) {
 
     this.element.append(this.listtabs.element);
     if(type == 'trainer') {
-        //        this.searchbox = new searchBox();
         this.element.css('width', '980px');
-    //this.listtabs.addTab("B\u00FAsqueda");
-    //        this.listtabs.addDummyTab("B\u00FAsqueda");
     }
     this.element.append(this.listwrap.element);
 
@@ -1607,15 +1346,19 @@ var listWrap = function listWrap(appview,type) {
             this.tools.addSearch();
             break;
         case 'polarity':
+            this.tools.addTrain();
             this.tools.addDelete(G_Tables[type]);
             this.tools.addCP();
             this.tools.addCreateClassiffier();
             this.tools.addLoadClassiffier();
             break;
         case 'Filter':
-        case 'traingroup':
-            this.tools.addOpen();
             this.tools.addDelete(G_Tables[type]);
+            this.tools.addCollapse();
+            break;
+        case 'traingroup':
+            this.tools.addDelete(G_Tables[type]);
+            this.tools.addCollapse();
             break;
         }
     }
@@ -1661,6 +1404,10 @@ var tools = function tools(appview) {
         this.toolbox.addOpen();
     }
 
+    this.addTrain = function() {
+        this.toolbox.addTrain();
+    }
+
     this.addDelete = function(table) {
         this.toolbox.addDelete(table);
     }
@@ -1692,6 +1439,11 @@ var tools = function tools(appview) {
     this.addTranslate = function() {
         this.toolbox.addTranslate();
     }
+
+    this.addCollapse = function() {
+        this.toolbox.addCollapse();        
+    }
+
 }
 
 var toolbox = function toolbox(appview){
@@ -1723,10 +1475,6 @@ var toolbox = function toolbox(appview){
     this.addLoadClassiffier = function() {
         this.actions.addLoadClassiffier();
     }
-
-/*    this.addTranslate = function() {
-        this.actions.addTranslate();
-    }*/
     
     this.addChangeCategory = function(){
         this.actions.addChangeCategory();
@@ -1753,6 +1501,15 @@ var toolbox = function toolbox(appview){
     this.addTranslate = function() {
         this.translate = new translate(this.element,appview);
     }
+
+    this.addTrain = function() {
+        this.actions.addTrain();
+    }
+    
+    this.addCollapse = function() {
+        this.selectors.addCollapse();        
+    }
+    
 }
 
 var actions = function actions(father,appview) {
@@ -1821,9 +1578,7 @@ var actions = function actions(father,appview) {
         $.getJSON("listdir.php", {
             dir:"files/" + V_TRAINER.contexts[1].id
             }, function(json) {
-            //console.log(json);
             json.forEach(function(element,i){
-                //console.log(element);
                 a.addClassiffier(element);
             });
         })
@@ -1877,6 +1632,15 @@ var actions = function actions(father,appview) {
 //        var translate = new translateBox(appview);
         this.form.append(translate.element);
     }
+
+    this.addTrain = function() {
+        var trainButton = $('<div id=train_button></div>');
+        a.form.append(trainButton);
+        trainButton.click(function() {
+            appview.train();
+            return false;
+        });
+    }
 }
 
 var selectors = function selectors(father,appview) {
@@ -1895,6 +1659,23 @@ var selectors = function selectors(father,appview) {
         //uncheck all the elements
         return false;
     });
+    
+    this.addCollapse = function() {
+        this.element.append('   Grupos: <a id="colapseAll" href=" ">Contraer todos</a>, <a id="colapseNone" href=" ">Expandir todos</a>');        
+        $("#colapseAll",this.element).click(function() {
+            //colapse all the groups
+            //appview.colapseAll();
+            $(".open",$(".listwrap:visible")).click();
+            return false;
+        });
+
+        $("#colapseNone",this.element).click(function() {
+            //expand all the groups
+            //appview.colapseNone();
+            $(".close",$(".listwrap:visible")).click();
+            return false;
+        });
+    }
 }
 
 var search = function search(father,appview) {
@@ -2026,13 +1807,11 @@ var addBox = function addBox(father,appview) {
 
         this.addText.keypress(function(event) {
             if (event.keyCode == '13') {
-                //console.log(elements.table.dataTable().fnSettings().aoColumns.length);
                 var data = [
                 "",
                 "",
                 a.addText.val()];
                 for(i=3;i<elements.table.dataTable().fnSettings().aoColumns.length;i++) data.push("");
-                //console.log(data);
                 elements.table.dataTable().fnAddData(data);
                 a.addText.val("");
                 a.addText.blur();
@@ -2060,20 +1839,12 @@ var elements = function elements(father,appview) {
     father.append(this.element);
     var e = this;
     
-    //    V_elements = this;
-    
     this.getData = function(url,mode,options) {
-        //console.log(options);
         $("#in_processing",father).show();
-//        //console.log(url);
         $.getJSON(url,//'twitter_search.php?q=hola&n=10', 
             function(json){
                 e.searchData = json['aaData'];
-//                //console.log(json);
-//                //console.log(options.length);
-//                //console.log(e.searchData)
                 for (i in e.searchData) {
-                    //console.log(i);
                     if(e.searchData[i][2] != undefined) e.searchData[i][2] = appview.translateElement(e.searchData[i][2],options);
                 }
                 $("#in_processing",father).hide();
@@ -2125,19 +1896,7 @@ var elements = function elements(father,appview) {
                 "aTargets":[2]
             },
 
-            /*            {
-                "fnRender": function ( oObj ) {
-                    ////console.log(oObj);
-                    var select = '<span style="white-space: nowrap;"> <select class="polarity">';
-                    for (i in options) select += '<option value="' + i  + '">' + options[i] + '</option>';
-                    select += '</select></span>';
-                    return select;
-                },
-                "sClass":"xtd_polarity",
-                "aTargets":[2]
-            },*/
             ],
-            //            'sAjaxSource':'twitter_search.php?q=hola&n=10',
             'aaData' : e.searchData,
             "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
                 $(nRow).addClass('xtr');
@@ -2150,7 +1909,6 @@ var elements = function elements(father,appview) {
                         $(this).removeClass("xtr_hover");
                     }
                     );
-//                //console.log(nRow);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
@@ -2162,7 +1920,7 @@ var elements = function elements(father,appview) {
 
 
     }
-    //    G_Tables['search'] = this.table;
+
     this.polarityTable = function(options) {
         V_elements['polarity'] = e;
         $('colgroup',this.table).empty();
@@ -2213,9 +1971,7 @@ var elements = function elements(father,appview) {
             },
             {
                 "fnRender": function ( oObj ) {
-                    ////console.log(oObj);
                     var select = '<form><span style="white-space: nowrap;"> <select class="polarity">';
-//                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
                     $(options).each(function(i,element) {select += '<option class="sel' + i + '" value="' + i  + '">' + element + '</option>'});
                     select += '</select></span></form>';
                     return select;
@@ -2225,7 +1981,6 @@ var elements = function elements(father,appview) {
             }
             ],
             'sAjaxSource':'opinions.php?mode=get&id_session=' + V_TRAINER.contexts[1].id,
-            //'aaData' : G_polarityData,
             "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
                 $(nRow).addClass('xtr');
                 $('td',nRow).addClass('xtd');
@@ -2237,8 +1992,6 @@ var elements = function elements(father,appview) {
                         $(this).removeClass("xtr_hover");
                     }
                     );
-                //console.log(nRow);
-                //                //console.log(aData);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
@@ -2254,12 +2007,10 @@ var elements = function elements(father,appview) {
                         "id":aData[4],
                         "polarity":$(":selected",this).text()
                     }, function(textStatus) {
-                        //console.log(textStatus);
                     })
                 });
                 $('select option',nRow).each(function() {
                     if($(this).text() == aData[5]) $(this).attr('selected', 'selected').trigger('change');
-                //console.log($(this).text() + " == " + aData[5]);
                 });
                 return nRow;
             }
@@ -2278,6 +2029,7 @@ var elements = function elements(father,appview) {
 
         //G_polarityData = [["","","NO HAY REGISTROS",'']];
         var sd = "";
+        var redraw = false;
         
         G_Tables[group] = e.table.dataTable({
             "bPaginate": false,
@@ -2286,7 +2038,7 @@ var elements = function elements(father,appview) {
             "bSort": false,
             "bInfo": false,
             "bAutoWidth": false,
-            'bProcessing':true,
+//            'bProcessing':true,
             'bDestroy':true,
             "oLanguage": {
                 "sProcessing": '<table class="xtable xtable_loading"><colgroup><col class="col_prio"/><col class="col_text"/><col class="col_image"/></colgroup><tbody><tr class="xtr"><td class="xtd xtd_prio prioN">&nbsp;</td><td class="xtd xtd_text">Cargando...</td><td class="xtd xtd_image"><img src="/img/busy.gif" alt="Cargando..."/></td></tr></tbody></table>',
@@ -2302,7 +2054,7 @@ var elements = function elements(father,appview) {
                 "bVisible":false
             },
             {
-                "sClass":"xtd_prio prio2",
+                "sClass":"xtd_prio",
                 "aTargets":[0]
             },
             {
@@ -2320,22 +2072,76 @@ var elements = function elements(father,appview) {
                 "sClass":"xtd_date",
                 "aTargets":[3],
                 "fnRender" : function(oObj) {
-                    return getDateFormated(0,oObj['aData'][3]);
-                }
-            }
-                /*,
-            {
-                "fnRender": function ( oObj ) {
-                    ////console.log(oObj);
-                    var select = '<form><span style="white-space: nowrap;"> <select class="polarity">';
-//                    for (i in options) select += '<option class="sel' + i + '" value="' + i  + '">' + options[i] + '</option>';
-                    $(options).each(function(i,element) {select += '<option class="sel' + i + '" value="' + i  + '">' + element + '</option>'});
-                    select += '</select></span></form>';
-                    return select;
+                    if(oObj['aData'][16] < 100) {
+                        var cell = '<p class="progressBar"><span><em style="left:' + 1.28*parseInt(oObj['aData'][16]) + 'px">' + oObj['aData'][16] + '%</em></span></p>';
+                        var refreshPB = function refreshPB() {
+                            $.ajax({
+                                url:'classifiers.php',
+                                dataType:'json',
+                                data: {
+                                    mode:"getClassifier",
+                                    id:oObj['aData'][4],
+                                    group:group
+                                },
+                                success: function(json) {
+                                    G_Tables[group].fnUpdate(json['aaData'],oObj.iDataRow,false,false);
+                                }
+                            });
+                        }
+                        setTimeout(refreshPB,2000);            
+                        redraw = true;
+                        return cell;
+                    }
+                    else {
+                        return getDateFormated(0,oObj['aData'][3]);
+                    }
                 },
-                "sClass":"xtd_polarity",
-                "aTargets":[3]
-            }*/
+                "bUseRendered": false
+            },
+            {
+                "aTargets":[6],
+                "bVisible":false
+            },
+            {
+                "aTargets":[7],
+                "bVisible":false
+            },
+            {
+                "aTargets":[8],
+                "bVisible":false
+            },
+            {
+                "aTargets":[9],
+                "bVisible":false
+            },
+            {
+                "aTargets":[10],
+                "bVisible":false
+            },
+            {
+                "aTargets":[11],
+                "bVisible":false
+            },
+            {
+                "aTargets":[12],
+                "bVisible":false
+            },
+            {
+                "aTargets":[13],
+                "bVisible":false
+            },
+            {
+                "aTargets":[14],
+                "bVisible":false
+            },
+            {
+                "aTargets":[15],
+                "bVisible":false
+            },
+            {
+                "aTargets":[16],
+                "bVisible":false
+            }
             ],
             'sAjaxSource':'classifiers.php?mode=get&id_session=' + V_TRAINER.contexts[1].id + '&group=' + group,
             //'aaData' : G_polarityData,
@@ -2345,19 +2151,19 @@ var elements = function elements(father,appview) {
                 $(nRow).hover(
                     function () {
                         $(this).addClass("xtr_hover");
+                        appview.hover(this,aData);
                     },
                     function () {
                         $(this).removeClass("xtr_hover");
+                        appview.refreshDetails(e.table);
                     }
                     );
-                //console.log(nRow);
-                //console.log(aData);
                 $(nRow).unbind('click');
                 $(nRow).click( function() {
                     $(this).toggleClass('xtr_select');
                     $('img',this).toggle();
+                    appview.refreshDetails(e.table,aData);
                 });
-                $('.xtd_prio',nRow).attr('class','xtd_prio xtd prio' + $('select',nRow).val());
                 return nRow;
             },
             "fnDrawCallback": function ( oSettings ) {
@@ -2365,7 +2171,6 @@ var elements = function elements(father,appview) {
                 {
                     return;
                 }
-			
                 var nTrs = $('tbody tr',e.table);
                 nTrs.hide();
                 var iColspan = nTrs[0].getElementsByTagName('td').length;
@@ -2377,35 +2182,58 @@ var elements = function elements(father,appview) {
                     var sGroup = oSettings.aoData[ oSettings.aiDisplay[iDisplayIndex] ]._aData[5];
                     if ( sGroup != sLastGroup )
                     {
+                        var cont = 0;
+                        $.each(groups, function() {
+                            cont ++;
+                        });
                         groups[sGroup] = [];
                         var nGroup = document.createElement( 'tr' );
                         var nCell = document.createElement( 'td' );
                         nCell.colSpan = iColspan;
                         nCell.className = "group";
- //                       nCell.className = "open";
                         nCell.innerHTML = sGroup;
                         nGroup.appendChild( nCell );
-                        //console.log(nTrs[i]);
                         nTrs[i].parentNode.insertBefore( nGroup, nTrs[i] );
                         sLastGroup = sGroup;
                     }
                     groups[sGroup].push(G_Tables[group].fnGetNodes(oSettings.aiDisplay[iDisplayIndex]));
                 }
                 $(".group",e.table).addClass("close");
+                var color = 0;
+                $.each(groups, function() {
+                    $.each(this,function(){
+                        $(".xtd_prio",this).addClass("prio" + color);
+                    });
+                    color++;
+                });
+                
                 $(".group",e.table).click(function() {
                     $(this).toggleClass("open");
                     $(this).toggleClass("close");
-                    console.log(groups[$(this).text()]);
-                    console.log($(this).text());
                     $(groups[$(this).text()]).each(function() {
                         $(this).toggle();
                     })
-                    //alert(groups);
                 });
-                console.log(groups);
-//                console.log(G_Tables['polarity'].fnGetNodes());
-            }            
-        });        
+                $(".group",e.table).click();                
+            }
+        });
+        var refresh = function refresh() {
+                    $.ajax({
+                        url:'classifiers.php',
+                        dataType:'json',
+                        data: {
+                            mode:"get",
+                            id_session:V_TRAINER.contexts[1].id,
+                            group:group
+                        },
+                        success: function(json) {
+                            if(json['aaData'].length != G_Tables[group].fnGetData().length)
+                                G_Tables[group].fnReloadAjax();
+                        }
+                    });
+                }
+        setInterval(refresh,5000);            
+      
     }
 }
 
@@ -2470,7 +2298,6 @@ var settingsForm = function settingsForm(div,appview) {
     this.form = $('<form id="settingsform" autocomplete="off"></form>');
     div.append(this.form);
     this.userid = $("#userid").val();
-    //console.log(this.userid);
     this.username = null;
     this.name = null;
     this.surname = null;
@@ -2526,9 +2353,6 @@ var settingsForm = function settingsForm(div,appview) {
 
     this.spyChange = function(element,value){
         element.keyup(function() {
-            /*            if(element.val() != value)
-                //console.log(element.val() + "!=" + value);
-            else //console.log(element.val() + "==" + value);*/
             if(f.changes()) {
                 $("#settingssubmit").removeAttr("disabled");
                 $("#settingscancel").removeAttr("disabled");
@@ -2549,7 +2373,6 @@ var settingsForm = function settingsForm(div,appview) {
             mode:"get",
             id:this.userid
         },function(json) {
-            //console.log("sdkjfhasfd");
             f.username = json['usr'];
             $("#username",f.form).val(f.username);
             f.spyChange($("#username",f.form),f.username);
@@ -2581,7 +2404,6 @@ var settingsForm = function settingsForm(div,appview) {
                 appview.statusbox.showMessage("Guardando...");
             },
             success: function(data) {
-                //console.log(data);
                 if(data == "success") {
                     appview.statusbox.showMessage('info',"Configuraci\u00F3n guardada");
                     f.loadData();
@@ -2612,12 +2434,14 @@ var appfooter = function appfooter() {
 </div>');
 }
 
-var detailsBox = function detailsBox(appview) {
+var detailsBox = function detailsBox(appview,type) {
     this.element = $('<div id="detailsbox" style="left: 0px; top: 0px; "></div>');
     appview.element.append(this.element);
     this.details = $('<div id="details"></div>');
     this.element.append(this.details);
-    this.detailstab = new detailstab(this.details,"Categor\u00EDa");
+    var title =  "Categor\u00EDa";
+    if(type != null) title = type;
+    this.detailstab = new detailstab(this.details,title);
     this.detailswrap = new detailswrap(this.details);
     this.detailshelp = new detailshelp(appview);
     this.detailsKey = new detailskey(appview);
@@ -2657,18 +2481,23 @@ var detailsBox = function detailsBox(appview) {
         this.detailswrap.showGeneral(name);
     }
 
-    this.category = function (category,numSessions) {
-        this.detailstab.changeName("Categor\u00EDa");
+    this.category = function (category,numSessions,title) {
+        this.detailstab.changeName(title);
         this.detailswrap.showCategory(category,numSessions);
     }
 
     this.session = function(session,type) {
-        this.detailstab.changeName("Sesi\u00F3n");
+        this.detailstab.changeName(type);
         this.detailswrap.showSession(session,type);
     }
 
+    this.classifier = function(aData) {
+        this.detailstab.changeName("Resultados del entrenamiento");
+        this.detailswrap.showClassifier(aData);
+    }
+
     this.sessions = function(count) {
-        this.detailstab.changeName("Sesiones");
+        this.detailstab.changeName(type);
         this.detailswrap.showSessions(count);
     }
 
@@ -2698,7 +2527,7 @@ var detailstab = function detailstab(father,name) {
         tab.click();
     }
 
-    this.add("Categor\u00EDa");
+    this.add(name);
 
     this.reset = function (name) {
         var tab = $('<li><a href=" ">' + name +'</a></li>');
@@ -2727,21 +2556,32 @@ var detailswrap = function detailswrap(father) {
     this.detailscontent = new detailscontent(this.detailsoverflow);
 
     this.showSession = function(session,type) {
+        if(type != 'Clasificador') {
+            this.detailscontent.title.changeTitle(session.title);
+            this.detailscontent.title.jeditable(session,type);
+        }
+        else {
+            this.detailscontent.title.changeTitle(session);            
+        }
+    };
 
-        this.detailscontent.title.changeTitle(session.title);
-        this.detailscontent.title.jeditable(session,type);
+    this.showClassifier = function(aData) {
+        this.detailscontent.title.changeTitle(aData[6]);
+        this.detailscontent.listdetailswrap.classifier(aData);
     };
 
     this.showSessions = function(count) {
 
         this.detailscontent.title.changeTitle("Selecci\u00F3n m\u00FAltiple");
         this.detailscontent.title.addCount(count,"Sesiones");
+        this.detailscontent.listdetailswrap.classifierdetails.hide();
     };
 
     this.showCategory = function(category,numSessions) {
 
         this.detailscontent.title.changeTitle(category);
         this.detailscontent.title.addCount(numSessions,"Sesiones");
+        this.detailscontent.listdetailswrap.classifierdetails.hide();
     };
 
     this.showGeneral = function(name) {
@@ -2755,7 +2595,7 @@ var detailscontent = function detailscontent(father) {
     this.element = $('<div id="detailscontent" style="padding-top: 0.4em;"></div>');
     father.append(this.element);
     this.title = new detailstitle(this.element);
-
+    this.listdetailswrap = new listdetailswrap(this.element);
 }
 
 var detailstitle = function detailstitle(father) {
@@ -2811,6 +2651,40 @@ var detailstitle = function detailstitle(father) {
         this.element.append('<br/>');
         this.element.append(this.fieldcount);
         this.fieldcount.text("(" + cont + " " + type + ")");
+    }
+}
+
+var listdetailswrap = function listdetailswrap(father) {
+    this.element = $('<div id="listdetailswrap"></div>');
+    this.classifierdetails = $('<div id="classifierdetails" style="display:none">\
+                                    <div id="detailsinstances" style=""><span id="detailsinstances_highlight" title="">Número de instancias: <span class="field" id="detailsinstances_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailsattributes" style=""><span id="detailsattributes_highlight" title="">Número de atributos: <span class="field" id="detailsattributes_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailscorrect" style=""><span id="detailscorrect_highlight" title="">Clasificados correctamente: <span class="field" id="detailscorrect_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailspctcorrect" style=""><span id="detailspctcorrect_highlight" title="">Clasificados correctamente(%): <span class="field" id="detailspctcorrect_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailsincorrect" style=""><span id="detailsincorrect_highlight" title="">Clasificados incorrectamente: <span class="field" id="detailsincorrect_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailspctincorrect" style=""><span id="detailspctincorrect_highlight" title="">Clasificados incorrectamente(%): <span class="field" id="detailspctincorrect_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailsmae" style=""><span id="detailsmae_highlight" title="">Error media absoluto: <span class="field" id="detailsmae_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailsrmse" style=""><span id="detailsrmse_highlight" title="">Raiz del error cuadrático: <span class="field" id="detailsrmse_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                                    <div id="detailsrae" style=""><span id="detailsrae_highlight" title="">Error absoluto relativo: <span class="field" id="detailsrae_span"></span><a href=" " title=""><img class="field_img" src="/img/ico/ico_help_gry.gif" alt="Establecer fecha de vencimiento (d)"></a></span></div>\
+                            </div>');
+    this.element.append(this.classifierdetails);
+    father.append(this.element);
+    
+    function twodecimal(floatstr) {
+        var values = floatstr.split(".");
+        return values[0] + "," + values[1].substr(0, 2);
+    }
+    this.classifier = function(aData) {
+        $("#detailsinstances_span",this.classifierdetails).text(aData[7]);
+        $("#detailsattributes_span",this.classifierdetails).text(aData[8]);
+        $("#detailscorrect_span",this.classifierdetails).text(aData[9]);
+        $("#detailspctcorrect_span",this.classifierdetails).text(twodecimal(aData[10]) + "%");
+        $("#detailsincorrect_span",this.classifierdetails).text(aData[11]);
+        $("#detailspctincorrect_span",this.classifierdetails).text(twodecimal(aData[12]) + "%");
+        $("#detailsmae_span",this.classifierdetails).text(twodecimal(aData[13]));
+        $("#detailsrmse_span",this.classifierdetails).text(twodecimal(aData[14]));
+        $("#detailsrae_span",this.classifierdetails).text(twodecimal(aData[15]));
+        this.classifierdetails.show();
     }
 }
 

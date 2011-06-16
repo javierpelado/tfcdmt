@@ -3,11 +3,17 @@ svn:wc:ra_dav:version-url
 V 44
 /svn/!svn/ver/42/trunk/myTFC/trainer/files/1
 END
-20110530_181215.arff
+20110607_192504.arff
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/svn/!svn/ver/42/trunk/myTFC/trainer/files/1/20110530_181215.arff
+/svn/!svn/ver/43/trunk/myTFC/trainer/files/1/20110607_192504.arff
+END
+20110607_190706.arff
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/43/trunk/myTFC/trainer/files/1/20110607_190706.arff
 END
 1.arff
 K 25

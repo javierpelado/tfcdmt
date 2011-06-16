@@ -561,6 +561,7 @@ body.v2 #keywrap{
 
 .field{
     display:inline;
+    font-weight: bold;
 }
 
 .field_img{
@@ -3557,4 +3558,43 @@ td.group {
 
 .open {
     background-image: url('/img/ico/ico_close.png');    
+}
+
+
+/* SINGLE PROGRESS BAR */
+
+.progressBar{
+	width:142px;
+	height:27px;
+	background:url(/img/progress_bar/Untitled/bg_bar.gif) no-repeat 0 0;
+	position:relative;
+        margin: 0.5em 0em;
+}
+.progressBar span{
+	position:absolute;
+	display:block;
+	width:128px;
+	height:15px;
+	background:url(/img/progress_bar/Untitled/bar.gif) no-repeat 0 0;
+	top:6px;
+	left:6px;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+.progressBar em{
+	position:absolute;
+	display:block;
+	width:136px;
+	height:16px;
+	background:url(/img/progress_bar/Untitled/bg_cover.gif) repeat-x 0 0;
+	top:0;
+}
+
+#train_button {
+        width : 55px;
+        height: 55px;
+        float : right;
+        margin-right: 20px;
+        cursor: pointer;
+        background:url(/img/ico/Untitled/ico_retroAliment.png) no-repeat 0 0;
 }

@@ -1,0 +1,16 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"Lo que me gusta del verano es poder tomar helado #cancionpegajosa," POSITIVE
+"@Adriyuyu Jajaja Me gusta saber que sigues tan loco como siempre !," POSITIVE
+"@nadiaadepaula obvio!! si yo ls escuchara, no viviría mi vida d la manera que me gusta vivivirla por suert no vems mas a ls chusms del secu!," POSITIVE
+"@bullysteria que mal que no me gusta lady gaga jaja lo siento pero suerte que #cagado," POSITIVE
+"@jor_garcia_ pues no me gusta creer que no mejor espero al sábado y disfrutar el partido, no me gusto el planteamiento de chivas," NEGATIVE
+"RT @FcoFondeur: Feo Viejo horroroso degenerado! xD," NEGATIVE
+"Hasta cuando este clima horroroso! Grrrr," NEGATIVE
+"Que bien, hace un calor horroroso y yo vestida con negro...," NEGATIVE
+"@la100fm a mi lo que me puede son las compras, sea donde sea que voy algo siempre me gusta y me lo quiero comprar!!! me pica la plata. besos," NEUTRAL
+"Me gusta su letra.," NEUTRAL

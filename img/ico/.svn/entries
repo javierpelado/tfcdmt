@@ -1,14 +1,14 @@
 10
 
 dir
-39
+42
 https://tfcdmt.googlecode.com/svn/trunk/myTFC/img/ico
 https://tfcdmt.googlecode.com/svn
 
 
 
-2011-05-27T08:38:42.090954Z
-39
+2011-06-01T18:39:28.641470Z
+42
 javier.pelado
 has-props
 
@@ -96,7 +96,7 @@ has-props
 
 ico_close.png
 file
-42
+
 
 
 
@@ -127,6 +127,40 @@ has-props
 
 
 841
+
+ico_retroAliment.png
+file
+49
+
+
+
+2011-06-07T14:36:00.000000Z
+3caa9d567ffa37d415adfb4c6f28708c
+2011-06-16T15:54:48.170448Z
+49
+javier.pelado
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+31487
 
 ico_edit.gif
 file
@@ -1187,17 +1221,37 @@ has-props
 
 ico_machine_learning.jpg
 file
-0
-
-
-add
+43
 
 
 
-
-
+2011-06-07T14:48:32.000000Z
+ce274ab22abbaafb3407bb5222cb73f4
+2011-06-13T18:01:24.740339Z
+43
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+48130
 
 ico_pro_sm.gif
 file
@@ -1269,17 +1323,37 @@ has-props
 
 ico_weka.jpg
 file
-0
-
-
-add
+43
 
 
 
-
-
+2011-06-07T14:48:07.000000Z
+b6cbf9c785acb9a6c88abbccbcff91cc
+2011-06-13T18:01:24.740339Z
+43
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1728
 
 ico_edit_1.gif
 file
@@ -1351,17 +1425,37 @@ has-props
 
 ico_retroAliment256x256.png
 file
-0
-
-
-add
+43
 
 
 
-
-
+2011-06-07T14:36:00.000000Z
+3caa9d567ffa37d415adfb4c6f28708c
+2011-06-13T18:01:24.740339Z
+43
+javier.pelado
 has-props
-has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+31487
 
 ico_search_blu.gif
 file
@@ -1603,7 +1697,7 @@ has-props
 
 ico_open.png
 file
-42
+
 
 
 

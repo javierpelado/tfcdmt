@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico" />
+
+    <title>Apara - jobandtalent</title>
+
+    <link href="http://www.jobandtalent.com/stylesheets/candidate_packaged.css?1305287347" media="screen" rel="stylesheet" type="text/css" />
+    
+    <!--[if IE 7]>
+      <link href="http://www.jobandtalent.com/stylesheets/company_ie7.css?1305287347" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    
+    
+      
+<script type="text/javascript" charset="utf-8">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6202132-1']);
+  _gaq.push(['_trackPageview']);
+
+  
+  
+  _gaq.push(['_setVar', 'Candidate']);
+  
+    
+  
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+
+</script>
+
+    
+    
+    <script src="http://www.jobandtalent.com/javascripts/candidate_packaged.js?1305287347" type="text/javascript"></script>
+    <script type="text/javascript">
+  //<![CDATA[
+    var _kmq = _kmq || [];
+    function _kms(u){
+      setTimeout(function(){
+        var s = document.createElement('script');
+        var f = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = u;
+        f.parentNode.insertBefore(s, f);
+      }, 1);
+    }
+    _kms('//i.kissmetrics.com/i.js');
+    _kms('//doug1izaerwt3.cloudfront.net/c092752d43361aa5fd90f431c0ac513b73075657.1.js');
+  //]]>
+</script>
+
+    
+    
+<meta property="fb:app_id" content="313920124347"/>
+<meta property="og:title" content="Apara"/>
+<meta property="og:type" content="company"/>
+<meta property="og:url" content="http://jobandtalent.com/companies/apara"/>
+<meta property="og:image" content="http://s3.amazonaws.com/jobandtalent_production/assets/companies/avatars/000/000/209/209/large_Apara_logo.png?1284541056"/>
+<meta property="og:site_name" content="jobandtalent"/>
+<meta property="og:description"
+       content="*Apara es una compañía española hi-tech.*
+
+Apara ha redefinido la forma en que las empresas dan soporte a sus procesos de toma de decisiones. introduciendo en el mercado sus plataformas de automatización inteligente de la decisión. Sus motores permiten realizar predicciones precisas de forma senc..."/>
+<meta content="*Apara es una compañía española hi-tech.*
+
+Apara ha redefinido la forma en que las empresas dan soporte a sus procesos de toma de decisiones. introduciendo en el mercado sus plataformas de automatización inteligente de la decisión. Sus motores permiten realizar predicciones precisas de forma senc..." name='description'/>
+
+    <script type="text/javascript">
+      //<![CDATA[
+        
+        $(document).ready(function(){
+          Login.init();
+          
+  
+
+        });
+      //]]>
+    </script>
+  </head>
+
+  <body id="companies_show" class="">
+    <div id="header">
+      <a class="logohead" title="Jobandtalent" href="/"><strong>jobandtalent.com</strong></a>
+      
+  <ul id="nav">
+    <li class="first-child"><a href="/profile" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA="><span>Inicio</span></a></li>
+    <li><a href="/profile/edit" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Perfil de Javier Pelado García"><span>Perfil</span></a></li>
+    <li><a href="/people" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA="><span>Recomendaciones</span></a></li>
+    <li><a href="/companies" class="active" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA="><span>Empresas</span></a></li>
+  </ul> <!-- /nav -->
+
+  <div class="account_nav">
+    <ul class="user_links">
+      
+      
+      <li>
+        <a href="/messages" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Mensajes de Javier Pelado García">Mensajes </a>
+      </li>
+      <li>
+        <a href="/notifications" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Notificaciones de Javier Pelado García">Notificaciones </a>
+      </li>
+      <li><a href="/profile/account" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Cuenta">Cuenta</a></li>
+      <li class="last-child">
+        <form action="/session" method="post"><div style="margin:0;padding:0;display:inline"><input name="_method" type="hidden" value="delete" /><input name="authenticity_token" type="hidden" value="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" /></div>
+          <button class="linked" type="submit">Salir</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+
+
+    </div> <!-- /header -->
+
+    <div id="content">
+      
+      
+
+
+      
+
+
+
+<div class="profile_box">
+  <div class="entity_profile">
+    <span class='recruiting'>Activa</span>  
+    <img alt="Large_apara_logo" class="avatar" height="92" src="http://s3.amazonaws.com/jobandtalent_production/assets/companies/avatars/000/000/209/209/large_Apara_logo.png?1284541056" width="147" />
+    <h1 class="h3">Apara</h1>
+    
+      <p class="sector">Sector: <a href="/sectors/21/companies" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=">Tecnología</a></p>
+    
+    
+      <p class='company_status'>Reclutando gerente de cuentas en el área financiera</p>
+    
+    
+    <div class="company" id="company_209">
+      <div class="company candidate_actions" id="actions_for_company_209">
+  
+    <form action="/companies/apara/candidacies" class="new_candidacy" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" /></div>
+  <button type='submit' class='dark'><span class="c_icon ok_button_dark"></span>Quiero ser visible</button>
+</form>
+
+  
+</div>
+
+      
+    </div>
+
+  </div><!-- .entity_profile -->
+</div><!-- .profile_box -->
+
+
+
+<div id="main">
+
+  <ul class='tabs' id="tabs">
+    <li><a href="#processes" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=">Ofertas de trabajo <span>(1)</span></a></li>
+    <li><a href="#stories" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=">Novedades</a></li>
+    <li><a href="#information" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=">Información</a></li>
+    
+  </ul>
+  
+  <div id="tabcontent">
+    <div id="processes">
+      
+      <h2 class="accessible">Ofertas de trabajo, Apara</h2>
+      
+        <ul id='processes-list' class="item_list processes">
+          <li>
+
+    
+    <h3 class="title"><a href="/companies/apara/processes/1762-sales-manager-junior-it" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=">Sales Manager Junior IT</a></h3>
+    <div class="process_card">
+      
+      <dl>
+        <dt>Lugar</dt>
+        <dd>Madrid (Madrid) &nbsp;</dd>
+        
+        <dt>Tipo de contrato</dt>
+        <dd>Tiempo completo &nbsp;</dd>
+
+        <dt>Experiencia necesaria</dt>
+        <dd>1 año de experiencia</dd>
+        
+        
+
+        <dt>Areas del proceso</dt>
+        <dd>Tecnología <span class='time'>(Indiferente / Todo)</span></dd>
+
+        <dt>El proceso se cierra el</dt>
+        <dd>17 de Junio de 2011</dd>
+        
+        <dt>Solicitudes recibidas</dt>
+        <dd><strong>0</strong></dd>
+      </dl>
+      <div class="actions">
+        <p>
+          <a href="/companies/apara/processes/1762-sales-manager-junior-it" class="button dark" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA="><span class='c_icon right_arrow_button_dark'></span>Leer más</a>
+        </p>
+      </div>
+      
+    </div>
+
+</li>
+
+        </ul>
+      
+    </div><!-- #processes -->
+    
+    <div id="stories">
+      <h2 class="accessible">Novedades, Apara</h2>
+      
+<!-- cache-hit: company_209_recent_stories -->
+
+         
+  <ul class="item_list stories">
+    <li class="story recruitment_process_created" id="story_8148">
+  <a href="/companies/apara" class="avatar" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ="><img alt="Contact_apara_logo" height="39" src="http://s3.amazonaws.com/jobandtalent_production/assets/companies/avatars/000/000/209/209/contact_Apara_logo.png?1284541056" width="58" /></a>
+  <div class="item_content">
+    <p><a href="/companies/apara" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ=">Apara</a> ha publicado un nuevo proceso: 
+      
+        <a href="/companies/apara/processes/1762-sales-manager-junior-it" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ=">Sales Manager Junior IT</a>
+      
+    </p>
+    <span class="time">Hace 3 minutos</span>
+  </div>
+</li>
+
+<li class="story even" id="story_7938">
+  <a href="/companies/apara" class="avatar" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ="><img alt="Contact_apara_logo" height="39" src="http://s3.amazonaws.com/jobandtalent_production/assets/companies/avatars/000/000/209/209/contact_Apara_logo.png?1284541056" width="58" /></a>
+  <div class="item_content">
+    <p><a href="/companies/apara" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ=">Apara</a> se ha interesado por 2 candidatos de U. Complutense y U. Autónoma de Madrid</p>
+    <span class="time">Hace 7 días</span>
+  </div>
+</li>
+
+<li class="story" id="story_7567">
+  <a href="/companies/apara" class="avatar" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ="><img alt="Contact_apara_logo" height="39" src="http://s3.amazonaws.com/jobandtalent_production/assets/companies/avatars/000/000/209/209/contact_Apara_logo.png?1284541056" width="58" /></a>
+  <div class="item_content">
+    <p><a href="/companies/apara" data-authenticity_token="VU8WbBDk0A2RbZBG5XfjceigcHD67TwA1Yb7wA9wzcQ=">Apara</a> se ha interesado por 1 candidato de U. Deusto</p>
+    <span class="time">Hace 19 días</span>
+  </div>
+</li>
+
+  </ul>
+
+
+      
+<!-- /cache-hit: company_209_recent_stories -->
+
+    </div><!-- #stories -->
+    
+    <div id="information">
+      <h2 class="accessible">Información, Apara</h2>
+      
+  <h3 class="h6">Información general</h3>
+  <div class="content">
+    <dl class='long'>
+      <dt>Sede:</dt>
+      <dd>Madrid</dd>
+      
+      <dt>Teléfono:</dt>
+      <dd>913 531 564</dd>
+      
+      <dt>Web:</dt>
+      <dd><a href="http://www.aparasw.com">www.aparasw.com</a></dd>
+      
+      
+        <dt>Oficinas:</dt>
+        <dd>Paseo de la Castellana, 182 P10</dd>
+      
+      
+      
+    </dl> 
+</div>
+
+      <h3 class="h6">Sobre Apara </h3>
+      <div class="content">
+        <p><strong>Apara es una compañía española hi-tech.</strong></p>
+<p>Apara ha redefinido la forma en que las empresas dan soporte a sus procesos de toma de decisiones. introduciendo en el mercado sus plataformas de automatización inteligente de la decisión. Sus motores permiten realizar predicciones precisas de forma sencilla por los usuarios de negocio.</p>
+<p>Apara desarrolla tecnología pionera en la automatización inteligente de los procesos de toma de decisiones y que ayudan a las personas a transformar los datos en decisiones más certeras. Los innovadores motores predictivos de Apara son capaces de descubrir automáticamente los patrones ocultos que describen comportamientos de negocio. Pueden ser utilizados para predecir el escenario futuro más probable y recomendar las acciones óptimas para ellos en tiempo real y en diferentes ámbitos del negocio.</p>
+<p>La innovadora tecnología de Apara unida al talento y experiencia de los mejores especialistas nos convierte en el mejor aliado nuestros clientes para sacarle el máximo rendimiento a la información que atesoran, generando valor en su operaciones corporativas y alcanzando el liderazgo competitivo.</p>
+<p>Los productos de Apara se aplican a problemas complejos como son la prevención del fraude, la retención de clientes y las campañas de marketing desde las perspectiva de la automatización inteligente de la decisión.</p>
+<p><strong>En Apara apostamos por:</strong></p>
+<p>- Personas entusiastas y con iniciativa<br />
+- Abiertas a una carrera internacional<br />
+- Que se crecen ante los nuevos retos<br />
+- Capaces de anticiparse a los cambios<br />
+- Con capacidad de trabajo en equipo</p>
+<p>Las necesidades de nuestros clientes se ven cumplidas con una amplia gama de profesionales que aportan un valor añadido a la Compañía, nuestra iniciativa y forma de actuación se ve reconocida como especialistas altamente cualificados en el sector.</p>
+<p>Las competencias requeridas en cada una de las personas que componen nuestra plantilla se corresponden a características personales y técnicas acordes con una visión de negocio que pretende innovar y ser referencia de mercado a nivel internacional.</p>
+<p>Nuestra cultura empresarial se caracteriza por el compromiso de favorecer a todos sus miembros, reconociendo sus logros personales y laborales, tanto individuales como grupales.</p>
+      </div>
+      
+
+  <h3 class="h6">Información cuantitativa</h3>
+  <div class="content">
+    
+    <dl class="long">
+      
+
+      
+        <dt>Oficinas en el mundo:</dt>
+        <dd>Distribución en Brasil, México y Chile</dd>
+      
+
+      
+        <dt>Oficinas en España:</dt>
+        <dd>Madrid</dd>
+      
+
+      
+        <dt>Empleados en el mundo:</dt>
+        <dd>48</dd>
+      
+
+      
+        <dt>Empleados en España:</dt>
+        <dd>48</dd>
+      
+
+      
+    </dl>
+  </div><!-- .content -->
+  
+
+    </div><!-- #information -->
+
+    
+  </div>
+</div><!-- #main -->
+
+<div id="secondary">
+  <strong class="h6">Apara en jobandtalent</strong>
+<div class="sideblock">
+  <dl class="stats_block">
+    
+
+    <dt>6935</dt>
+    <dd>Candidatos interesados</dd>
+    
+    
+  </dl>
+</div>
+
+  
+
+  <strong class="h6">Recomienda a Apara</strong>
+<div class="sideblock">
+  <fb:like action="recommend" href="http://jobandtalent.com/companies/apara/?utm_source=facebook&utm_medium=feed&utm_campaign=company_like" width="290" layout="standard" show_faces="true" colorscheme="light"></fb:like>
+</div>
+
+</div>
+
+
+
+<!-- Google Code for Remarketing bueno (14/03/2011) Remarketing List -->
+<script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 1011439991;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "666666";
+  var google_conversion_label = "aQP6COn0kgIQ97Kl4gM";
+  var google_conversion_value = 0;
+  /* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">;
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1011439991/?label=aQP6COn0kgIQ97Kl4gM&amp;guid=ON&amp;script=0"/>;
+  </div>
+</noscript>
+
+<!-- FB connect -->
+<div id="fb-root"></div>
+<script type="text/javascript">
+//<![CDATA[
+  window.fbAsyncInit = function() {
+    FB.init({appId: '313920124347', status: true, cookie: true,
+             xfbml: true});
+  };
+  (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol +
+      '//connect.facebook.net/en_US/all.js';
+    document.getElementById('fb-root').appendChild(e);
+  }());
+
+//]]>
+</script>
+<!-- /FB connect -->
+
+
+    </div> <!-- /content -->
+    <div id="footer">
+  <p class="logofoot">
+    &#169;<a href="/" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="jobandtalent.com">jobandtalent.com</a>
+  </p> <!-- /logofoot -->
+  <ul id="footer_nav">
+    <li><a href="/contact" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Contacto">Contacto</a></li>
+    <li><a href="/companies" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Empresas">Empresas</a></li>
+    
+    <li><a href="/about" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Sobre jobandtalent">Sobre jobandtalent</a></li>
+    <li><a href="http://blog.jobandtalent.com" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Blog">Blog</a></li>
+    <li><a href="/terms_and_privacy" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Aviso legal">Aviso legal</a></li>
+    <li><a href="/faq" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+  </ul> <!-- /footer_nav -->
+</div> <!-- /footer -->
+
+    <div id="feedback">
+  <a href="/feedback/new" class="overlay" data-authenticity_token="zOJqdOHiE8btL4MAW5rMqloRi7qVv7liw3ySnH7+oaA=" rel="#overlay">Feedback</a> 
+</div>
+
+    <div id="overlay" class="contentform"><div id="overlaycontent"></div></div>
+  </body>
+</html>

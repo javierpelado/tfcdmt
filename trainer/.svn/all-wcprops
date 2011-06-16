@@ -13,6 +13,12 @@ svn:wc:ra_dav:version-url
 V 47
 /svn/!svn/ver/40/trunk/myTFC/trainer/trainer.js
 END
+php_to_java.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/49/trunk/myTFC/trainer/php_to_java.php
+END
 addSession.php
 K 25
 svn:wc:ra_dav:version-url
@@ -23,7 +29,7 @@ save.php
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/42/trunk/myTFC/trainer/save.php
+/svn/!svn/ver/43/trunk/myTFC/trainer/save.php
 END
 opinions.php
 K 25
@@ -65,7 +71,7 @@ classifiers.php
 K 25
 svn:wc:ra_dav:version-url
 V 52
-/svn/!svn/ver/42/trunk/myTFC/trainer/classifiers.php
+/svn/!svn/ver/49/trunk/myTFC/trainer/classifiers.php
 END
 getSessions_ant.php
 K 25
@@ -96,12 +102,6 @@ K 25
 svn:wc:ra_dav:version-url
 V 49
 /svn/!svn/ver/37/trunk/myTFC/trainer/loadarff.php
-END
-save_1.php
-K 25
-svn:wc:ra_dav:version-url
-V 47
-/svn/!svn/ver/42/trunk/myTFC/trainer/save_1.php
 END
 json_source.txt
 K 25

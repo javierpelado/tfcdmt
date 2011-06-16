@@ -1,0 +1,13 @@
+@relation prueba
+
+@attribute text String
+@attribute class {POSITIVE,NEGATIVE,NEUTRAL}
+
+@data
+"@Adriyuyu Jajaja Me gusta saber que sigues tan loco como siempre !," POSITIVE
+"@nadiaadepaula obvio!! si yo ls escuchara, no viviría mi vida d la manera que me gusta vivivirla por suert no vems mas a ls chusms del secu!," POSITIVE
+"@bullysteria que mal que no me gusta lady gaga jaja lo siento pero suerte que #cagado," POSITIVE
+"Jaja horroroso... Todos los trabajadores de los edificios de santafe en la banqueta #pinche temblor," NEGATIVE
+"@jrsestaca claro q si se sintio! vivo n piso 13 polanco y m toco sentado n el trono. Fue horroroso! Pero conserve la calma hasta terminar ;)," NEGATIVE
+"@la100fm a mi lo que me puede son las compras, sea donde sea que voy algo siempre me gusta y me lo quiero comprar!!! me pica la plata. besos," NEUTRAL
+"Me gusta su letra.," NEUTRAL
